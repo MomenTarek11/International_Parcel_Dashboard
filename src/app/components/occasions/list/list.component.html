@@ -1,0 +1,42 @@
+<section id="add-main-page">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12 position-relative">
+                <table class="table table-striped mt-5">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"> رقم </th>
+                            <!-- <th scope="col"> اسم البانر بالعربية </th>
+                            <th scope="col"> اسم البانر بالانجليزية </th>
+                            <th scope="col"> وصف البانر بالعربيه </th>
+                            <th scope="col"> وصف البانر بالانجليزية </th> -->
+
+                            <th scope="col"> الصورة</th>
+
+                            <th scope="col"> اعدادات </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let banner of banners;let i=index">
+                            <th scope="col"> {{i+1}} </th>
+                            <!-- <td>{{banner.title_ar}}</td>
+                            <td> {{banner.title_en}}</td>
+                            <td> {{banner.description_ar}}</td>
+                            <td> {{banner.description_en}}</td> -->
+
+                            <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{banner.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td>
+
+                            <td>
+                                <!-- <i style="cursor: pointer;" class="fas fa-check text-success" (click)="activeProduct(product.id)"></i> | -->
+
+                                <i style="cursor: pointer;" class="fas fa-trash text-danger" (click)="deleteApp(banner.id)"></i>
+                                <!-- |
+                      <i class="fas fa-eye text-success" style="cursor: pointer;" (click)="productDetails(product)"></i> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

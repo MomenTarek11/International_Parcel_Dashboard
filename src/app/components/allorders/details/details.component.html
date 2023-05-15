@@ -1,0 +1,114 @@
+<h3 class="text-center">بيانات الطلب</h3>
+<br />
+<table class="table" dir="rtl">
+  <tbody>
+    <tr>
+      <th scope="row">رقم الطلب</th>
+      <td>
+        {{ data?.order_refrence }}
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">تاريخ الطلب</th>
+      <td>{{ data?.updated_at | date }}</td>
+    </tr>
+    <tr>
+      <th scope="row">عنوان التوصيل</th>
+      <td>
+        {{ data.address == null ? "لا يوجد عنوان توصيل " : data.address }}
+      </td>
+    </tr>
+    <!-- <tr>
+            <th scope="row"> تاريخ الوصول </th>
+            <td>{{data?.updated_at | date}}</td>
+        </tr> -->
+
+    <tr>
+      <th scope="row">وزن الطلب</th>
+      <td>{{ data?.weight }}</td>
+    </tr>
+
+    <tr>
+      <th scope="row">نوع البضاعة</th>
+      <td>
+        {{
+          data?.shipping_type?.name_ar
+            ? data?.shipping_type?.name_ar
+            : data?.shipping_type?.name_en
+        }}
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">تكلفة الطلب</th>
+      <td>{{ data?.price }}</td>
+    </tr>
+    <tr>
+      <th scope="row">نوع الشحن</th>
+      <td *ngIf="data?.type == 1">جوي</td>
+      <td *ngIf="data?.type == 0">بحري</td>
+    </tr>
+
+    <tr>
+      <th scope="row">حاله الطلب</th>
+      <td *ngIf="data?.status_id == 0 && data?.canceled == 0">طلب جديد</td>
+      <td *ngIf="data?.status_id == 1 && data?.canceled == 0">جاري التواصل مع المورد</td>
+      <td *ngIf="data?.status_id == 2 && data?.canceled == 0 && data?.is_changed == 0">جاري مراجعة الطلب</td>
+      <td *ngIf="data?.status_id == 2 && data?.canceled == 0 && data?.is_changed == 1">طلب معلق</td>
+      <td *ngIf="data?.status_id == 3 && data?.canceled == 0"> طلب جاري شحنه من الصين </td>
+      <td *ngIf="data?.status_id == 4 && data?.canceled == 0">في ميناء المملكة و تحت المراجعة الجمركية</td>
+      <td *ngIf="data?.status_id == 5 && data?.canceled == 0">جاري التفريغ في مستودعاتنا</td>
+      <td *ngIf="data?.status_id == 6 && data?.canceled == 0">جاري التوصيل للعميل</td>
+      <td *ngIf="data?.status_id == 7 && data?.canceled == 0">طلب منتهي</td>
+      <td *ngIf="data?.canceled == 1">طلب ملغي</td>
+
+    </tr>
+    <!-- <tr>
+            <th scope="row">الشركة المسئولة عن توصيل الطلب </th>
+            <td>{{data?.company.name}}</td>
+
+        </tr> -->
+    <tr>
+      <th scope="row">اسم العميل</th>
+      <td>{{ data?.user.name }}</td>
+    </tr>
+    <tr *ngIf="data?.notes">
+      <th scope="row">التعليق</th>
+      <td>{{ data?.notes }}</td>
+    </tr>
+    <tr>
+      <th scope="row">الصور المرفقة</th>
+      <td>
+        <div>
+            <!-- <span *ngFor="let item of data?.files">
+                <a [href]="data?.listfile">تحميل الملف</a>
+            </span> -->
+            
+        </div>
+        
+        <div class="forGap">
+            <div *ngFor="let item of data?.invoices">
+                <img
+                width="100px"
+                [src]="item.filePath"
+                alt=""
+                srcset=""
+                class="mr-1"
+                />
+                <a [href]="item.filePath" class="mr-1">تحميل الملف</a>
+
+            </div>
+
+            <div *ngFor="let item of data?.lists">
+                <img  width="100px"  [src]="item.filePath" alt="" srcset="" />
+                <a [href]="item.filePath" class="mr-1">تحميل الملف</a>
+
+            </div>
+           
+              
+              
+        </div>
+       
+      </td>
+    </tr>
+  </tbody>
+</table>

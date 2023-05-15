@@ -1,0 +1,42 @@
+<section id="add-main-page">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">اسم الميناء باللغه العربيه</th>
+                                <th scope="col">اسم الميناء باللغه الانجليزية</th>
+
+                                <th scope="col">إعدادات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let city of cities;let i=index">
+                                <th scope="row">{{i+1}}</th>
+
+                                <td>
+                                    {{city.name_ar}}
+                                </td>
+
+                                <td>
+                                    {{city.name_en}}
+                                </td>
+                                <td>
+                                    <i style="cursor: pointer;" class="fas fa-trash text-danger" (click)="deleteApp(city.id)"></i> |
+                                    <i style="cursor: pointer;" class="fas fa-edit text-primary" (click)="editCity(city)"></i>
+
+
+                                    <!-- '
+                              <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-success" (click)="viewApp()">visibility</mat-icon> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

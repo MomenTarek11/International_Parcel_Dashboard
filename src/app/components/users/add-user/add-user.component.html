@@ -1,0 +1,43 @@
+<section id="add-main-page">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="submit()">
+                        <div class="form-group">
+                            <label for="">الاسم</label>
+                            <input type="text" class="form-control" formControlName="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="">البريد الإلكتروني</label>
+                            <input type="text" class="form-control" formControlName="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="">نوع الشخص </label>
+                            <select class="form-control">
+                                <option value="Client">عميل</option>
+                                <option value="representative">مندوب</option>
+                                <option value="store">متجر</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">رقم الهاتف</label>
+                            <input type="text" class="form-control" formControlName="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="">الرقم السري</label>
+                            <input type="text" class="form-control" formControlName="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="">تأكيد الرقم السري</label>
+                            <input type="text" class="form-control" formControlName="confirm_password">
+                        </div>
+                        <div class="form-group text-center mt-5">
+                            <button class="btn btn-primary" type="submit">إضافة شخص</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

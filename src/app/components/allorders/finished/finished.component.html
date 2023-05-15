@@ -1,0 +1,84 @@
+<section id="add-main-page">
+    <!-- <div class="form-group">
+        <label for=""> اسم الشركة </label>
+        <select class="form-control p-1" (change)="getCompany($event.target.value)">
+            <option></option>
+            <option  [value]="company.id" *ngFor="let company of companies">{{ company.name_ar }}</option>
+        </select>
+    </div> -->
+
+    <div class="card" *ngIf="orders?.length != 0">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">رقم الطلب </th>
+                                <th scope="col">اسم العميل</th>
+                                <th scope="col"> الايميل</th>
+                                <th scope="col">رقم الهاتف</th>
+                                <!-- <th scope="col"> الصورة</th> -->
+
+                                <th scope="col">إعدادات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of orders?.data;let i=index">
+                                <th scope="row">{{order.order_refrence}}</th>
+
+
+                                <td>{{order.user.name}} </td>
+                                <td>{{order.user.email}} </td>
+                                <td>{{order.user.phone}} </td>
+                                <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{order.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
+                                <td>
+                               
+                                    <i class="fas fa-eye text-success" style="cursor: pointer;" (click)="viewOrder(order)"></i>
+
+
+
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagination justify-content-center" *ngIf="orders?.data.length > 0">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination ">
+            <li class="page-item" (click)="clientList(orders?.current_page - 1 , 1,this.active)"><a class="page-link text-success">Previous</a></li>
+            <li
+              class="page-item "
+              *ngFor="let order of orders.links; let i = index"
+              (click)="clientList(i + 1,1,this.active)"
+              
+            >
+              <a class="page-link text-success" [class]="orders?.current_page == i + 1 ? 'page-active' : ''">{{ i + 1 }} </a>
+              
+            </li>
+  
+            <li class="page-item " (click)="clientList(orders?.current_page + 1 , 1,this.active)"><a class="page-link text-success">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+</section>
+
+<section id="add-main-page" *ngIf="orders?.length == 0">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="card-body text-center">
+                    <h1>لم يتم إضافة أي طلبات منتهيه بعد</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

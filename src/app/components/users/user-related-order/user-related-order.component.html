@@ -1,0 +1,58 @@
+<!-- <div class="col-md-12 project-list">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-12">
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <section id="add-main-page" *ngIf="orders?.length != 0">
+      <div class="card">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="card-body">
+                      <table class="table">
+                          <thead class="thead-dark">
+                            <tr>
+                              <th scope="col">#</th>
+                              <th scope="col">اسم العميل</th>
+                              <th scope="col">اسم مقدم الخدمة</th>
+                              <th scope="col">  سعر الطلب</th>
+                              <th scope="col">إعدادات</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let order of orders;let i=index">
+                              <th scope="row">{{i+1}}</th>
+                              <td>
+                                <a href="javascript:void(0)" (click)="userDetails(order.user)">{{order.user.name}}</a>
+                              </td>
+                              <td>
+                                <a href="javascript:void(0)" (click)="providerDetails(order.store)">{{order.store.user.name}}</a>
+                              </td>
+                              <td>{{order.total_price}} ريال</td>
+                              <td>
+                                <!-- <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-danger" (click)="deleteApp()">delete</mat-icon>
+                                ' -->
+                                <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-success" (click)="orderDetails(order)">visibility</mat-icon>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  
+  <section id="add-main-page" *ngIf="orders?.length == 0">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body text-center">
+                  <h1>لم يتم إضافة أي طلبات بعد</h1>
+                </div>
+              </div>
+          </div>
+      </div>
+  </section> 

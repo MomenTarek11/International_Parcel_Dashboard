@@ -1,0 +1,35 @@
+<h3 class="text-center">بيانات العميل </h3>
+<br>
+<table class="table" dir="rtl">
+    <tbody>
+        <tr>
+            <th scope="row"> الاسم</th>
+            <td>
+                {{data?.name}}
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">الايميل </th>
+            <td>{{data?.email}} </td>
+        </tr>
+        <tr>
+            <th scope="row"> رقم الهاتف </th>
+            <td>{{data?.phone}}</td>
+        </tr>
+        <tr>
+            <th scope="row"> عدد الطلبات </th>
+            <td>{{data?.orders}}</td>
+        </tr>
+        <!-- <tr>
+            <th scope="row"> عدد الشحنات </th>
+            <td>{{data?.shipped}}</td>
+        </tr> -->
+        <tr>
+            <th scope="row">الحاله </th>
+            <td>{{data?.active == 0 ? 'محظور' :'مفعل'}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<!--  -->

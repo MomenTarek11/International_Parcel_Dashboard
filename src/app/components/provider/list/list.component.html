@@ -1,0 +1,67 @@
+
+<section id="add-main-page">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">الاسم</th>
+                                <th scope="col">الوظيفة</th>
+                                <th scope="col">التقييم</th>
+                                <th scope="col">نص التقييم</th>
+
+                                <th scope="col">الاجراءات</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of testmoinals?.data;let i=index">
+                                <th scope="row">{{i + 1}}</th>
+                                <td>{{user?.user.name}}</td>
+                                <td>{{user?.job_title}}</td>
+                                <td>{{user?.rate}}</td>
+                                <td>{{user?.feed_back}}</td>
+
+
+                                <td>
+                                  <i [class]="user?.in_home == 1 ? 'fas fa-star' : 'fa fa-star-o'" class="gold" style="cursor: pointer;" (click)="addToHome(user)"></i> |
+                                    <i class="fas fa-trash text-danger" style="cursor: pointer;" (click)="deleteTest(user.id)"></i>
+
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="pagination justify-content-center" >
+      <nav aria-label="Page navigation example">
+        <ul class="pagination ">
+          <li class="page-item" (click)="getTestmonials(testmoinals?.current_page - 1)"><a class="page-link text-success">Previous</a></li>
+          <li
+            class="page-item "
+            *ngFor="let order of testmoinals?.links; let i = index"
+            (click)="getTestmonials(i + 1)"
+            
+          >
+            <a class="page-link text-success" [class]="testmoinals?.current_page == i + 1 ? 'page-active' : ''">{{ i + 1 }} </a>
+            
+          </li>
+
+          <li class="page-item " (click)="getTestmonials(testmoinals?.current_page + 1)"><a class="page-link text-success">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+
+</section>

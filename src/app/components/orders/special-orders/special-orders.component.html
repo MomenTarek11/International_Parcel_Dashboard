@@ -1,0 +1,92 @@
+<div class="col-md-12 project-list">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
+          <li class="nav-item">
+            <a (click)="getOrders('new')" [ngClass]="{'active': type == 'new'}" class="nav-link" href="javascript:void(0)" role="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            جديدة </a>
+          </li>
+          <li class="nav-item">
+            <a (click)="getOrders('active')" [ngClass]="{'active': type == 'active'}" class="nav-link" href="javascript:void(0)" role="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            قيد التنفيذ</a>
+          </li>
+          <li class="nav-item">
+            <a (click)="getOrders('finished')" [ngClass]="{'active': type == 'finished'}" class="nav-link" href="javascript:void(0)" role="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+            منتهية </a>
+          </li>
+          <li class="nav-item">
+            <a (click)="getOrders('canceled')" [ngClass]="{'active': type == 'canceled'}" class="nav-link" href="javascript:void(0)" role="tab">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target">
+              <circle cx="12" cy="12" r="10"></circle>
+              <circle cx="12" cy="12" r="6"></circle>
+              <circle cx="12" cy="12" r="2"></circle>
+            </svg>
+             ملغية  </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="add-main-page" *ngIf="orders?.length != 0">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">اسم العميل</th>
+                            <th scope="col">اسم مقدم الخدمة</th>
+                            <th scope="col">تفاصيل الطلب</th>
+                            <th scope="col">إعدادات</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let order of orders;let i=index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{order?.name}}</td>
+                            <td>{{order?.user?.name}}</td>
+                            <td>{{order?.describe}}</td>
+                            <td>
+                              <!-- <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-danger" (click)="deleteApp()">delete</mat-icon>
+                              ' -->
+                              <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-success" (click)="orderDetails(order)">visibility</mat-icon>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="add-main-page" *ngIf="orders?.length == 0">
+  <div class="card">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card-body text-center">
+                <h1>لم يتم إضافة أي طلبات بعد</h1>
+              </div>
+            </div>
+        </div>
+    </div>
+</section> 

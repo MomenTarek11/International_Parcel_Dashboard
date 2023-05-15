@@ -1,0 +1,327 @@
+<!-- <section class="animate__animated animate__fadeIn home">
+      <section class="animate__animated animate__fadeIn">
+        <div class="container-fluid">
+            <div class="row second-chart-list third-news-update">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-xl-12 box-col-12 col-lg-12 col-md-12">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي عدد الطلبات قيد التنفيذ </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.pending_orders}} طلب</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي قيمة الطلبات قيد التنفيذ </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.pending_orders_total_price| number}} ريال</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي عدد مقدمي الخدمات </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.providers_count}} شخص</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي عدد العملاء </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.clients_count}} عميل</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي عدد المنتجات </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.products_count}} منتج</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي عدد الطلبات الجديدة </p>
+                            <h4 class="f-w-500 mb-0 f-26">  {{statistics?.new_orders}} طلب </h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي قيمة الطلبات الجديدة </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.new_orders_total_price | number  }} ريال</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي عدد الطلبات المنتهية </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.finished_orders}} طلب</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-xl-6 box-col-6 col-lg-12 col-md-6">
+                    <div class="card o-hidden">
+                      <div class="card-body">
+                        <div class="ecommerce-widgets media">
+                          <div class="media-body">
+                            <p class="f-w-500 font-roboto"> اجمالي قيمة الطلبات المنتهية </p>
+                            <h4 class="f-w-500 mb-0 f-26">{{statistics?.finished_orders_total_price| number}} ريال</h4>
+                          </div>
+                          <div class="ecommerce-box light-bg-primary"><i class="gradient fa fa-diamond" aria-hidden="true"></i></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+</section> -->
+
+
+<div class="container-fluid">
+  <section class="personalinfo">
+    <form [formGroup]="personalInfo" (ngSubmit)="onSubmit()">
+      <div class="row my-3 d-flex justify-content-between p-4">
+        <div class="" >
+          <h5 *ngIf="secondtRow">تعديل البيانات</h5>
+          <div class="image" *ngIf="hideImg">
+            <img
+              *ngIf="showImg"
+              class="user-image-avatar hideEmptyImg"
+              src="{{ imgpath }}"
+              alt="wrong"
+            />
+            <img
+              *ngIf="base64Image"
+              class="user-image-avatar"
+              src="{{ base64Image }}"
+              alt="noo"
+              style="padding: 10px 0px"
+            />
+            <!-- <img *ngIf="base64Image" (click)="image.click();" class="user-image-avatar" src="assets/icons/addphoto.svg" > -->
+            <svg
+              style="cursor: pointer"
+              (click)="image.click()"
+              xmlns="http://www.w3.org/2000/svg"
+              width="45"
+              height="45"
+              viewBox="0 0 45 45"
+            >
+              <defs>
+                <style>
+                  .a {
+                    fill: none;
+                    stroke: #333;
+                    stroke-linecap: round;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 10;
+                    stroke-width: 2px;
+                  }
+                </style>
+              </defs>
+              <g transform="translate(5.157 5.156)">
+                <path
+                  class="a"
+                  d="M13.363,0C6.156,0,0,1.089,0,5.454s6.116,5.494,13.363,5.494c7.208,0,13.363-1.091,13.363-5.454S20.61,0,13.363,0Z"
+                  transform="translate(0 23.356)"
+                />
+                <path
+                  class="a"
+                  d="M8.565,17.13A8.565,8.565,0,1,0,0,8.565,8.535,8.535,0,0,0,8.565,17.13Z"
+                  transform="translate(4.798 0)"
+                />
+                <path
+                  class="a"
+                  d="M.5,0V7.519"
+                  transform="translate(30.351 11.099)"
+                />
+                <path
+                  class="a"
+                  d="M7.966.5H0"
+                  transform="translate(27.018 14.358)"
+                />
+              </g>
+            </svg>
+            <input
+              type="file"
+              hidden
+              #image
+              (change)="base64($event)"
+              accept="image/*"
+            />
+          </div>
+        </div>
+        <div class=" " *ngIf="showButtons">
+          <div class="image">
+            <img
+              class="user-image-avatar hideEmptyImg"
+              src="{{ imgpath }}"
+              alt="wrong"
+            />
+          </div>
+        </div>
+        <div class="profilebtn" *ngIf="showButtons">
+          <!-- (click)="editPersonalInfo()" -->
+   
+          <!-- (click)="editPassword()" -->
+          <button class="btn btn-primary my-2 mx-2" (click)="setType(1)">
+            تغيير كلمة السر
+          </button>
+        </div>
+
+        <div class="profilebtn py-1" *ngIf="!showButtons">
+          <button
+            type="submit"
+            class="btn btn-primary my-4 float-right"
+            (click)="onSubmit()"
+          >
+            حفظ
+          </button>
+        </div>
+      </div>
+      <div class="personalform">
+        <!-- <span class="text-danger"> *all passwords must be 6 characters at least</span> -->
+        <!-- <form [formGroup]="personalInfo" (ngSubmit)="onSubmit()"> -->
+        <div class="form-row my-3" >
+          <div class="col-md-6 px-3 col-12 d-flex">
+            <label for="fullName" class="w-100">
+              <h6>اسم المستخدم</h6>
+
+              <div class="d-flex position-relative" style="direction: ltr">
+                <input
+                  type="text"
+                  name=""
+                   
+                  class="form-control"
+                  placeholder="اسم المستخدم"
+                  [class]="thisLang == 'ar' ? 'text-right' : 'text-left'"
+                  [attr.disabled]="false"
+                  formControlName="name"
+                />
+              </div>
+            </label>
+          </div>
+
+
+          <div class="col-md-6 px-3 col-12 d-flex" >
+            <label for="fullName" class="w-100">
+              <h6>البريد الالكتروني</h6>
+
+              <div class="d-flex position-relative" style="direction: ltr">
+                <input
+                  type="text"
+                  name=""
+                   
+                  class="form-control"
+                  [class]="thisLang == 'ar' ? 'text-right' : 'text-left'"
+                  [attr.disabled]="editpassword ? 'true' : null"
+                  placeholder="البريد الالكتروني"
+                  formControlName="email"
+                  required="true"
+                />
+              </div>
+            </label>
+          </div>
+
+  
+
+
+          <div class="form-group col-md-6 px-3" *ngIf="secondtRow">
+            <label for="exampleInputPassword2">كلمة السر الجديدة</label>
+            <div class="d-flex position-relative">
+              <input
+                [type]="this.showConfirm2 ? 'text' : 'password'"
+                class="form-control"
+                style="direction: ltr"
+                required="true"
+                minlength="6"
+                [class]="thisLang == 'ar' ? 'text-right' : 'text-left'"
+                placeholder="كلمة السر الجديدة"
+                [attr.disabled]="editpassword ? 'true' : null"
+                formControlName="password"
+              />
+              <div
+                class="text-gray position-absolute"
+                [class]="
+                  thisLang == 'ar'
+                    ? 'password-position-rtl'
+                    : 'password-position'
+                "
+              >
+                <span
+                  class="text-muted"
+                  (click)="this.showConfirm2 = !this.showConfirm2"
+                  ><i class="fas fa-eye" *ngIf="!this.showConfirm2"></i>
+                  <i class="fas fa-eye-slash" *ngIf="this.showConfirm2"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+   
+
+
+    
+        </div>
+
+        <!-- </form> -->
+        <!-- <div class="float-left profilebtn"> 
+        <button type="submit" class="btn btn-primary my-2 mx-2"> Update</button>
+        </div> -->
+      </div>
+    </form>
+  </section>
+</div>

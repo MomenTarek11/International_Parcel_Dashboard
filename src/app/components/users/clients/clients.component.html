@@ -1,0 +1,38 @@
+<section id="add-main-page">
+    <div class="col-md-12 project-list">
+        <div class="card">
+            <div class="row">
+                <div class="container-fluid">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">اسم البروموكود</th>
+                                <th scope="col">نسبه الخصم </th>
+                                <th scope="col">تاريخ الانتهاء</th>
+
+                                <th scope="col">تعديل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of promocodes;let i=index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{user.code}}</td>
+                                <td>{{user.discount_precentage}}</td>
+                                <td>{{user.expire_at}}</td>
+                                <td>
+                                    <i class="far fa-edit text-success" (click)="viewUser(user)" style="cursor: pointer;"></i>|
+                                    <i class="fa fa-trash text-danger" (click)="deletePromo(user.id)" style="cursor: pointer;"></i>
+
+                                    <!-- <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-danger" (click)="deleteUser(user.id)">delete</mat-icon>
+                            ' -->
+                                    <!-- <mat-icon  aria-hidden="false" aria-label="Example home icon" class="text-success" (click)="viewUser(user)">visibility</mat-icon> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,55 @@
+<section id="add-main-page">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12 position-relative">
+                <table class="table table-striped mt-5">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col"> رقم </th>
+                            <th scope="col">اسم العميل</th>
+                            <th scope="col">الهاتف</th>
+                            <th scope="col">الايميل</th>
+                            <th scope="col">التاريخ</th>
+                            <th scope="col">عنوان الرسالة</th>
+                            <th scope="col">نص الرسالة</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let msg of messages?.data;let i=index">
+                            <th scope="col"> {{i+1}} </th>
+                            <td>{{msg.name}}</td>
+                            <td> {{msg.phone}}</td>
+                            <td> {{msg.email}}</td>
+                            <td> {{msg.created_at | date}}</td>
+                            <td> {{msg.title}}</td>
+                            <td> {{msg.message}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pagination justify-content-center" >
+        <nav aria-label="Page navigation example">
+          <ul class="pagination ">
+            <li class="page-item" (click)="getMessages(messages?.current_page - 1)"><a class="page-link text-success">Previous</a></li>
+            <li
+              class="page-item "
+              *ngFor="let order of messages.links; let i = index"
+              (click)="getMessages(i + 1)"
+              
+            >
+              <a class="page-link text-success" [class]="messages?.current_page == i + 1 ? 'page-active' : ''">{{ i + 1 }} </a>
+              
+            </li>
+  
+            <li class="page-item " (click)="getMessages(messages?.current_page + 1)"><a class="page-link text-success">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+
+</section>

@@ -1,0 +1,48 @@
+<section id="add-main-page">
+    <div class="card">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-body">
+                    <form [formGroup]="form">
+                        <div class="form-group">
+                            <label for="">اسم  باللغة العربية</label>
+                            <input type="text" class="form-control" formControlName="name_ar">
+                        </div>
+                        <div class="form-group">
+                            <label for="">اسم  باللغة الانجليزية</label>
+                            <input type="text" class="form-control" formControlName="name_en">
+                        </div>
+                        <div class="form-group">
+                            <label for="">وصف  باللغة العربية</label>
+                            <input type="text" class="form-control" formControlName="description_ar">
+                        </div>
+                        <div class="form-group">
+                            <label for="">وصف  باللغة الانجليزية</label>
+                            <input type="text" class="form-control" formControlName="description_en">
+                        </div>
+                        <div class="form-group">
+                            <label for="">صورة الشركة </label>
+                            <ng-container *ngIf="image_edit">
+                                <ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif" [multiple]="true">
+                                    <ngx-dropzone-label>أضغط هنا لإختيار صورة الشركة</ngx-dropzone-label>
+                                    <ngx-dropzone-image-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)" [file]="f">
+                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                    </ngx-dropzone-image-preview>
+                                </ngx-dropzone>
+                            </ng-container>
+                            <div class="text-center" *ngIf="!image_edit">
+                                <div style="position: relative;">
+                                    <i style="cursor: pointer;    cursor: pointer;position: absolute;top: 3px;" class="fas fa-edit text-primary" (click)="image_edit=!image_edit"></i>
+                                    <img style="width: 150px;height: 150px;" src="{{data.imagePath}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center mt-5">
+                            <button class="btn btn-primary" type="button" (click)="submit()">تعديل عرض سعر</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

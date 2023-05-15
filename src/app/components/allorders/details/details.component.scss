@@ -1,0 +1,11 @@
+.forGap{
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.forGap div{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}

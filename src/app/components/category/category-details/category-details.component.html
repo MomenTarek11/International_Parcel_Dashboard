@@ -1,0 +1,27 @@
+<section id="category-details">
+    <div class="card">
+        <div class="card-details p-4">
+            <div class="row">
+                <div class="col-md-6 mb-3 text-center">اسم شركة الشحن باللغه العربيه</div>
+                <div class="col-md-6 mb-3 text-center">{{data.name_ar}}</div>
+                <div class="col-md-6 mb-3 text-center">اسم شركة الشحن باللغه الانجليزي</div>
+                <div class="col-md-6 mb-3 text-center">{{data.name_en}}</div>
+                <div class="col-md-6 mb-3 text-center">وصف شركة الشحن باللغه العربيه</div>
+                <div class="col-md-6 mb-3 text-center">{{data.description_ar}}</div>
+                <div class="col-md-6 mb-3 text-center">وصف شركة الشحن باللغه الانجليزية</div>
+                <div class="col-md-6 mb-3 text-center">{{data.description_en}}</div>
+                <div class="col-md-6 mb-3 text-center"> السعر</div>
+                <div class="col-md-6 mb-3 text-center">{{data.price}}</div>
+                <div class="col-md-6 mb-3 text-center">التأمين </div>
+                <div class="col-md-6 mb-3 text-center">{{data.insaurance}}</div>
+                <div class="col-md-12 text-center">
+                    <article>
+                        <img style="width: 280px;
+                        height: 190px;" src="{{data.imagePath}}" alt="">
+                    </article>
+                    <button class="btn btn-danger mt-3 mb-3" (click)="closeCard()">اغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
