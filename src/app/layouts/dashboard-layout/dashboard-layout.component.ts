@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, NavigationEnd, Params, Router, RoutesRecognized } from '@angular/router';
-import {filter} from 'rxjs/operators';
-import {map, mergeMap} from 'rxjs/internal/operators';
+// import {filter} from 'rxjs/operators';
+// import {map, mergeMap} from 'rxjs/internal/operators';
 import { Title } from '@angular/platform-browser';
 
 @Component({

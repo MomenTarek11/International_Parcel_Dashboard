@@ -5,7 +5,7 @@ import { TagsRoutingModule } from './tags-routing.module';
 import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxDropzoneModule } from 'ngx-dropzone';
+// import { NgxDropzoneModule } from 'ngx-dropzone';
 import { EditComponent } from './edit/edit.component';
 
 
@@ -16,7 +16,7 @@ import { EditComponent } from './edit/edit.component';
     TagsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxDropzoneModule
+    // NgxDropzoneModule
   ]
 })
 export class TagsModule { }

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxDropzoneModule } from 'ngx-dropzone';
+// import { NgxDropzoneModule } from 'ngx-dropzone';
 import { ListComponent } from './list/list.component';
 import { AllOrdersModule } from './allorders-routing.module';
 import { DetailsComponent } from './details/details.component';
@@ -16,6 +16,7 @@ import { InSaudiComponent } from './in-saudi/in-saudi.component';
 import { FromSaudiComponent } from './from-saudi/from-saudi.component';
 import { ToClientComponent } from './to-client/to-client.component';
 import { FinishedComponent } from './finished/finished.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 
 @NgModule({

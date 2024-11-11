@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 import { GlobalService } from 'src/app/services/global.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
-import { Toast, ToastrService } from 'ngx-toastr';
+// import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add',
@@ -23,7 +23,7 @@ export class AddComponent implements OnInit {
     private service:GlobalService,
     private spinner:NgxSpinnerService,
     private router:Router,
-    private toastr: ToastrService,
+    // private toastr: ToastrService,
     ) { }
 
   ngOnInit(): void {
@@ -117,7 +117,7 @@ onRemove(event) {
       this.spinner.hide()
       if(res.status == false){
         for (let i = 0; i < res.errors.length; i++) {
-          this.toastr.error(res.errors[i]);  
+          // this.toastr.error(res.errors[i]);  
           
         }
 

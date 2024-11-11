@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
+// import { ToastrService } from 'ngx-toastr';
 import { GlobalService } from 'src/app/services/global.service';
 import Swal from 'sweetalert2';
 
@@ -21,7 +21,7 @@ export class AddComponent implements OnInit {
     private spinner:NgxSpinnerService,
     private service:GlobalService,
     private router:Router,
-    private toastr: ToastrService,
+    // private toastr: ToastrService,
 
     ) { }
 
@@ -54,7 +54,7 @@ export class AddComponent implements OnInit {
         }
         else {
           for (let i = 0; i < res.errors.length; i++) {
-            this.toastr.error(res.errors[i]);  
+            // this.toastr.error(res.errors[i]);  
             
           }
         }

@@ -7,7 +7,7 @@ import { ListComponent } from './list/list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { EditComponent } from './edit/edit.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+// import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatSelectModule } from '@angular/material/select';
 
 
@@ -18,8 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
     SizesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxDropzoneModule,
-    NgMultiSelectDropDownModule.forRoot(),
+    // NgxDropzoneModule,
+    // NgMultiSelectDropDownModule.forRoot(),
     MatSelectModule,
     
 

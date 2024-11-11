@@ -10,13 +10,14 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
-import { NgxSpinnerModule } from "ngx-spinner";
+// import { NgxSpinnerModule } from "ngx-spinner";
 import { HomeComponent } from './components/home/home.component';
 import { WrongRouteComponent } from './components/auth/errors/wrong-route/wrong-route.component';
 import {ConnectionServiceModule} from 'ng-connection-service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+// import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+ 
 
 @NgModule({
   declarations: [
@@ -31,10 +32,10 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
-    ConnectionServiceModule,
+    // NgxSpinnerModule,
+   // ConnectionServiceModule,
     MatSnackBarModule,
-    NgMultiSelectDropDownModule.forRoot()
+    // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

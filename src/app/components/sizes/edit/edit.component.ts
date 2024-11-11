@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { NgxSpinnerService } from "ngx-spinner";
-import { ToastrService } from "ngx-toastr";
+// import { ToastrService } from "ngx-toastr";
 import { GlobalService } from "src/app/services/global.service";
 import Swal from "sweetalert2";
 
@@ -27,7 +27,7 @@ export class EditComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private toastr: ToastrService
+    // private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -155,7 +155,7 @@ export class EditComponent implements OnInit {
         Swal.fire("نجاح", "تم تعديل الادمن بنجاح", "success");
       } else {
         for (let i = 0; i < res.errors.length; i++) {
-          this.toastr.error(res.errors[i]);
+          // this.toastr.error(res.errors[i]);
         }
       }
       this.dialog.closeAll();

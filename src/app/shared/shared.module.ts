@@ -9,10 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+ 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import {MatDialogModule} from '@angular/material/dialog';
+// import { ToastrModule } from 'ngx-toastr';
+ 
+ 
 
 
 
@@ -26,12 +29,13 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReactiveFormsModule,
     MatSelectModule,
     HttpClientModule,
-    ToastrModule.forRoot({
-      timeOut: 10000, 
-      positionClass: 'toast-bottom-right', 
-      preventDuplicates: true,
-      progressBar:true
-    }),
+    // ToastrModule,
+    // .forRoot({
+    //   timeOut: 10000, 
+    //   positionClass: 'toast-bottom-right', 
+    //   preventDuplicates: true,
+    //   progressBar:true
+    // }),
     RouterModule,
     MatDialogModule,
   ],
@@ -46,7 +50,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
-    ToastrModule,
+   //ToastrModule,
     RouterModule
   ],  
   providers:[
