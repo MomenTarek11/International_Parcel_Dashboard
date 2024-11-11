@@ -13,7 +13,7 @@ import { StoresComponent } from './stores/stores.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserRelatedOrderComponent } from './user-related-order/user-related-order.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
+// import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -29,7 +29,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     NgxDropzoneModule,
     MatIconModule,
      MatDatepickerModule,
-    MatFormFieldModule,
+    // MatFormFieldModule,
     MatNativeDateModule,
   ]
 })
