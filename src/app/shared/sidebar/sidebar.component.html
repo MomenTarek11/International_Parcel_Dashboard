@@ -1,51 +1,105 @@
 <div class="logo-wrapper">
-    <a href="javascript:void(0)">
-        <img class="img-fluid for-light" src="assets/images/pomac.png" width="25">
-        <img class="img-fluid for-dark" src="assets/images/pomac.png" width="25" style="filter: brightness(0) invert(1);">
-    </a>
-    <div class="back-btn"><i class="fa fa-angle-left"></i></div>
-    <div class="toggle-sidebar" (click)="toggler()" checked="checked"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid status_toggle middle sidebar-toggle"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+  <a href="javascript:void(0)">
+    <img class="img-fluid for-light" src="assets/images/ipe.jpg" width="25" />
+    <img
+      class="img-fluid for-dark"
+      src="assets/images/ipe.jpg"
+      width="25"
+      style="filter: brightness(0) invert(1)"
+    />
+  </a>
+  <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+  <div class="toggle-sidebar" (click)="toggler()" checked="checked">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-grid status_toggle middle sidebar-toggle"
+    >
+      <rect x="3" y="3" width="7" height="7"></rect>
+      <rect x="14" y="3" width="7" height="7"></rect>
+      <rect x="14" y="14" width="7" height="7"></rect>
+      <rect x="3" y="14" width="7" height="7"></rect>
+    </svg>
+  </div>
 </div>
 <div class="logo-icon-wrapper">
-    <a href="javascript:void(0)">
-        <img class="img-fluid" src="../assets/images/pomac.png" alt=""></a>
+  <a href="javascript:void(0)">
+    <img class="img-fluid" src="../assets/images/ipe.jpg" alt=""
+  /></a>
 </div>
 <nav class="sidebar-main">
-    <div class="left-arrow disabled" id="left-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></div>
-    <div id="sidebar-menu">
-        <ul class="sidebar-links custom-scrollbar" style="display: block;">
-            <li class="back-btn">
-                <a href="javascript:void(0)">
-                    <img class="img-fluid" src="../assets/images/pomac.png" alt=""></a>
-                <div class="mobile-back text-right"><span>Back</span><i class="fa fa-angle-right pl-2" aria-hidden="true"></i></div>
-            </li>
-            <li class="sidebar-main-title">
-                <div>
-                    <h6 class="lan-1">عناصر التحكم</h6>
-                    <p class="lan-2">الصفحة الشخصية , الاعلانات </p>
-                </div>
-            </li>
+  <div class="left-arrow disabled" id="left-arrow">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-arrow-left"
+    >
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </div>
+  <div id="sidebar-menu">
+    <ul class="sidebar-links custom-scrollbar" style="display: block">
+      <li class="back-btn">
+        <a href="javascript:void(0)">
+          <img class="img-fluid" src="../assets/images/ipe.jpg" alt=""
+        /></a>
+        <div class="mobile-back text-right">
+          <span>Back</span
+          ><i class="fa fa-angle-right pl-2" aria-hidden="true"></i>
+        </div>
+      </li>
+      <li class="sidebar-main-title">
+        <div>
+          <h6 class="lan-1">عناصر التحكم</h6>
+          <p class="lan-2">الصفحة الشخصية , الاعلانات</p>
+        </div>
+      </li>
 
-            <li class="sidebar-list">
-                <a class="sidebar-link sidebar-title link-nav" href="javascript:void(0)" [routerLink]="['/home']">
-                    <svg class="svg-icon" viewBox="0 0 20 20" style="width: 20px;height:20px;">
-                  <path d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"></path>
-                </svg>
-                    <span>الصفحة الشخصية</span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-            </li>
+      <li class="sidebar-list">
+        <a
+          class="sidebar-link sidebar-title link-nav"
+          href="javascript:void(0)"
+          [routerLink]="['/home']"
+        >
+          <svg
+            class="svg-icon"
+            viewBox="0 0 20 20"
+            style="width: 20px; height: 20px"
+          >
+            <path
+              d="M18.121,9.88l-7.832-7.836c-0.155-0.158-0.428-0.155-0.584,0L1.842,9.913c-0.262,0.263-0.073,0.705,0.292,0.705h2.069v7.042c0,0.227,0.187,0.414,0.414,0.414h3.725c0.228,0,0.414-0.188,0.414-0.414v-3.313h2.483v3.313c0,0.227,0.187,0.414,0.413,0.414h3.726c0.229,0,0.414-0.188,0.414-0.414v-7.042h2.068h0.004C18.331,10.617,18.389,10.146,18.121,9.88 M14.963,17.245h-2.896v-3.313c0-0.229-0.186-0.415-0.414-0.415H8.342c-0.228,0-0.414,0.187-0.414,0.415v3.313H5.032v-6.628h9.931V17.245z M3.133,9.79l6.864-6.868l6.867,6.868H3.133z"
+            ></path>
+          </svg>
+          <span>الصفحة الشخصية</span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+      </li>
 
-            <!-- <li class="sidebar-main-title">
+      <!-- <li class="sidebar-main-title">
           <div>
             <h6 class="lan-8">تطبيق ورد</h6>
             <p class="lan-9"> الفئات &المستخدمين  & البانرات </p>
           </div>
         </li> -->
 
-<!-- 
+      <!-- 
             <li class="sidebar-list" [style.display]="shippmentPrice ==1 ? 'block':'none'">
                 <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                     <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
@@ -62,10 +116,7 @@
                 </ul>
             </li> -->
 
-
-
-
-             <!-- <li class="sidebar-list">
+      <!-- <li class="sidebar-list">
                 <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                     <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
                 <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
@@ -81,56 +132,124 @@
                 </ul>
             </li>  -->
 
+      <li class="sidebar-list" [style.display]="orders == 1 ? 'block' : 'none'">
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">الطلبات</span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li [style.display]="orders1 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/newOrder']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              طلبات جديدة
+            </a>
+          </li>
+          <li [style.display]="orders2 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/confirmedOrders']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              جاري التواصل مع المورد
+            </a>
+          </li>
+          <li [style.display]="orders3 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/recievedChina']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              شحنات تحت المراجعة
+            </a>
+          </li>
+          <li [style.display]="orders4 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/inChina']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >الطلبات المعلقة</a
+            >
+          </li>
+          <li [style.display]="orders5 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/fromChina']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              طلبات جاري شحنها من الصين
+            </a>
+          </li>
+          <li [style.display]="orders6 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/recievedSaudi']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              شحنات في ميناء المملكة تحت المراجعة الجمركية
+            </a>
+          </li>
+          <li [style.display]="orders7 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/inSaudi']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >شحنات جاري تفريغها في مستودعاتنا</a
+            >
+          </li>
+          <li [style.display]="orders8 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/fromSaudi']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >شحنات جاري توصيلها للعميل</a
+            >
+          </li>
+          <li [style.display]="orders9 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/toClient']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              شحنات منتهية
+            </a>
+          </li>
+          <li [style.display]="orders10 == 1 ? 'block' : 'none'">
+            <a
+              [routerLink]="['/app/orders/Finished']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              شحنات ملغية
+            </a>
+          </li>
+        </ul>
+      </li>
 
-            <li class="sidebar-list" [style.display]="orders ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">الطلبات</span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li [style.display]="orders1 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/newOrder']" routerLinkActive="active" class="lan-4" href="javascript:void(0)"> طلبات جديدة </a>
-                    </li>
-                    <li [style.display]="orders2 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/confirmedOrders']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">  جاري التواصل مع المورد </a>
-                    </li>
-                    <li [style.display]="orders3 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/recievedChina']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">  شحنات تحت المراجعة   </a>
-                    </li>
-                    <li [style.display]="orders4 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/inChina']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">الطلبات المعلقة</a>
-                    </li>
-                    <li [style.display]="orders5 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/fromChina']" routerLinkActive="active" class="lan-4" href="javascript:void(0)"> طلبات جاري شحنها من الصين  </a>
-                    </li>
-                    <li [style.display]="orders6 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/recievedSaudi']" routerLinkActive="active" class="lan-4" href="javascript:void(0)"> شحنات في ميناء المملكة تحت المراجعة الجمركية </a>
-                    </li>
-                    <li [style.display]="orders7 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/inSaudi']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">شحنات جاري تفريغها في مستودعاتنا</a>
-                    </li>
-                    <li [style.display]="orders8 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/fromSaudi']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">شحنات جاري توصيلها للعميل</a>
-                    </li>
-                    <li [style.display]="orders9 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/toClient']" routerLinkActive="active" class="lan-4" href="javascript:void(0)"> شحنات منتهية    </a>
-                    </li>
-                    <li [style.display]="orders10 ==1 ? 'block' : 'none'">
-                        <a [routerLink]="['/app/orders/Finished']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">  شحنات ملغية </a>
-                    </li>
-
-                </ul>
-            </li>
-
-           
-
-
-            <!-- <li class="sidebar-list">
+      <!-- <li class="sidebar-list">
                 <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                     <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
                 <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
@@ -146,7 +265,7 @@
                 </ul>
             </li>  -->
 
-            <!-- <li class="sidebar-list" [style.display]="priceOffer ==1 ? 'block' : 'none'">
+      <!-- <li class="sidebar-list" [style.display]="priceOffer ==1 ? 'block' : 'none'">
                 <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                     <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
                 <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
@@ -162,26 +281,40 @@
                 </ul>
             </li> -->
 
+      <li
+        class="sidebar-list"
+        [style.display]="testmonial == 1 ? 'block' : 'none'"
+      >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">اراء العملاء </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/testmonials/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع الاراء</a
+            >
+          </li>
+          <!-- <li><a [routerLink]="['/app/testmonials/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة رأي  </a></li> -->
+        </ul>
+      </li>
 
-
-            <li class="sidebar-list" [style.display]="testmonial ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">اراء العملاء  </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/testmonials/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع  الاراء</a></li>
-                    <!-- <li><a [routerLink]="['/app/testmonials/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة رأي  </a></li> -->
-                </ul>
-            </li>
-
-
-            <!-- <li class="sidebar-list" [style.display]="services ==1 ? 'block':'none'">
+      <!-- <li class="sidebar-list" [style.display]="services ==1 ? 'block':'none'">
                 <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                     <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
                 <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
@@ -197,146 +330,333 @@
                 </ul>
             </li> -->
 
-            <li class="sidebar-list" [style.display]="banners ==1 ? 'block':'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">البانرات   </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/banner/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع البانرات</a></li>
-                    <li><a [routerLink]="['/app/banner/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة بانر  </a></li>
-                </ul>
-            </li>
-
-
-            <li class="sidebar-list" [style.display]="admins ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">المسؤولين   </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/admins/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع الادمن</a></li>
-                    <li><a [routerLink]="['/app/admins/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة ادمن  </a></li>
-                </ul>
-            </li>
-
-
-           <li class="sidebar-list" [style.display]="types ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3"> أنواع الشحنات </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/shippment/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع الشحنات</a></li>
-                    <li><a [routerLink]="['/app/shippment/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة شحنة  </a></li>
-                </ul>
-            </li> 
-
-
-
-
-            <li class="sidebar-list" [style.display]="clients ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">العملاء   </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/clients/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع العملاء</a></li>
-                </ul>
-            </li>
-
-
-
-            <li class="sidebar-list" [style.display]="promocode ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">البروموكود   </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/promocode/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع البروموكود</a></li>
-                    <li><a [routerLink]="['/app/promocode/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة بروموكود</a></li>
-
-                </ul>
-            </li>
-
-
-
-            <li class="sidebar-list" [style.display]="transaction ==1 ? 'block' : 'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">التحويلات   </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/transactions/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">جميع التحويلات</a></li>
-
-                </ul>
-            </li>
-            
-
-            <li class="sidebar-list" [style.display]="news ==1 ? 'block' :'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">شريط الأخبار   </span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/news/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)"> جميع النصوص</a></li>
-                    <li><a [routerLink]="['/app/news/add']" routerLinkActive="active" class="lan-4" href="javascript:void(0)">اضافة نص</a></li>
-                </ul>
-            </li>
-
-
-            <li class="sidebar-list" [style.display]="messages ==1 ? 'block' :'none'">
-                <a class="sidebar-link sidebar-title" href="javascript:void(0)">
-                    <svg class="svg-icon" style="width: 20px;height:20px" viewBox="0 0 20 20">
-                <path d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"></path>
-              </svg>
-                    <span class="lan-3">رسائل العملاء</span>
-                    <div class="according-menu">
-                        <i class="fa fa-angle-right"></i>
-                    </div>
-                </a>
-                <ul class="sidebar-submenu" style="display: none;">
-                    <li><a [routerLink]="['/app/contact-us/list']" routerLinkActive="active" class="lan-4" href="javascript:void(0)"> جميع الرسائل</a></li>
-                </ul>
-            </li>
-
-
+      <li
+        class="sidebar-list"
+        [style.display]="banners == 1 ? 'block' : 'none'"
+      >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">البانرات </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/banner/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع البانرات</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/banner/add']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >اضافة بانر
+            </a>
+          </li>
         </ul>
-    </div>
-    <div class="right-arrow" id="right-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+      </li>
+
+      <li class="sidebar-list" [style.display]="admins == 1 ? 'block' : 'none'">
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">المسؤولين </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/admins/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع الادمن</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/admins/add']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >اضافة ادمن
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="sidebar-list" [style.display]="types == 1 ? 'block' : 'none'">
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3"> أنواع الشحنات </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/shippment/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع الشحنات</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/shippment/add']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >اضافة شحنة
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li
+        class="sidebar-list"
+        [style.display]="clients == 1 ? 'block' : 'none'"
+      >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">العملاء </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/clients/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع العملاء</a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li
+        class="sidebar-list"
+        [style.display]="promocode == 1 ? 'block' : 'none'"
+      >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">البروموكود </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/promocode/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع البروموكود</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/promocode/add']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >اضافة بروموكود</a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li
+        class="sidebar-list"
+        [style.display]="transaction == 1 ? 'block' : 'none'"
+      >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">التحويلات </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/transactions/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >جميع التحويلات</a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li class="sidebar-list" [style.display]="news == 1 ? 'block' : 'none'">
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">شريط الأخبار </span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/news/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              جميع النصوص</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/news/add']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+              >اضافة نص</a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li
+        class="sidebar-list"
+        [style.display]="messages == 1 ? 'block' : 'none'"
+      >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3">رسائل العملاء</span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/contact-us/list']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              جميع الرسائل</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="sidebar-list">
+        <a class="sidebar-link sidebar-title" style="cursor: pointer" [routerLink]="['/app/countries']">
+          <svg
+            class="svg-icon"
+            style="width: 20px; height: 20px"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10,1.529c-4.679,0-8.471,3.792-8.471,8.471c0,4.68,3.792,8.471,8.471,8.471c4.68,0,8.471-3.791,8.471-8.471C18.471,5.321,14.68,1.529,10,1.529 M10,17.579c-4.18,0-7.579-3.399-7.579-7.579S5.82,2.421,10,2.421S17.579,5.82,17.579,10S14.18,17.579,10,17.579 M14.348,10c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.446,0.446-0.446h5C14.146,9.554,14.348,9.755,14.348,10 M14.348,12.675c0,0.245-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.201-0.446-0.446s0.2-0.445,0.446-0.445h5C14.146,12.229,14.348,12.43,14.348,12.675 M7.394,10c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.446,0.446-0.446h0.849C7.194,9.554,7.394,9.755,7.394,10 M7.394,12.675c0,0.245-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.201-0.446-0.446s0.201-0.445,0.446-0.445h0.849C7.194,12.229,7.394,12.43,7.394,12.675 M14.348,7.325c0,0.246-0.201,0.446-0.446,0.446h-5c-0.246,0-0.446-0.2-0.446-0.446c0-0.245,0.2-0.446,0.446-0.446h5C14.146,6.879,14.348,7.08,14.348,7.325 M7.394,7.325c0,0.246-0.2,0.446-0.446,0.446H6.099c-0.245,0-0.446-0.2-0.446-0.446c0-0.245,0.201-0.446,0.446-0.446h0.849C7.194,6.879,7.394,7.08,7.394,7.325"
+            ></path>
+          </svg>
+          <span class="lan-3"> الدول</span>
+          <div class="according-menu">
+            <i class="fa fa-angle-right"></i>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="right-arrow" id="right-arrow">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-arrow-right"
+    >
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  </div>
 </nav>

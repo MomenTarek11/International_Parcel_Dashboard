@@ -16,6 +16,8 @@ import { WrongRouteComponent } from './components/auth/errors/wrong-route/wrong-
 import {ConnectionServiceModule} from 'ng-connection-service';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { CountriesComponent } from './components/countries/countries.component';
+import { PopUpComponent } from './components/countries/pop-up/pop-up.component';
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
  
 
@@ -26,6 +28,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
     LoginComponent,
     HomeComponent,
     WrongRouteComponent,
+    CountriesComponent,
+    PopUpComponent,
+    
   ],
   imports: [
     BrowserModule,

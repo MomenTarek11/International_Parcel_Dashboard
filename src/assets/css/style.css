@@ -1,7 +1,7 @@
 @charset "UTF-8";
 :root {
-  --theme-deafult: #7366ff;
-  --theme-secondary: #f73164; }
+  --theme-deafult: #32b457;
+  --theme-secondary: #0f4f56; }
 
 /**=====================
      Reset css start
@@ -27852,3 +27852,4 @@ body[class*='dark-'] .for-light {
 /**=====================
     63. Box-layout CSS ends
 ==========================**/
+    } 

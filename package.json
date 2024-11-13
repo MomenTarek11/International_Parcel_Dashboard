@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~13.4.0",
     "@angular/router": "~13.4.0",
     "@damingerdai/ngx-mat-intl-tel-input2": "^2.0.5-beta3",
+    "@fortawesome/fontawesome-free": "^6.6.0",
     "firebase": "^7.0 || ^8.0",
     "i": "^0.3.7",
     "jquery": "^3.5.1",

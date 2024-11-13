@@ -1,104 +1,109 @@
 // @import '~ngx-toastr/toastr';
 
 @font-face {
-    font-family: 'Noto Sans Kufi Arabic';
-    font-style: normal;
-    font-weight: 400;
-    src: url(/assets/fonts/custom/ArbFONTS-NotoKufiArabic-Regular.ttf);
+  font-family: "Noto Sans Kufi Arabic";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/fonts/custom/ArbFONTS-NotoKufiArabic-Regular.ttf);
+}
+@font-face {
+  font-family: "Noto Sans Kufi Arabic";
+  font-style: normal;
+  font-weight: 700;
+  src: url(/assets/fonts/custom/ArbFONTS-NotoKufiArabic-Bold.ttf);
+}
+html:lang(ar) {
+  body,
+  html,
+  mat-form-field {
+    font-family: "Noto Sans Kufi Arabic", Courier, monospace !important;
+    direction: rtl;
+    text-align: right;
   }
-  @font-face {
-    font-family: 'Noto Sans Kufi Arabic';
-    font-style: normal;
-    font-weight: 700;
-    src: url(/assets/fonts/custom/ArbFONTS-NotoKufiArabic-Bold.ttf);
+  .toast-error {
+    background-color: #f04d64 !important;
+    color: #fff !important;
   }
-  html:lang(ar){
-    body,html,mat-form-field{
-        font-family: 'Noto Sans Kufi Arabic', Courier, monospace !important;
-        direction: rtl;
-        text-align: right ;
+  form {
+    mat-form-field {
+      width: 100%;
+      .mat-form-field-wrapper {
+        padding-bottom: 5px !important;
       }
-      .toast-error{
-        background-color: #f04d64 !important;
-        color: #fff !important;
-      }
-      form{
-        mat-form-field{
-          width: 100%;
-          .mat-form-field-wrapper{
-            padding-bottom: 5px !important;
-          }
-          .password-icons,.show-hide{
-            position: absolute;
-            left: 5px;
-            top: 10px;
-            span{
-              margin: 3px;
-              color: #2b2b2b;
-            }
-          }
-        }
-        // in login component
-        .show-hide{
-          right: auto;
-          left: 20px ;
-          & > span.show:before{
-            content: "عرض";
-          }
-          & > span:before{
-            content: "إخفاء";
-          }
-        }
-        div.errors-container{
-          p.error-element{
-            font-size: 75%;
-            color: #f44336;
-            &::before{
-              font-family: "Font Awesome 5 Free"; font-weight: 600; content: "\f06a";
-              margin-left: 3px;
-            }
-          }
+      .password-icons,
+      .show-hide {
+        position: absolute;
+        left: 5px;
+        top: 10px;
+        span {
+          margin: 3px;
+          color: #2b2b2b;
         }
       }
-      
-      .page-wrapper.compact-wrapper .page-body-wrapper.sidebar-icon .according-menu i{
-          transform: rotate(180deg);
-      }
-      table{
-        th,td{
-            text-align: center;
-            vertical-align: middle;
-            mat-icon{
-                cursor: pointer;
-            }
-        }
     }
-     
-  }
-  .dropzone{
-    &.is-invalid{
-      border-color: red ;
-      margin-bottom: 20px;
-      // i{
-      //   color: red;
-      // }
+    // in login component
+    .show-hide {
+      right: auto;
+      left: 20px;
+      & > span.show:before {
+        content: "عرض";
+      }
+      & > span:before {
+        content: "إخفاء";
+      }
+    }
+    div.errors-container {
+      p.error-element {
+        font-size: 75%;
+        color: #f44336;
+        &::before {
+          font-family: "Font Awesome 5 Free";
+          font-weight: 600;
+          content: "\f06a";
+          margin-left: 3px;
+        }
+      }
     }
   }
-table{
-  a{
-    span.icon{
+
+  .page-wrapper.compact-wrapper
+    .page-body-wrapper.sidebar-icon
+    .according-menu
+    i {
+    transform: rotate(180deg);
+  }
+  table {
+    th,
+    td {
+      text-align: center;
+      vertical-align: middle;
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+}
+.dropzone {
+  &.is-invalid {
+    border-color: red;
+    margin-bottom: 20px;
+    // i{
+    //   color: red;
+    // }
+  }
+}
+table {
+  a {
+    span.icon {
       font-size: 20px;
     }
   }
 }
 
-
-.text-dager{
+.text-dager {
   color: red !important;
 }
 
-
-
-.swal2-input{
+.swal2-input {
   // direction: ltr;
 }
