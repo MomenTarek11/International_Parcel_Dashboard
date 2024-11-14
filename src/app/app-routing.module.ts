@@ -22,6 +22,7 @@ import { OrderModule } from "./components/allorders/allorder.module";
 import { NewsModule } from "./components/news/occasions.module";
 import { contactUsModule } from "./components/contact-us/occasions.module";
 import { CountriesComponent } from "./components/countries/countries.component";
+import { CitiesComponent } from "./components/cities/cities.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -61,6 +62,7 @@ const routes: Routes = [
       { path: "news", loadChildren: () => NewsModule },
       { path: "contact-us", loadChildren: () => contactUsModule },
       { path: "countries", component: CountriesComponent },
+      { path: "cities", component: CitiesComponent },
     ],
   },
   {

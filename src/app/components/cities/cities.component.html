@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 py-5">
-      <button class="btn btn-primary btn-lg" (click)="addCountry()">
+      <button class="btn btn-primary btn-lg" (click)="addCity()">
         <i class="fa fa-plus mr-2"></i>
-        اضافة دولة
+        اضافة مدينة
       </button>
     </div>
     <div class="row w-100">
@@ -12,7 +12,7 @@
           <div class="panel-heading py-5 text-center">
             <div class="row">
               <div class="col col-sm-12 col-xs-12">
-                <h4 class="title"><span>كل الدول المتاحة</span></h4>
+                <h4 class="title"><span>كل المدن المتاحة</span></h4>
               </div>
             </div>
           </div>
@@ -21,9 +21,9 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>اسم الدولة (بالعربي)</th>
-                  <th>اسم الدولة (بالانجليزي)</th>
-                  <th>اسم الدولة (بالصيني)</th>
+                  <th>اسم المدينة (بالعربي)</th>
+                  <th>اسم المدينة (بالانجليزي)</th>
+                  <th>اسم المدينة (بالصيني)</th>
                   <th>تعديل / حذف</th>
                 </tr>
               </thead>
@@ -38,7 +38,7 @@
                       <i
                         style="cursor: pointer"
                         class="fa fa-pencil text-warning"
-                        (click)="editCountry(country.id, i)"
+                        (click)="editCity(country.id, i)"
                       ></i>
                     </span>
                     |
@@ -46,7 +46,7 @@
                       <i
                         style="cursor: pointer"
                         class="fa fa-trash text-danger"
-                        (click)="deleteCountry(country.id)"
+                        (click)="deleteCity(country.id)"
                       ></i>
                     </span>
                   </td>

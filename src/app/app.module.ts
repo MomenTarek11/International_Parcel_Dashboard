@@ -17,8 +17,9 @@ import { ConnectionServiceModule } from "ng-connection-service";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { CountriesComponent } from "./components/countries/countries.component";
-import { PopUpComponent } from "./components/countries/pop-up/pop-up.component";
+import { PopUpComponent } from "./shared/pop-up/pop-up.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { CitiesComponent } from "./components/cities/cities.component";
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     WrongRouteComponent,
     CountriesComponent,
     PopUpComponent,
+    CitiesComponent,
   ],
   imports: [
     BrowserModule,

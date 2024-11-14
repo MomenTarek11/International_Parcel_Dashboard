@@ -1,8 +1,8 @@
 import { Component, Inject, inject, OnInit } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { CountriesComponent } from "../countries.component";
+import { CountriesComponent } from "../../components/countries/countries.component";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { CountriesService } from "../countries.service";
+import { CountriesService } from "../../components/countries/countries.service";
 import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: "app-pop-up",

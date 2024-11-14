@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from "@angular/core";
 import { CountriesService } from "./countries.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from "@angular/material/dialog";
-import { PopUpComponent } from "./pop-up/pop-up.component";
+import { PopUpComponent } from "../../shared/pop-up/pop-up.component";
 
 @Component({
   selector: "app-countries",
