@@ -11,4 +11,14 @@ export class CountriesService {
   getAllCountries() {
     return this.http.get(`${environment.endpoint}/countries`);
   }
+  addCountry(form: any) {
+    const Form = new FormData();
+    Form.append("name_ar", form.name_ar);
+    Form.append("name_en", form.name_en);
+    Form.append("name_cn", form.name_cn);
+    return this.http.post(
+      `${environment.endpoint}/backend/countries/add`,
+      Form
+    );
+  }
 }

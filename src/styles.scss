@@ -1,5 +1,4 @@
 // @import '~ngx-toastr/toastr';
-
 @font-face {
   font-family: "Noto Sans Kufi Arabic";
   font-style: normal;
@@ -12,6 +11,7 @@
   font-weight: 700;
   src: url(/assets/fonts/custom/ArbFONTS-NotoKufiArabic-Bold.ttf);
 }
+@import "aos/dist/aos.css";
 html:lang(ar) {
   body,
   html,
@@ -104,6 +104,7 @@ table {
   color: red !important;
 }
 
-.swal2-input {
-  // direction: ltr;
+.mat-dialog-container {
+  background: #1c2b40;
+  overflow: hidden !important;
 }

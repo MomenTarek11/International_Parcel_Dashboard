@@ -1,27 +1,20 @@
-<div class="register-container">
-  <h2>Register</h2>
-  <form id="registerForm">
+<div class="register-container" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="mb-5">{{ this.Data.title }}</h2>
+  <form id="registerForm" [formGroup]="Form" (ngSubmit)="onSubmit()">
     <div class="input-group">
-      <input type="text" id="username" required />
-      <label for="username">Username</label>
+      <label class="mb-3 text-right">الأسم بالعربي</label>
+      <input type="text" formControlName="name_ar" />
     </div>
     <div class="input-group">
-      <input type="email" id="email" required />
-      <label for="email">Email</label>
+      <label class="mb-3 text-right">الأسم بالانجليزية</label>
+      <input type="text" formControlName="name_en" />
     </div>
     <div class="input-group">
-      <input type="password" id="password" required />
-      <label for="password">Password</label>
-    </div>
-    <div class="input-group">
-      <input type="password" id="confirmPassword" required />
-      <label for="confirmPassword">Confirm Password</label>
+      <label class="mb-3 text-right">الأسم بالصينية</label>
+      <input type="text" formControlName="name_cn" />
     </div>
     <div class="actions">
-      <button type="submit">Register</button>
+      <button type="submit">{{ this.Data.button }}</button>
     </div>
   </form>
-  <div class="links">
-    <a href="#">Already have an account? Log in</a>
-  </div>
 </div>

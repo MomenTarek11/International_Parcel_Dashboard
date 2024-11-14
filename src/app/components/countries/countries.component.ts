@@ -11,6 +11,7 @@ import { PopUpComponent } from "./pop-up/pop-up.component";
 })
 export class CountriesComponent implements OnInit {
   countries: any;
+  data: any;
   constructor(
     private service: CountriesService,
     private spinner: NgxSpinnerService,
@@ -29,23 +30,36 @@ export class CountriesComponent implements OnInit {
     });
   }
   addCountry() {
-    this.openDialog();
+    this.data = {
+      title: "إضافة دولة",
+      button: "اضافة",
+      type: "add",
+    };
+    this.openDialog(this.data);
   }
-  editCountry(id) {
-    console.log(id);
+  editCountry(id: any, index: any) {
+    this.data = {
+      title: "تعديل دولة",
+      button: "تعديل",
+      type: "edit",
+      country: this.countries[index],
+    };
+    this.openDialog(this.data);
   }
   deleteCountry(id) {}
-  openDialog() {
+  openDialog(data: any) {
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",
       maxWidth: "90vw",
       height: "auto",
       maxHeight: "90vh",
       autoFocus: false,
+      data: data,
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log("Dialog closed:", result);
+      this.getAllCountries();
     });
   }
 }
