@@ -1,20 +1,34 @@
 <div class="register-container" data-aos="fade-up" data-aos-duration="1000">
   <h2 class="mb-5">{{ this.Data.title }}</h2>
   <form id="registerForm" [formGroup]="Form" (ngSubmit)="onSubmit()">
-    <div class="input-group">
-      <label class="mb-3 text-right">الأسم بالعربي</label>
-      <input type="text" formControlName="name_ar" />
+    <div *ngIf="deleteMode == false">
+      <div class="input-group">
+        <label class="mb-3 text-right">الأسم بالعربي</label>
+        <input type="text" formControlName="name_ar" />
+      </div>
+      <div class="input-group">
+        <label class="mb-3 text-right">الأسم بالانجليزية</label>
+        <input type="text" formControlName="name_en" />
+      </div>
+      <div class="input-group">
+        <label class="mb-3 text-right">الأسم بالصينية</label>
+        <input type="text" formControlName="name_cn" />
+      </div>
+      <div class="actions">
+        <button type="submit">{{ this.Data.button }}</button>
+      </div>
     </div>
-    <div class="input-group">
-      <label class="mb-3 text-right">الأسم بالانجليزية</label>
-      <input type="text" formControlName="name_en" />
-    </div>
-    <div class="input-group">
-      <label class="mb-3 text-right">الأسم بالصينية</label>
-      <input type="text" formControlName="name_cn" />
-    </div>
-    <div class="actions">
-      <button type="submit">{{ this.Data.button }}</button>
+    <div
+      class="row d-flex justify-content-around align-items-center mt-5"
+      *ngIf="deleteMode == true"
+    >
+      <button class="btn btn-danger col-4" (click)="delete()">
+        <i class="fa fa-trash mr-2"></i>
+        {{ this.Data.button }}
+      </button>
+      <button type="button" class="btn btn-dark col-4" (click)="close()">
+        الغاء
+      </button>
     </div>
   </form>
 </div>

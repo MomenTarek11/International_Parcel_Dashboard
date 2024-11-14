@@ -21,4 +21,21 @@ export class CountriesService {
       Form
     );
   }
+  updateCountry(form: any) {
+    const Form = new FormData();
+    Form.append("name_ar", form.name_ar);
+    Form.append("name_en", form.name_en);
+    Form.append("name_cn", form.name_cn);
+    Form.append("country_id", form.id);
+
+    return this.http.post(
+      `${environment.endpoint}/backend/countries/edit`,
+      Form
+    );
+  }
+  deleteCountry(id) {
+    return this.http.delete(
+      `${environment.endpoint}/backend/countries?country_id=${id}`
+    );
+  }
 }

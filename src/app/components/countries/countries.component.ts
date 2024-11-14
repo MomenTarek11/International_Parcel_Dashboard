@@ -46,7 +46,15 @@ export class CountriesComponent implements OnInit {
     };
     this.openDialog(this.data);
   }
-  deleteCountry(id) {}
+  deleteCountry(id) {
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذه الدولة ؟",
+      button: "حذف",
+      type: "delete",
+      id: id,
+    };
+    this.openDialog(this.data);
+  }
   openDialog(data: any) {
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",

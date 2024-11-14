@@ -1042,12 +1042,6 @@
     -webkit-box-shadow: 0 0 0 0.2rem #fdf3bf;
             box-shadow: 0 0 0 0.2rem #fdf3bf; }
 
-.btn-light {
-  background-color: rgba(115, 102, 255, 0.06) !important;
-  border-color: rgba(115, 102, 255, 0.06) !important; }
-  .btn-light:hover {
-    background-color: rgba(115, 102, 255, 0.1) !important;
-    border-color: rgba(115, 102, 255, 0.1) !important; }
 
 .btn-primary {
   background-color: var(--theme-deafult) !important;
