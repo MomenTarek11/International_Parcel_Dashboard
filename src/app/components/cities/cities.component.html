@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="known">
   <div class="row">
     <div class="col-md-12 py-5">
       <button class="btn btn-primary btn-lg" (click)="addCity()">
@@ -12,7 +12,11 @@
           <div class="panel-heading py-5 text-center">
             <div class="row">
               <div class="col col-sm-12 col-xs-12">
-                <h4 class="title"><span>كل المدن المتاحة</span></h4>
+                <h4 class="title">
+                  <span
+                    >كل المدن المتاحة لدولة ({{ chossenCountry.name_ar }})</span
+                  >
+                </h4>
               </div>
             </div>
           </div>
@@ -28,17 +32,17 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let country of countries; let i = index">
+                <tr *ngFor="let city of cities; let i = index">
                   <td>{{ i + 1 }}</td>
-                  <td>{{ country.name_ar }}</td>
-                  <td>{{ country.name_en }}</td>
-                  <td>{{ country.name_cn }}</td>
+                  <td>{{ city.name_ar }}</td>
+                  <td>{{ city.name_en }}</td>
+                  <td>{{ city.name_cn }}</td>
                   <td>
                     <span>
                       <i
                         style="cursor: pointer"
                         class="fa fa-pencil text-warning"
-                        (click)="editCity(country.id, i)"
+                        (click)="editCity(city.id, i)"
                       ></i>
                     </span>
                     |
@@ -46,7 +50,7 @@
                       <i
                         style="cursor: pointer"
                         class="fa fa-trash text-danger"
-                        (click)="deleteCity(country.id)"
+                        (click)="deleteCity(city.id)"
                       ></i>
                     </span>
                   </td>
@@ -58,4 +62,22 @@
       </div>
     </div>
   </div>
+</div>
+<div class="container-fluid h-100" *ngIf="!known">
+  <main class="px-3 text-center py-5">
+    <h1 class="mb-5">يجب عليك اختيار الدولة التى تريد المدن الخاصة بها</h1>
+
+    <button [matMenuTriggerFor]="belowMenu" class="btn btn-primary btn-lg">
+      اختر الدولة
+    </button>
+    <mat-menu #belowMenu="matMenu" yPosition="below">
+      <button
+        mat-menu-item
+        *ngFor="let country of countries; let i = $index"
+        (click)="getAllCities(country)"
+      >
+        {{ country.name_ar }}
+      </button>
+    </mat-menu>
+  </main>
 </div>

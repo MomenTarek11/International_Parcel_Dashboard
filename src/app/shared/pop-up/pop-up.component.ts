@@ -4,6 +4,7 @@ import { CountriesComponent } from "../../components/countries/countries.compone
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CountriesService } from "../../components/countries/countries.service";
 import { NgxSpinnerService } from "ngx-spinner";
+import { CitiesService } from "src/app/components/cities/cities.service";
 @Component({
   selector: "app-pop-up",
   templateUrl: "./pop-up.component.html",
@@ -18,11 +19,14 @@ export class PopUpComponent {
     @Inject(MAT_DIALOG_DATA) public AllData: any,
     private fb: FormBuilder,
     private service: CountriesService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private citiesServ: CitiesService
   ) {
     this.Data = AllData;
   }
   ngOnInit(): void {
+    console.log(this.Data.type);
+
     if (this.Data.type == "delete") {
       this.deleteMode = true;
     }
@@ -67,7 +71,7 @@ export class PopUpComponent {
             console.log(err);
           }
         );
-      } else {
+      } else if (this.Data.type == "edit") {
         this.service.updateCountry(this.Form.value).subscribe(
           (res: any) => {
             this.spinner.hide();
@@ -78,6 +82,16 @@ export class PopUpComponent {
             console.log(err);
           }
         );
+      } else if (this.Data.type == "add_city") {
+        this.Form.patchValue({
+          id: this.Data.country_id,
+        });
+        this.citiesServ.createCity(this.Form.value).subscribe((res: any) => {
+          if ((res.status = true)) {
+            this.spinner.hide();
+            this.data.close("addCity");
+          }
+        });
       }
     }
   }

@@ -108,3 +108,7 @@ table {
   background: #1c2b40;
   overflow: hidden !important;
 }
+.mat-menu-item:hover:not([disabled]) {
+  background-color: #3824ae;
+  color: #fff;
+}

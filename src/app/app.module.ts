@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
-
+import { MatMenuModule } from "@angular/material/menu";
+import { MatButtonModule } from "@angular/material/button";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
@@ -42,6 +43,8 @@ import { CitiesComponent } from "./components/cities/cities.component";
     // NgxSpinnerModule,
     // ConnectionServiceModule,
     MatSnackBarModule,
+    MatButtonModule,
+    MatMenuModule,
     // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
