@@ -15,7 +15,21 @@ export class CitiesService {
     Form.append("name_ar", form.name_ar);
     Form.append("name_en", form.name_en);
     Form.append("name_cn", form.name_cn);
-    Form.append("country_id", form.id);
+    Form.append("country_id", form.country_id);
     return this.http.post(`${environment.endpoint}/backend/cities/add`, Form);
+  }
+  updateCity(form: any) {
+    const Form = new FormData();
+    Form.append("name_ar", form.name_ar);
+    Form.append("name_en", form.name_en);
+    Form.append("name_cn", form.name_cn);
+    Form.append("country_id", form.country_id);
+    Form.append("city_id", form.city_id);
+    return this.http.post(`${environment.endpoint}/backend/cities/edit`, Form);
+  }
+  deleteCity(id: number) {
+    return this.http.delete(
+      `${environment.endpoint}/backend/cities?city_id=${id}`
+    );
   }
 }

@@ -25,37 +25,52 @@ export class PopUpComponent {
     this.Data = AllData;
   }
   ngOnInit(): void {
-    console.log(this.Data.type);
+    console.log(this.Data);
 
-    if (this.Data.type == "delete") {
+    if (this.Data.type == "delete" || this.Data.type == "delete_city") {
       this.deleteMode = true;
     }
     this.Form = this.fb.group({
       name_ar: ["", Validators.required],
       name_en: ["", Validators.required],
       name_cn: ["", Validators.required],
-      id: [""],
+      country_id: [""],
+      city_id: [""],
     });
     if (this.Data.type === "edit") {
       this.Form.patchValue({
         name_ar: this.Data?.country?.name_ar,
         name_en: this.Data?.country?.name_en,
         name_cn: this.Data?.country?.name_cn,
-        id: this.Data?.country?.id,
+        country_id: this.Data?.country?.id,
+      });
+    } else if (this.Data.type === "edit_city") {
+      this.Form.patchValue({
+        name_ar: this.Data?.city?.name_ar,
+        name_en: this.Data?.city?.name_en,
+        name_cn: this.Data?.city?.name_cn,
+        country_id: this.Data?.city?.country_id,
+        city_id: this.Data?.city?.id,
       });
     }
   }
   delete() {
     this.spinner.show();
-    this.service.deleteCountry(this.Data.id).subscribe(
-      (res: any) => {
+    if (this.Data.type == "delete") {
+      this.service.deleteCountry(this.Data.id).subscribe(
+        (res: any) => {
+          this.spinner.hide(), this.data.close(res.message);
+        },
+        (error) => {
+          this.spinner.hide();
+          console.log(error);
+        }
+      );
+    } else {
+      this.citiesServ.deleteCity(this.Data.id).subscribe((res: any) => {
         this.spinner.hide(), this.data.close(res.message);
-      },
-      (error) => {
-        this.spinner.hide();
-        console.log(error);
-      }
-    );
+      });
+    }
   }
   onSubmit() {
     this.spinner.show();
@@ -84,7 +99,7 @@ export class PopUpComponent {
         );
       } else if (this.Data.type == "add_city") {
         this.Form.patchValue({
-          id: this.Data.country_id,
+          country_id: this.Data.country_id,
         });
         this.citiesServ.createCity(this.Form.value).subscribe((res: any) => {
           if ((res.status = true)) {
@@ -92,6 +107,18 @@ export class PopUpComponent {
             this.data.close("addCity");
           }
         });
+      } else {
+        this.citiesServ.updateCity(this.Form.value).subscribe(
+          (res: any) => {
+            if ((res.status = true)) {
+              this.spinner.hide();
+              this.data.close("editCity");
+            }
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
       }
     }
   }

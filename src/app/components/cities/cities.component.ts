@@ -60,11 +60,23 @@ export class CitiesComponent implements OnInit {
     };
     this.openDialog(this.data);
   }
-  deleteCity(arg0: any) {
-    throw new Error("Method not implemented.");
+  editCity(city: any) {
+    this.data = {
+      title: "تعديل المدينة",
+      button: "تعديل",
+      type: "edit_city",
+      city: city,
+    };
+    this.openDialog(this.data);
   }
-  editCity(arg0: any, _t27: any) {
-    throw new Error("Method not implemented.");
+  deleteCity(id: number) {
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذه المدينة ؟",
+      button: "حذف",
+      type: "delete_city",
+      id: id,
+    };
+    this.openDialog(this.data);
   }
   openDialog(data: any) {
     const dialogRef = this.dialog.open(PopUpComponent, {
@@ -78,7 +90,7 @@ export class CitiesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log("Dialog closed:", result);
-      if (result === "addCity") {
+      if (result) {
         this.getAllCities(this.chossenCountry);
       }
     });

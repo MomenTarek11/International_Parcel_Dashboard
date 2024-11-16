@@ -26,7 +26,7 @@ export class CountriesService {
     Form.append("name_ar", form.name_ar);
     Form.append("name_en", form.name_en);
     Form.append("name_cn", form.name_cn);
-    Form.append("country_id", form.id);
+    Form.append("country_id", form.country_id);
 
     return this.http.post(
       `${environment.endpoint}/backend/countries/edit`,
