@@ -3,6 +3,7 @@ import { CountriesService } from "../countries/countries.service";
 import { CitiesService } from "./cities.service";
 import { MatDialog } from "@angular/material/dialog";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-cities",
@@ -19,7 +20,8 @@ export class CitiesComponent implements OnInit {
   constructor(
     private countryServices: CountriesService,
     private service: CitiesService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -89,8 +91,8 @@ export class CitiesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("Dialog closed:", result);
       if (result) {
+        this.toaster.success(result);
         this.getAllCities(this.chossenCountry);
       }
     });

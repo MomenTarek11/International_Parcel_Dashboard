@@ -21,6 +21,9 @@ import { CountriesComponent } from "./components/countries/countries.component";
 import { PopUpComponent } from "./shared/pop-up/pop-up.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CitiesComponent } from "./components/cities/cities.component";
+// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+import { ToastrModule } from "ngx-toastr";
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
@@ -39,13 +42,15 @@ import { CitiesComponent } from "./components/cities/cities.component";
     AppRoutingModule,
     SharedModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: "toast-bottom-right",
+      preventDuplicates: true,
+    }),
     ReactiveFormsModule,
-    // NgxSpinnerModule,
-    // ConnectionServiceModule,
     MatSnackBarModule,
     MatButtonModule,
     MatMenuModule,
-    // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

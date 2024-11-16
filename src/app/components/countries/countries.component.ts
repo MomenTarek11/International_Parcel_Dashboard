@@ -3,6 +3,7 @@ import { CountriesService } from "./countries.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from "@angular/material/dialog";
 import { PopUpComponent } from "../../shared/pop-up/pop-up.component";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-countries",
@@ -15,7 +16,8 @@ export class CountriesComponent implements OnInit {
   constructor(
     private service: CountriesService,
     private spinner: NgxSpinnerService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +69,9 @@ export class CountriesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log("Dialog closed:", result);
+      if (result) {
+        this.toaster.success(result);
+      }
       this.getAllCountries();
     });
   }

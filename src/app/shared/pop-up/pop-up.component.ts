@@ -104,7 +104,7 @@ export class PopUpComponent {
         this.citiesServ.createCity(this.Form.value).subscribe((res: any) => {
           if ((res.status = true)) {
             this.spinner.hide();
-            this.data.close("addCity");
+            this.data.close(res.message);
           }
         });
       } else {
@@ -112,7 +112,7 @@ export class PopUpComponent {
           (res: any) => {
             if ((res.status = true)) {
               this.spinner.hide();
-              this.data.close("editCity");
+              this.data.close(res.message);
             }
           },
           (error: any) => {
