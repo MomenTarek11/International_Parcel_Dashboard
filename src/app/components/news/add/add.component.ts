@@ -1,81 +1,56 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
-import { GlobalService } from 'src/app/services/global.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import Swal from "sweetalert2";
+import { GlobalService } from "src/app/services/global.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: "app-add",
+  templateUrl: "./add.component.html",
+  styleUrls: ["./add.component.scss"],
 })
 export class AddComponent implements OnInit {
-
-  form:FormGroup;
+  form: FormGroup;
   categories;
-  submitted=false;
+  submitted = false;
   constructor(
-    private formbuilder:FormBuilder,
-    private spinner:NgxSpinnerService,
-    private service:GlobalService,
-    private router:Router
-    ) { }
+    private formbuilder: FormBuilder,
+    private spinner: NgxSpinnerService,
+    private service: GlobalService,
+    private router: Router,
+    private toaster: ToastrService
+  ) {}
 
-    ngOnInit(): void {
-      this.form=this.formbuilder.group({
-        title_ar:['',[Validators.nullValidator,Validators.pattern(/[\u0600-\u06FF]/)]],
-        title_en:['',[Validators.required,Validators.pattern(/^[a-zA-Z ]*$/)]],
-      //  description_en:['',Validators.required],
-      //  description_ar:['',Validators.required],
-  
-      })
-    }
-
-  // files: File[] = [];
-
-
-  // onSelect(event) {
-  //   console.log(event.addedFiles[0]);
-  //   this.files=[]
-  //   this.files.push(...event.addedFiles);
-  // }
-
-  // onRemove(event) {
-  //   console.log(event);
-  //   this.files.splice(this.files.indexOf(event), 1);
-  // }
-
-  submit(){
-    console.log('Form Work')
-    this.spinner.show()
-    let x={
-      ...this.form.value,
-      // image:this.files[0]
-    }
-    console.log(x)
-    this.service.addNews(x).subscribe((res:any)=>{
-      console.log(res)
-    this.spinner.hide()
-      if(res.status == true){
-        Swal.fire(
-          'نجاح',
-          'تم إضافة بانر بنجاح',
-          'success'
-        ).then(()=>{
-    this.router.navigate(['/app/news/list'])
-
-        })
-
-      }else{
-        Swal.fire('فشل', 'يجب ملء جميع الحقول ', 'warning')
-
-      }
-    })
-
-    
+  ngOnInit(): void {
+    this.form = this.formbuilder.group({
+      title_ar: [
+        "",
+        [Validators.nullValidator, Validators.pattern(/[\u0600-\u06FF]/)],
+      ],
+      title_en: ["", [Validators.required, Validators.pattern(/^[a-zA-Z ]*$/)]],
+      title_cn: ["", Validators.required],
+    });
   }
 
-
-
+  submit() {
+    this.spinner.show();
+    this.service.addNews(this.form.value).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.spinner.hide();
+        if (res.status == true) {
+          this.toaster.success("تم اضافة الخبر بنجاح");
+          this.router.navigate(["/app/news/list"]);
+        } else {
+          this.toaster.error(res.message);
+        }
+      },
+      (err: any) => {
+        this.spinner.hide();
+        this.toaster.error(err.errors[0]);
+      }
+    );
+  }
 }

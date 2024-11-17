@@ -84,12 +84,7 @@ export class GlobalService {
 
   addBanners(f) {
     const formData = new FormData();
-    // formData.append('title_ar',f.title_ar)
-    // formData.append('title_en',f.title_en)
-    // formData.append('description_en',f.description_en)
-    // formData.append('description_ar',f.description_ar)
     formData.append("image", f.image);
-
     return this.http.post(
       `${environment.endpoint}/backend/banners/create`,
       formData
