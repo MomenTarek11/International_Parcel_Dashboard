@@ -41,7 +41,6 @@ import { PlaceholderComponent } from "./placeholder/placeholder.component";
     // }),
     RouterModule,
     MatDialogModule,
-    PlaceholderComponent,
   ],
   exports: [
     SidebarComponent,
