@@ -1,40 +1,49 @@
 <section id="add-main-page">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12 position-relative">
-                <table class="table table-striped mt-5">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col"> رقم </th>
-                            <th scope="col"> اسم الشحنة بالعربية </th>
-                            <th scope="col"> اسم الشحنة بالانجليزية </th>
-                            <th scope="col">سعر الجوي</th>
-                            <th scope="col">سعر البحري</th>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12 position-relative">
+        <table class="table table-striped mt-5">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">رقم</th>
+              <th scope="col">اسم الشحنة بالعربية</th>
+              <th scope="col">اسم الشحنة بالانجليزية</th>
+              <th scope="col">اسم الشحنة بالصينية</th>
+              <th scope="col">سعر الجوي</th>
+              <th scope="col">سعر البحري</th>
 
+              <th scope="col">اعدادات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let type of banners; let i = index">
+              <th scope="col">{{ i + 1 }}</th>
+              <td>{{ type.name_ar }}</td>
+              <td>{{ type.name_en }}</td>
+              <td>{{ type.name_cn }}</td>
+              <td>{{ type.plan_price }}</td>
+              <td>{{ type.ship_price }}</td>
+              <td>
+                <!-- <i style="cursor: pointer;" class="fas fa-check text-success" (click)="activeProduct(product.id)"></i> | -->
 
-                            <th scope="col"> اعدادات </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let type of banners;let i=index">
-                            <th scope="col"> {{i+1}} </th>
-                            <td>{{type.name_ar}}</td>
-                            <td> {{type.name_en}}</td>
-                            <td> {{type.plan_price}}</td>
-                            <td> {{type.ship_price}}</td>
-
-                            <td>
-                                <!-- <i style="cursor: pointer;" class="fas fa-check text-success" (click)="activeProduct(product.id)"></i> | -->
-
-                                <i style="cursor: pointer;" class="fas fa-trash text-danger" (click)="deleteApp(type.id)"></i> |
-                                <i style="cursor: pointer;" class="fas fa-edit text-primary" (click)="editPackage(type)"></i>
-                                <!-- |
+                <i
+                  style="cursor: pointer"
+                  class="fas fa-trash text-danger"
+                  (click)="deleteApp(type.id)"
+                ></i>
+                |
+                <i
+                  style="cursor: pointer"
+                  class="fas fa-edit text-primary"
+                  (click)="editPackage(type)"
+                ></i>
+                <!-- |
                       <i class="fas fa-eye text-success" style="cursor: pointer;" (click)="productDetails(product)"></i> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </section>

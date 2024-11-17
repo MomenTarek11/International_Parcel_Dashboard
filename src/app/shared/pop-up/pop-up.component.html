@@ -3,19 +3,21 @@
   <form id="registerForm" [formGroup]="Form" (ngSubmit)="onSubmit()">
     <div *ngIf="deleteMode == false">
       <div class="input-group">
-        <label class="mb-3 text-right">الأسم بالعربي</label>
+        <label class="mb-3 text-right">الاسم بالعربي</label>
         <input type="text" formControlName="name_ar" />
       </div>
       <div class="input-group">
-        <label class="mb-3 text-right">الأسم بالانجليزية</label>
+        <label class="mb-3 text-right">الاسم بالانجليزية</label>
         <input type="text" formControlName="name_en" />
       </div>
       <div class="input-group">
-        <label class="mb-3 text-right">الأسم بالصينية</label>
+        <label class="mb-3 text-right">الاسم بالصينية</label>
         <input type="text" formControlName="name_cn" />
       </div>
-      <div class="actions">
-        <button type="submit">{{ this.Data.button }}</button>
+      <div class="actions pt-4">
+        <button type="submit" class="btn btn-primary w-100 btn-lg">
+          {{ this.Data.button }}
+        </button>
       </div>
     </div>
     <div
