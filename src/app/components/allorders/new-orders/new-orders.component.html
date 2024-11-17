@@ -1,5 +1,5 @@
 <section id="add-main-page">
-    <!-- <div class="form-group">
+  <!-- <div class="form-group">
         <label for=""> اسم الشركة </label>
         <select class="form-control p-1" (change)="getCompany($event.target.value)">
             <option></option>
@@ -7,73 +7,119 @@
         </select>
     </div> -->
 
-    <div class="card" *ngIf="orders?.length != 0">
-        <div class="row">
-
-            <div class="col-md-12">
-
-                <div class="card-body">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">رقم الطلب </th>
-                                <th scope="col">اسم العميل</th>
-                                <th scope="col"> الايميل</th>
-                                <th scope="col">رقم الهاتف</th>
-                                <!-- <th scope="col"> الصورة</th> -->
-
-                                <th scope="col">إعدادات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let order of orders;let i=index">
-                                <th scope="row">{{order.id}}</th>
-
-
-                                <td>{{order.user.name}} </td>
-                                <td>{{order.user.email}} </td>
-                                <td>{{order.user.phone}} </td>
-                                <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{order.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
-                                <td>
-                                    <span *ngIf="order.status_id ==0">
-                                    <i style="cursor: pointer;" class="fas fa-check text-success"  (click)="confirmOrder(order.id)"></i> 
-
-                                    </span>
-                                    <span *ngIf="order.status_id ==1">
-                                        <i style="cursor: pointer;" class="fas fa-check text-success"  (click)="reciveOrder(order.id)"></i>
-    
-                                        </span>
-                                    <span class="text-success" style="cursor: pointer;" *ngIf="order.status_id ==7" (click)="finishOrder(order.id)">
-                                            التالي
-                                            </span>
-                                    <span class="text-success" *ngIf=" (order.status_id>1 && order.status_id<7) " style="cursor: pointer;" (click)="changeStatus(order.id,this.active + 1)">التالي  </span>
-
-                                    <span style="cursor: pointer;" class="text-danger" *ngIf="(order.status_id>3 )" (click)="changeStatus(order.id,this.active - 1 )"> | السابق</span> |
-                                    <i class="fas fa-eye text-success" style="cursor: pointer;" (click)="viewOrder(order)"></i>
-
-
-
-                                </td>
-
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+  <div class="container-fluid" *ngIf="orders?.length != 0">
+    <div class="row"></div>
+    <div class="row w-100">
+      <div class="col-md-offset-1 col-md-12">
+        <div class="panel">
+          <div class="panel-heading py-5 text-center">
+            <div class="row">
+              <div class="col col-sm-12 col-xs-12">
+                <h4 class="title"><span>كل الطلبات</span></h4>
+              </div>
             </div>
+          </div>
+          <div class="panel-body table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th>#</th>
+                  <th>اسم العميل</th>
+                  <th>الايميل</th>
+                  <th>رقم الهاتف</th>
+                  <th>إعدادات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ order.user.name }}</td>
+                  <td>{{ order.user.email }}</td>
+                  <td>{{ order.user.phone }}</td>
+                  <td>
+                    <span *ngIf="order.status_id == 0">
+                      <i
+                        style="cursor: pointer"
+                        class="fas fa-check text-success"
+                        (click)="confirmOrder(order.id)"
+                      ></i>
+                    </span>
+                    <span *ngIf="order.status_id == 1">
+                      <i
+                        style="cursor: pointer"
+                        class="fas fa-check text-success"
+                        (click)="reciveOrder(order.id)"
+                      ></i>
+                    </span>
+                    <span
+                      class="text-success"
+                      style="cursor: pointer"
+                      *ngIf="order.status_id == 7"
+                      (click)="finishOrder(order.id)"
+                    >
+                      التالي
+                    </span>
+                    <span
+                      class="text-success"
+                      *ngIf="order.status_id > 1 && order.status_id < 7"
+                      style="cursor: pointer"
+                      (click)="changeStatus(order.id, this.active + 1)"
+                    >
+                      التالي
+                    </span>
+
+                    <span
+                      style="cursor: pointer"
+                      class="text-danger"
+                      *ngIf="order.status_id > 3"
+                      (click)="changeStatus(order.id, this.active - 1)"
+                    >
+                      | السابق
+                    </span>
+                    |
+                    <i
+                      class="fas fa-eye text-success"
+                      style="cursor: pointer"
+                      (click)="viewOrder(order)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+
+  <div
+    class="pagination justify-content-center py-4"
+    *ngIf="orders?.length != 0"
+  >
+    <nav aria-label="Page navigation example" class="w-50 mx-auto">
+      <ul class="pagination w-50 m-auto row">
+        <li class="page-item col" (click)="getOrders(orders?.current_page - 1)">
+          <button class="btn btn-primary">السابق</button>
+        </li>
+
+        <li class="page-item col" (click)="getOrders(orders?.current_page + 1)">
+          <button class="btn btn-primary">التالي</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </section>
 
 <section id="add-main-page" *ngIf="orders?.length == 0">
+  <div class="container-fluid">
     <div class="card">
-        <div class="row">
-            <div class="col-md-12">
-
-                <div class="card-body text-center">
-                    <h1>لم يتم إضافة أي طلبات مؤكده بعد</h1>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-body text-center">
+            <h1>لم يتم إضافة أي طلبات مؤكده بعد</h1>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

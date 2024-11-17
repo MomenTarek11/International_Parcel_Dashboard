@@ -4,7 +4,6 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from "@angular/material/dialog";
 import { PopUpComponent } from "../../shared/pop-up/pop-up.component";
 import { ToastrService } from "ngx-toastr";
-
 @Component({
   selector: "app-countries",
   templateUrl: "./countries.component.html",

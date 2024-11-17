@@ -1,107 +1,161 @@
 <div class="col-md-12 project-list">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
-                    <li class="nav-item">
-                        <a (click)="getOrders(1)" [ngClass]="{'active': active == 1}" class="nav-link" href="javascript:void(0)" role="tab">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg> حاليين </a>
-                    </li>
-                    <li class="nav-item">
-                        <a (click)="getOrders(0)" [ngClass]="{'active': active == 0}" class="nav-link" href="javascript:void(0)" role="tab">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target">
-              <circle cx="12" cy="12" r="10"></circle>
-              <circle cx="12" cy="12" r="6"></circle>
-              <circle cx="12" cy="12" r="2"></circle>
-            </svg> محظورين</a>
-                    </li>
-
-
-                </ul>
-            </div>
-        </div>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
+          <li class="nav-item">
+            <a
+              (click)="getOrders(1)"
+              [ngClass]="{ active: active == 1 }"
+              class="nav-link"
+              href="javascript:void(0)"
+              role="tab"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-target"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              حاليين
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              (click)="getOrders(0)"
+              [ngClass]="{ active: active == 0 }"
+              class="nav-link"
+              href="javascript:void(0)"
+              role="tab"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-target"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="6"></circle>
+                <circle cx="12" cy="12" r="2"></circle>
+              </svg>
+              محظورين</a
+            >
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </div>
 <section id="add-main-page" *ngIf="clients?.length != 0">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card-body">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">رقم الترميز</th>
-                                <th scope="col">اسم العميل</th>
-                                <th scope="col">الايميل</th>
-                                <th scope="col">رقم الهاتف</th>
-                                <th scope="col"> الصورة</th>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">رقم الترميز</th>
+                <th scope="col">اسم العميل</th>
+                <th scope="col">الايميل</th>
+                <th scope="col">رقم الهاتف</th>
+                <th scope="col">الصورة</th>
 
-                                <th scope="col">إعدادات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let client of clients?.data;let i=index">
-                                <th scope="row">{{i + 1}}</th>
+                <th scope="col">إعدادات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let client of clients?.data; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
 
-
-                                <td>{{client.name}} </td>
-                                <td>{{client.email}} </td>
-                                <td>{{client.phone}} </td>
-                                <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{client.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td>
-                                <td>
-                                    <span *ngIf="client.active==0"><i style="cursor: pointer;" class="fas fa-user-check text-success" (click)="changeStatus(client.id,1)"></i></span>
-                                    <span *ngIf="client.active==1"><i style="cursor: pointer;" class="fas fa-user-slash text-danger" (click)="changeStatus(client.id,0)"></i></span> |
-                                    <i class="fas fa-eye text-success" style="cursor: pointer;" (click)="viewClient(client)"></i>
-
-
-
-                                </td>
-
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                <td>{{ client.name }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.phone }}</td>
+                <td>
+                  <img
+                    style="width: 50px; height: 50px; border-radius: 50%"
+                    src="{{ client.imagePath }}"
+                    onerror="this.src='assets/images/image-not-found.svg'"
+                    alt=""
+                  />
+                </td>
+                <td>
+                  <span *ngIf="client.active == 0"
+                    ><i
+                      style="cursor: pointer"
+                      class="fas fa-user-check text-success"
+                      (click)="changeStatus(client.id, 1)"
+                    ></i
+                  ></span>
+                  <span *ngIf="client.active == 1"
+                    ><i
+                      style="cursor: pointer"
+                      class="fas fa-user-slash text-danger"
+                      (click)="changeStatus(client.id, 0)"
+                    ></i
+                  ></span>
+                  |
+                  <i
+                    class="fas fa-eye text-success"
+                    style="cursor: pointer"
+                    (click)="viewClient(client)"
+                  ></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </div>
-  
-    
-
-    <div class="pagination justify-content-center" *ngIf="clients?.data.length > 0">
-        <nav aria-label="Page navigation example">
-          <ul class="pagination ">
-            <li class="page-item" (click)="clientList(this.active , clients?.current_page - 1)"><a class="page-link text-success">Previous</a></li>
-            <li
-              class="page-item "
-              *ngFor="let order of clients.links; let i = index"
-              (click)="clientList(this.active,i + 1)"
-              
-            >
-              <a class="page-link text-success" [class]="clients?.current_page == i + 1 ? 'page-active' : ''">{{ i + 1 }} </a>
-              
-            </li>
-  
-            <li class="page-item " (click)="clientList(this.active,clients?.current_page + 1)"><a class="page-link text-success">Next</a></li>
-          </ul>
-        </nav>
       </div>
+    </div>
+  </div>
 
+  <div
+    class="pagination justify-content-center py-4"
+    *ngIf="clients?.data.length > 0"
+  >
+    <nav aria-label="Page navigation example" class="w-50 mx-auto">
+      <ul class="pagination w-50 m-auto row">
+        <li
+          class="page-item col"
+          (click)="clientList(this.active, clients?.current_page - 1)"
+        >
+          <button class="btn btn-primary">السابق</button>
+        </li>
 
+        <li
+          class="page-item col"
+          (click)="clientList(this.active, clients?.current_page + 1)"
+        >
+          <button class="btn btn-primary">التالي</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </section>
 
 <section id="add-main-page" *ngIf="clients?.length == 0">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card-body text-center">
-                    <h1>لم يتم إضافة أي عملاء بعد</h1>
-                </div>
-            </div>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-body text-center">
+          <h1>لم يتم إضافة أي عملاء بعد</h1>
         </div>
+      </div>
     </div>
+  </div>
 </section>

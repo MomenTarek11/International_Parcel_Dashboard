@@ -1,26 +1,29 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
-import { JumbotronComponent } from './jumbotron/jumbotron.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
-import { HttpClientModule } from '@angular/common/http';
- 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
-import {MatDialogModule} from '@angular/material/dialog';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { SidebarComponent } from "./sidebar/sidebar.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { FooterComponent } from "./footer/footer.component";
+import { JumbotronComponent } from "./jumbotron/jumbotron.component";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatSelectModule } from "@angular/material/select";
+import { HttpClientModule } from "@angular/common/http";
+
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule } from "@angular/router";
+import { MatDialogModule } from "@angular/material/dialog";
+import { PlaceholderComponent } from "./placeholder/placeholder.component";
 // import { ToastrModule } from 'ngx-toastr';
- 
- 
-
-
 
 @NgModule({
-  declarations: [SidebarComponent, NavbarComponent, FooterComponent, JumbotronComponent],
+  declarations: [
+    SidebarComponent,
+    NavbarComponent,
+    FooterComponent,
+    JumbotronComponent,
+    PlaceholderComponent,
+  ],
   imports: [
     CommonModule,
     MatFormFieldModule,
@@ -31,17 +34,18 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     // ToastrModule,
     // .forRoot({
-    //   timeOut: 10000, 
-    //   positionClass: 'toast-bottom-right', 
+    //   timeOut: 10000,
+    //   positionClass: 'toast-bottom-right',
     //   preventDuplicates: true,
     //   progressBar:true
     // }),
     RouterModule,
     MatDialogModule,
+    PlaceholderComponent,
   ],
   exports: [
-    SidebarComponent, 
-    NavbarComponent, 
+    SidebarComponent,
+    NavbarComponent,
     FooterComponent,
     JumbotronComponent,
     ReactiveFormsModule,
@@ -50,11 +54,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatSelectModule,
     HttpClientModule,
-   //ToastrModule,
-    RouterModule
-  ],  
-  providers:[
-    
+    //ToastrModule,
+    RouterModule,
+    PlaceholderComponent,
   ],
+  providers: [],
 })
-export class SharedModule { }
+export class SharedModule {}

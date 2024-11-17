@@ -1,0 +1,20 @@
+<div class="col-12 table-responsive mt-3">
+  <table class="table text-center my-3">
+    <tr class="background-info">
+      <td *ngFor="let head of header">{{ head }}</td>
+    </tr>
+    <tbody>
+      <tr class="text-center" *ngFor="let row of [].constructor(6)">
+        <td scope="col" *ngFor="let column of [].constructor(header.length)">
+          <div class="ph-item">
+            <div class="ph-col-12">
+              <div class="ph-row">
+                <div class="ph-col-12 big"></div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
