@@ -1,0 +1,24 @@
+<div class="register-container" data-aos="fade-up" data-aos-duration="1000">
+  <h2 class="mb-5">إضافة دولة</h2>
+  <form id="registerForm" [formGroup]="Form" (ngSubmit)="onSubmit()">
+    <div>
+      <div class="input-group">
+        <label class="mb-3 text-right">الاسم بالعربي</label>
+        <input type="text" formControlName="name_ar" />
+      </div>
+      <div class="input-group">
+        <label class="mb-3 text-right">الاسم بالانجليزية</label>
+        <input type="text" formControlName="name_en" />
+      </div>
+      <div class="input-group">
+        <label class="mb-3 text-right">الاسم بالصينية</label>
+        <input type="text" formControlName="name_cn" />
+      </div>
+      <div class="actions pt-4">
+        <button type="submit" class="btn btn-primary w-100 btn-lg">
+          إضافة
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

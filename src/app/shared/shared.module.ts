@@ -21,7 +21,6 @@ import { PlaceholderComponent } from "./placeholder/placeholder.component";
     NavbarComponent,
     FooterComponent,
     JumbotronComponent,
-    PlaceholderComponent,
   ],
   imports: [
     CommonModule,
@@ -54,7 +53,6 @@ import { PlaceholderComponent } from "./placeholder/placeholder.component";
     HttpClientModule,
     //ToastrModule,
     RouterModule,
-    PlaceholderComponent,
   ],
   providers: [],
 })

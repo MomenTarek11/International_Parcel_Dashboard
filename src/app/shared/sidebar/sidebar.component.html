@@ -624,11 +624,7 @@
         </ul>
       </li>
       <li class="sidebar-list">
-        <a
-          class="sidebar-link sidebar-title"
-          style="cursor: pointer"
-          [routerLink]="['/app/countries']"
-        >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
           <svg
             class="svg-icon"
             style="width: 20px; height: 20px"
@@ -643,7 +639,30 @@
             <i class="fa fa-angle-right"></i>
           </div>
         </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/countries']"
+              style="cursor: pointer"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              جميع الدول</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/countries/add']"
+              style="cursor: pointer"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              اضافةالدول</a
+            >
+          </li>
+        </ul>
       </li>
+
       <li class="sidebar-list">
         <a
           class="sidebar-link sidebar-title"

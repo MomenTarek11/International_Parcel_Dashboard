@@ -21,11 +21,9 @@ import { CountriesComponent } from "./components/countries/countries.component";
 import { PopUpComponent } from "./shared/pop-up/pop-up.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { CitiesComponent } from "./components/cities/cities.component";
-// import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
 import { ToastrModule } from "ngx-toastr";
-// import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
+// import { AddComponent } from "./components/countries/add/add.component";
+import { CountriesModule } from "./components/countries/countries.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +31,6 @@ import { ToastrModule } from "ngx-toastr";
     LoginComponent,
     HomeComponent,
     WrongRouteComponent,
-    CountriesComponent,
     PopUpComponent,
     CitiesComponent,
   ],

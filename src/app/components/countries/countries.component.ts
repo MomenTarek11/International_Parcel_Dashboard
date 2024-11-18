@@ -1,18 +1,20 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CountriesService } from "./countries.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { MatDialog } from "@angular/material/dialog";
 import { PopUpComponent } from "../../shared/pop-up/pop-up.component";
 import { ToastrService } from "ngx-toastr";
+
 @Component({
   selector: "app-countries",
   templateUrl: "./countries.component.html",
   styleUrls: ["./countries.component.scss"],
 })
 export class CountriesComponent implements OnInit {
-  countries: any;
+  countries: any[] = [];
   data: any;
   no_data: boolean = false;
+
   constructor(
     private service: CountriesService,
     private spinner: NgxSpinnerService,
@@ -26,25 +28,26 @@ export class CountriesComponent implements OnInit {
 
   getAllCountries() {
     this.spinner.show();
-    this.service.getAllCountries().subscribe((res: any) => {
-      this.spinner.hide();
-      if (res.data.length > 0) {
-        this.countries = res.data;
-        this.no_data = false;
-      } else {
+    this.service.getAllCountries().subscribe(
+      (res: any) => {
+        this.spinner.hide();
+        if (res.data && res.data.length > 0) {
+          this.countries = res.data;
+          this.no_data = false;
+        } else {
+          this.countries = [];
+          this.no_data = true;
+        }
+      },
+      (error) => {
+        this.spinner.hide();
         this.no_data = true;
+        this.toaster.error("Failed to load countries.");
       }
-    });
+    );
   }
-  addCountry() {
-    this.data = {
-      title: "إضافة دولة",
-      button: "اضافة",
-      type: "add",
-    };
-    this.openDialog(this.data);
-  }
-  editCountry(id: any, index: any) {
+
+  editCountry(id: any, index: number) {
     this.data = {
       title: "تعديل دولة",
       button: "تعديل",
@@ -53,7 +56,8 @@ export class CountriesComponent implements OnInit {
     };
     this.openDialog(this.data);
   }
-  deleteCountry(id) {
+
+  deleteCountry(id: number) {
     this.data = {
       title: "هل انت واثق انك تريد حذف هذه الدولة ؟",
       button: "حذف",
@@ -62,6 +66,7 @@ export class CountriesComponent implements OnInit {
     };
     this.openDialog(this.data);
   }
+
   openDialog(data: any) {
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",
@@ -73,7 +78,6 @@ export class CountriesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log("Dialog closed:", result);
       if (result) {
         this.toaster.success(result);
       }

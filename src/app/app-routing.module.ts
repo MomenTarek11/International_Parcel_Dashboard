@@ -23,6 +23,9 @@ import { NewsModule } from "./components/news/occasions.module";
 import { contactUsModule } from "./components/contact-us/occasions.module";
 import { CountriesComponent } from "./components/countries/countries.component";
 import { CitiesComponent } from "./components/cities/cities.component";
+import { PopUpComponent } from "./shared/pop-up/pop-up.component";
+import { AddComponent } from "./components/countries/add/add.component";
+import { CountriesModule } from "./components/countries/countries.module";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -61,7 +64,10 @@ const routes: Routes = [
       { path: "shippment", loadChildren: () => shipmentModule },
       { path: "news", loadChildren: () => NewsModule },
       { path: "contact-us", loadChildren: () => contactUsModule },
-      { path: "countries", component: CountriesComponent },
+      {
+        path: "countries",
+        loadChildren: () => CountriesModule,
+      },
       { path: "cities", component: CitiesComponent },
     ],
   },

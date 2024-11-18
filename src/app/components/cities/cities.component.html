@@ -6,7 +6,7 @@
         اضافة مدينة
       </button>
     </div>
-    <div class="row w-100">
+    <div class="row w-100" *ngIf="cities?.length > 0 && this.no_data === false">
       <div class="col-md-offset-1 col-md-12">
         <div class="panel">
           <div class="panel-heading py-5 text-center">
@@ -61,6 +61,20 @@
         </div>
       </div>
     </div>
+    <div class="row w-100">
+      <div class="col-md-12">
+        <div class="card" *ngIf="cities?.length === 0 && no_data === true">
+          <div class="card-body text-center">
+            <img
+              src="../../../assets/images/No data-amico.svg"
+              alt=""
+              class="w-25"
+            />
+            <h3 class="font-roboto fw-bold mt-3">لا يوجد مدن لهذه الدولة</h3>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="container-fluid h-100" *ngIf="!known">
@@ -70,14 +84,28 @@
     <button [matMenuTriggerFor]="belowMenu" class="btn btn-primary btn-lg">
       اختر الدولة
     </button>
+
     <mat-menu #belowMenu="matMenu" yPosition="below">
-      <button
-        mat-menu-item
-        *ngFor="let country of countries; let i = $index"
-        (click)="getAllCities(country)"
+      <ng-container
+        *ngIf="countries && countries.length; else noCountriesTemplate"
       >
-        {{ country.name_ar }}
-      </button>
+        <button
+          mat-menu-item
+          *ngFor="let country of countries; let i = $index"
+          (click)="getAllCities(country)"
+          class="text-center fw-bold"
+        >
+          {{ country.name_ar }}
+        </button>
+      </ng-container>
+
+      <ng-template #noCountriesTemplate>
+        <p class="no-data">لا توجد دول متاحة</p>
+      </ng-template>
     </mat-menu>
   </main>
 </div>
+<app-placeholder
+  *ngIf="showPlaceholder"
+  [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
+></app-placeholder>
