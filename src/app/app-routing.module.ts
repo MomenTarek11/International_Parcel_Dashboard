@@ -26,6 +26,7 @@ import { CitiesComponent } from "./components/cities/cities.component";
 import { PopUpComponent } from "./shared/pop-up/pop-up.component";
 import { AddComponent } from "./components/countries/add/add.component";
 import { CountriesModule } from "./components/countries/countries.module";
+import { CitiesModule } from "./components/cities/cities.module";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -68,7 +69,7 @@ const routes: Routes = [
         path: "countries",
         loadChildren: () => CountriesModule,
       },
-      { path: "cities", component: CitiesComponent },
+      { path: "cities", loadChildren: () => CitiesModule },
     ],
   },
   {

@@ -657,18 +657,13 @@
               class="lan-4"
               href="javascript:void(0)"
             >
-              اضافةالدول</a
+              إضافة دولة</a
             >
           </li>
         </ul>
       </li>
-
       <li class="sidebar-list">
-        <a
-          class="sidebar-link sidebar-title"
-          style="cursor: pointer"
-          [routerLink]="['/app/cities']"
-        >
+        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
           <svg
             class="svg-icon"
             style="width: 20px; height: 20px"
@@ -683,6 +678,28 @@
             <i class="fa fa-angle-right"></i>
           </div>
         </a>
+        <ul class="sidebar-submenu" style="display: none">
+          <li>
+            <a
+              [routerLink]="['/app/cities']"
+              style="cursor: pointer"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              جميع المدن</a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="['/app/cities/add']"
+              style="cursor: pointer"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              إضافة مدينة</a
+            >
+          </li>
+        </ul>
       </li>
     </ul>
   </div>

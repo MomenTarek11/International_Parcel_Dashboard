@@ -24,6 +24,8 @@ import { CitiesComponent } from "./components/cities/cities.component";
 import { ToastrModule } from "ngx-toastr";
 // import { AddComponent } from "./components/countries/add/add.component";
 import { CountriesModule } from "./components/countries/countries.module";
+import { AddCityComponent } from "./components/cities/add-city/add-city.component";
+import { PlaceholderComponent } from "./shared/placeholder/placeholder.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,6 @@ import { CountriesModule } from "./components/countries/countries.module";
     HomeComponent,
     WrongRouteComponent,
     PopUpComponent,
-    CitiesComponent,
   ],
   imports: [
     BrowserModule,

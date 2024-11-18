@@ -13,6 +13,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { MatDialogModule } from "@angular/material/dialog";
 import { PlaceholderComponent } from "./placeholder/placeholder.component";
+import { CitiesModule } from "../components/cities/cities.module";
+import { CountriesModule } from "../components/countries/countries.module";
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -21,6 +23,7 @@ import { PlaceholderComponent } from "./placeholder/placeholder.component";
     NavbarComponent,
     FooterComponent,
     JumbotronComponent,
+    PlaceholderComponent,
   ],
   imports: [
     CommonModule,
@@ -53,6 +56,7 @@ import { PlaceholderComponent } from "./placeholder/placeholder.component";
     HttpClientModule,
     //ToastrModule,
     RouterModule,
+    PlaceholderComponent,
   ],
   providers: [],
 })

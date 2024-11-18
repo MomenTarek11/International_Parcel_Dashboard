@@ -30,10 +30,19 @@ export class CitiesComponent implements OnInit {
     this.getAllcountries();
   }
   getAllcountries() {
+    this.showPlaceholder = true;
     this.countryServices.getAllCountries().subscribe(
       (res: any) => {
+        this.showPlaceholder = false;
         if ((res.status = true)) {
           this.countries = res.data;
+          if (localStorage.getItem("country") != null) {
+            this.chossenCountry = JSON.parse(localStorage.getItem("country"));
+            this.getAllCities(this.chossenCountry);
+          } else {
+            this.chossenCountry = this.countries[0];
+            this.getAllCities(this.countries[0]);
+          }
         }
       },
       (error: any) => {
@@ -62,6 +71,7 @@ export class CitiesComponent implements OnInit {
         console.log(err);
       }
     );
+    localStorage.setItem("country", JSON.stringify(country));
   }
   addCity() {
     this.data = {

@@ -5,10 +5,15 @@ import { CountriesRoutingModule } from "./countries-routing.module";
 import { CountriesComponent } from "./countries.component";
 import { AddComponent } from "./add/add.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { PlaceholderComponent } from "src/app/shared/placeholder/placeholder.component";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
-  declarations: [CountriesComponent, AddComponent, PlaceholderComponent],
-  imports: [CommonModule, CountriesRoutingModule, ReactiveFormsModule],
+  declarations: [CountriesComponent, AddComponent],
+  imports: [
+    CommonModule,
+    CountriesRoutingModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
 export class CountriesModule {}

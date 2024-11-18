@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { ConnectionService } from "ng-connection-service";
@@ -8,7 +8,7 @@ import * as AOS from "aos";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   isConnected = true;
 
   constructor(
@@ -30,5 +30,8 @@ export class AppComponent implements OnInit {
     this._snackBar.open(message, action, {
       duration: 5000,
     });
+  }
+  ngOnDestroy() {
+    localStorage.removeItem("country");
   }
 }
