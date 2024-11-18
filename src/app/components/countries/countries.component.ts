@@ -12,6 +12,7 @@ import { ToastrService } from "ngx-toastr";
 export class CountriesComponent implements OnInit {
   countries: any;
   data: any;
+  no_data: boolean = false;
   constructor(
     private service: CountriesService,
     private spinner: NgxSpinnerService,
@@ -27,7 +28,12 @@ export class CountriesComponent implements OnInit {
     this.spinner.show();
     this.service.getAllCountries().subscribe((res: any) => {
       this.spinner.hide();
-      this.countries = res.data;
+      if (res.data.length > 0) {
+        this.countries = res.data;
+        this.no_data = false;
+      } else {
+        this.no_data = true;
+      }
     });
   }
   addCountry() {
