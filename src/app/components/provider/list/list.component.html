@@ -1,10 +1,6 @@
-<section
-  id="add-main-page"
-  *ngIf="testmoinals?.data?.length > 0"
-  data-aos="fade-left"
->
+<section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" *ngIf="testmoinals.length > 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -29,7 +25,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let user of testmoinals?.data; let i = index">
+                  <tr *ngFor="let user of testmoinals; let i = index">
                     <th scope="row" class="text-light">{{ i + 1 }}</th>
                     <td>{{ user?.user.name }}</td>
                     <td>{{ user?.job_title }}</td>
@@ -60,9 +56,24 @@
         </div>
       </div>
     </div>
+    <app-placeholder
+      *ngIf="showPlaceholder"
+      [header]="[
+        '#',
+        ' رقم الطلب',
+        'اسم العميل',
+        'الإيميل',
+        'رقم الهاتف',
+        'حالة الدفع',
+        'إعدادات'
+      ]"
+    ></app-placeholder>
   </div>
 
-  <div class="pagination justify-content-center py-4">
+  <div
+    class="pagination justify-content-center py-4"
+    *ngIf="testmoinals.length > 16"
+  >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
         <li

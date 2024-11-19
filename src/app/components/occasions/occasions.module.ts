@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NgxDropzoneModule } from 'ngx-dropzone';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { NgxDropzoneModule } from "ngx-dropzone";
 
-import { OccasionsRoutingModule } from './occasions-routing.module';
-import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditComponent } from './edit/edit.component';
-
+import { OccasionsRoutingModule } from "./occasions-routing.module";
+import { AddComponent } from "./add/add.component";
+import { ListComponent } from "./list/list.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { EditComponent } from "./edit/edit.component";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
   declarations: [AddComponent, ListComponent, EditComponent],
@@ -16,7 +16,8 @@ import { EditComponent } from './edit/edit.component';
     OccasionsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxDropzoneModule
-  ]
+    NgxDropzoneModule,
+    SharedModule,
+  ],
 })
-export class OccasionsModule { }
+export class OccasionsModule {}

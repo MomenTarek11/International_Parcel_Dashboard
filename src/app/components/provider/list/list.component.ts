@@ -13,7 +13,8 @@ import { ProviderDetailsComponent } from "../provider-details/provider-details.c
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  testmoinals: any;
+  testmoinals: any[] = [];
+  showPlaceholder: boolean = true;
   constructor(
     public route: ActivatedRoute,
     private spinner: NgxSpinnerService,
@@ -31,7 +32,8 @@ export class ListComponent implements OnInit {
       .pipe(map((res) => res["data"]))
       .subscribe((response: any) => {
         console.log(response);
-        this.testmoinals = response;
+        this.testmoinals = response?.data;
+        this.showPlaceholder = false;
         this.spinner.hide();
       });
   }

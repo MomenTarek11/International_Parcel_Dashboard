@@ -36,7 +36,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: DashboardLayoutComponent,
     children: [
-      // {path:'',component:HomeComponent, data: { title: 'الصفحة الرئيسية' }},
       {
         path: "home",
         component: HomeComponent,

@@ -1,5 +1,5 @@
 <div class="container-fluid" data-aos="fade-left">
-  <div class="row">
+  <div class="row" *ngIf="messages?.length != 0">
     <div class="row w-100">
       <div class="col-md-offset-1 col-md-12">
         <div class="panel">
@@ -24,7 +24,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let msg of messages?.data; let i = index">
+                <tr *ngFor="let msg of messages; let i = index">
                   <td>{{ i + 1 }}</td>
                   <td>{{ msg.name }}</td>
                   <td>{{ msg.phone }}</td>
@@ -40,8 +40,23 @@
       </div>
     </div>
   </div>
+  <app-placeholder
+    *ngIf="showPlaceholder"
+    [header]="[
+      '#',
+      ' رقم الطلب',
+      'اسم العميل',
+      'الإيميل',
+      'رقم الهاتف',
+      'حالة الدفع',
+      'إعدادات'
+    ]"
+  ></app-placeholder>
 
-  <div class="pagination justify-content-center py-4">
+  <div
+    class="pagination justify-content-center py-4"
+    *ngIf="messages.length > 20"
+  >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
         <li

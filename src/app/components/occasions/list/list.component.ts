@@ -14,8 +14,9 @@ import { GlobalService } from "src/app/services/global.service";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  banners: any;
+  banners: any[] = [];
   baseUrl = environment.baseURL;
+  showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -25,7 +26,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.bannersList();
   }
-
   bannersList() {
     this.spinner.show();
     this.service
@@ -36,6 +36,7 @@ export class ListComponent implements OnInit {
         console.log("res");
         console.log(res);
         this.banners = res;
+        this.showPlaceholder = false;
       });
   }
   deleteApp(banner_id) {

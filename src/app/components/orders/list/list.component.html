@@ -62,9 +62,9 @@
     </div>
   </div>
 </div>
-<section id="add-main-page" *ngIf="clients?.length != 0" data-aos="fade-left">
+<section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" *ngIf="clients?.length != 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -89,7 +89,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let client of clients?.data; let i = index">
+                  <tr *ngFor="let client of clients; let i = index">
                     <th scope="row" class="text-light">{{ i + 1 }}</th>
 
                     <td>{{ client.name }}</td>
@@ -133,11 +133,23 @@
         </div>
       </div>
     </div>
+    <app-placeholder
+      *ngIf="showPlaceholder"
+      [header]="[
+        '#',
+        ' رقم الطلب',
+        'اسم العميل',
+        'الإيميل',
+        'رقم الهاتف',
+        'حالة الدفع',
+        'إعدادات'
+      ]"
+    ></app-placeholder>
   </div>
 
   <div
     class="pagination justify-content-center py-4"
-    *ngIf="clients?.data.length > 0"
+    *ngIf="clients.length > 20"
   >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
@@ -159,12 +171,16 @@
   </div>
 </section>
 
-<section id="add-main-page" *ngIf="clients?.length == 0">
+<section id="add-main-page" *ngIf="clients?.length == 0 && !showPlaceholder">
   <div class="card">
     <div class="row">
       <div class="col-md-12">
         <div class="card-body text-center">
-          <h1>لم يتم إضافة أي عملاء بعد</h1>
+          <img
+            src="../../../../assets/images/No data-amico.svg"
+            alt=""
+            class="w-25"
+          />
         </div>
       </div>
     </div>

@@ -13,12 +13,12 @@ import Swal from "sweetalert2";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  orders;
+  orders: any = [];
   active = 0;
   companies;
   selectedOption;
   company_id;
-  showPlaceHolder: boolean = false;
+  showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.company_id);
-    this.getCompanies();
+    //  this.getCompanies();
     this.clientList(1, 0, this.active);
   }
   getCompanies() {
@@ -40,11 +40,13 @@ export class ListComponent implements OnInit {
         this.companies = res;
       });
   }
+
   getCompany(company) {
     this.company_id = company;
     console.log(company);
     this.clientList(1, company, this.active);
   }
+
   clientList(page, company, active) {
     console.log("company_id", company);
     console.log("status", active);
@@ -55,7 +57,8 @@ export class ListComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res;
+        this.orders = res?.data;
+        this.showPlaceholder = false;
       });
   }
 

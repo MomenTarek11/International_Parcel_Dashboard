@@ -7,8 +7,8 @@
         </select>
     </div> -->
 
-  <div class="container-fluid" *ngIf="orders?.length != 0">
-    <div class="row">
+  <div class="container-fluid">
+    <div class="row" *ngIf="orders?.length != 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -33,7 +33,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let order of orders?.data; let i = index">
+                  <tr *ngFor="let order of orders; let i = index">
                     <th scope="row" class="text-light">{{ i + 1 }}</th>
                     <th scope="row" class="text-light">
                       {{ order.order_refrence }}
@@ -88,11 +88,15 @@
         </div>
       </div>
     </div>
+    <app-placeholder
+      *ngIf="showPlaceholder"
+      [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
+    ></app-placeholder>
   </div>
 
   <div
     class="pagination justify-content-center py-4"
-    *ngIf="orders?.data.length > 16"
+    *ngIf="orders.length > 16"
   >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
@@ -114,7 +118,7 @@
   </div>
 </section>
 
-<section id="add-main-page" *ngIf="orders?.data.length == 0">
+<section id="add-main-page" *ngIf="orders.length == 0 && !showPlaceholder">
   <div class="card">
     <div class="row">
       <div class="col-md-12">

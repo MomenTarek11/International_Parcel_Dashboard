@@ -15,8 +15,9 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  banners: any;
+  banners: any[] = [];
   baseUrl = environment.baseURL;
+  showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -36,6 +37,7 @@ export class ListComponent implements OnInit {
       .subscribe((res) => {
         this.spinner.hide();
         this.banners = res;
+        this.showPlaceholder = false;
       });
   }
   deleteApp(banner_id) {

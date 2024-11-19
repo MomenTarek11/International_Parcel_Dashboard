@@ -26,9 +26,9 @@
         </ng-template>
       </mat-menu>
     </div>
-    <div class="row w-100" *ngIf="cities?.length > 0 && this.no_data === false">
+    <div class="row w-100" *ngIf="cities?.length > 0">
       <div class="col-md-offset-1 col-md-12">
-        <div class="panel" *ngIf="!showPlaceholder">
+        <div class="panel">
           <div class="panel-heading py-5 text-center">
             <div class="row">
               <div class="col col-sm-12 col-xs-12">
@@ -81,15 +81,11 @@
             </table>
           </div>
         </div>
-        <app-placeholder
-          *ngIf="showPlaceholder"
-          [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
-        ></app-placeholder>
       </div>
     </div>
     <div class="row w-100">
       <div class="col-md-12">
-        <div class="card" *ngIf="cities?.length === 0 && no_data === true">
+        <div class="card" *ngIf="cities?.length === 0 && !showPlaceholder">
           <div class="card-body text-center">
             <img
               src="../../../assets/images/No data-amico.svg"
@@ -102,4 +98,8 @@
       </div>
     </div>
   </div>
+  <app-placeholder
+    *ngIf="showPlaceholder"
+    [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
+  ></app-placeholder>
 </div>

@@ -1,84 +1,87 @@
 <section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row">
-      <div class="row w-100" *ngIf="companies?.data?.length != 0">
-        <div class="col-md-12">
-          <div class="panel">
-            <div class="panel-heading py-5 text-center">
-              <div class="row">
-                <div class="col col-sm-12 col-xs-12">
-                  <h4 class="title"><span>الطلبات الجديدة</span></h4>
-                </div>
+    <div class="row" *ngIf="orders?.length != 0">
+      <div class="col-md-12">
+        <div class="panel">
+          <div class="panel-heading py-5 text-center">
+            <div class="row">
+              <div class="col col-sm-12 col-xs-12">
+                <h4 class="title"><span>الطلبات الجديدة</span></h4>
               </div>
             </div>
-            <div class="panel-body table-responsive">
-              <table class="table">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">رقم الطلب</th>
-                    <th scope="col">اسم العميل</th>
-                    <th scope="col">الايميل</th>
-                    <th scope="col">رقم الهاتف</th>
-                    <th scope="col">إعدادات</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let order of orders?.data; let i = index">
-                    <th scope="row" class="text-light">{{ i + 1 }}</th>
-                    <th scope="row" class="text-light">
-                      {{ order.order_refrence }}
-                    </th>
+          </div>
+          <div class="panel-body table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">رقم الطلب</th>
+                  <th scope="col">اسم العميل</th>
+                  <th scope="col">الايميل</th>
+                  <th scope="col">رقم الهاتف</th>
+                  <th scope="col">إعدادات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders; let i = index">
+                  <th scope="row" class="text-light">{{ i + 1 }}</th>
+                  <th scope="row" class="text-light">
+                    {{ order.order_refrence }}
+                  </th>
 
-                    <td>{{ order.user.name }}</td>
-                    <td>{{ order.user.email }}</td>
-                    <td>{{ order.user.phone }}</td>
-                    <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{order.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
-                    <td>
-                      <span>
-                        <i
-                          style="cursor: pointer"
-                          class="fas fa-check text-success"
-                          (click)="confirmOrder(order.id)"
-                        ></i>
-                      </span>
+                  <td>{{ order.user.name }}</td>
+                  <td>{{ order.user.email }}</td>
+                  <td>{{ order.user.phone }}</td>
 
-                      |
-
-                      <span>
-                        <i
-                          style="cursor: pointer"
-                          class="fa fa-times text-dager"
-                          (click)="cancelOrder(order.id)"
-                        ></i>
-                      </span>
-                      |
-
-                      <span>
-                        <i
-                          style="cursor: pointer"
-                          class="fa fa-comment-o text-primary"
-                          (click)="addNote(order.id)"
-                        ></i>
-                      </span>
-                      |
+                  <td>
+                    <span>
                       <i
-                        class="fas fa-eye text-success"
                         style="cursor: pointer"
-                        (click)="viewOrder(order)"
+                        class="fas fa-check text-success"
+                        (click)="confirmOrder(order.id)"
                       ></i>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+                    </span>
+
+                    |
+
+                    <span>
+                      <i
+                        style="cursor: pointer"
+                        class="fa fa-times text-dager"
+                        (click)="cancelOrder(order.id)"
+                      ></i>
+                    </span>
+                    |
+
+                    <span>
+                      <i
+                        style="cursor: pointer"
+                        class="fa fa-comment-o text-primary"
+                        (click)="addNote(order.id)"
+                      ></i>
+                    </span>
+                    |
+                    <i
+                      class="fas fa-eye text-success"
+                      style="cursor: pointer"
+                      (click)="viewOrder(order)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
+
+    <app-placeholder
+      *ngIf="showPlaceholder && orders?.length == 0"
+      [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
+    ></app-placeholder>
   </div>
 
-  <div class="pagination row py-5" *ngIf="orders?.data.length > 16">
+  <div class="pagination row py-5" *ngIf="orders.length > 16">
     <nav aria-label="Page navigation example " class="w-50 m-auto">
       <ul class="pagination w-50 m-auto row">
         <li
@@ -98,8 +101,7 @@
     </nav>
   </div>
 </section>
-
-<section id="add-main-page" *ngIf="orders?.data.length == 0">
+<section id="add-main-page" *ngIf="!showPlaceholder && orders?.length == 0">
   <div class="card">
     <div class="row">
       <div class="col-md-12">

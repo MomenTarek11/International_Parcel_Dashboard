@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { ProviderRoutingModule } from './provider-routing.module';
-import { ListComponent } from './list/list.component';
-import { ProviderDetailsComponent } from './provider-details/provider-details.component';
-import { AddComponent } from './add/add.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { ProviderRoutingModule } from "./provider-routing.module";
+import { ListComponent } from "./list/list.component";
+import { ProviderDetailsComponent } from "./provider-details/provider-details.component";
+import { AddComponent } from "./add/add.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
   declarations: [ListComponent, ProviderDetailsComponent, AddComponent],
@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProviderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+    SharedModule,
+  ],
 })
-export class ProviderModule { }
+export class ProviderModule {}

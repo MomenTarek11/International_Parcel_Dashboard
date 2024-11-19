@@ -13,11 +13,12 @@ import Swal from "sweetalert2";
   styleUrls: ["./confirmed-orders.component.scss"],
 })
 export class ConfirmedOrdersComponent implements OnInit {
-  orders;
+  orders: any[] = [];
   active = 1;
   companies;
   selectedOption;
   company_id;
+  showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -53,9 +54,11 @@ export class ConfirmedOrdersComponent implements OnInit {
       .getOrderspages(page, company, active)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
+        console.log("dsafasd", res);
         this.spinner.hide();
-        this.orders = res;
+        this.orders = res?.data;
+        this.showPlaceholder = false;
+        console.log("orders", this.orders);
       });
   }
 

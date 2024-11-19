@@ -14,7 +14,8 @@ import { UserDetailsComponent } from "../user-details/user-details.component";
 })
 export class ClientsComponent implements OnInit {
   public selectedRole = this.route.snapshot.paramMap.get("role");
-  promocodes: any;
+  promocodes: any[] = [];
+  showPlaceholder: boolean = true;
   constructor(
     public route: ActivatedRoute,
     private spinner: NgxSpinnerService,
@@ -34,6 +35,7 @@ export class ClientsComponent implements OnInit {
         this.spinner.hide();
         console.log(response);
         this.promocodes = response;
+        this.showPlaceholder = false;
       });
   }
   deletePromo(id) {

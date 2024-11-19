@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
 
-import { OrdersRoutingModule } from './orders-routing.module';
-import { ListComponent } from './list/list.component';
-import { OrderDetailsComponent } from './list/order-details/order-details.component';
-import {MatIconModule} from '@angular/material/icon';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxDropzoneModule } from 'ngx-dropzone';
-import { SpecialOrdersComponent } from './special-orders/special-orders.component';
-
+import { OrdersRoutingModule } from "./orders-routing.module";
+import { ListComponent } from "./list/list.component";
+import { OrderDetailsComponent } from "./list/order-details/order-details.component";
+import { MatIconModule } from "@angular/material/icon";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgxDropzoneModule } from "ngx-dropzone";
+import { SpecialOrdersComponent } from "./special-orders/special-orders.component";
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
   declarations: [ListComponent, OrderDetailsComponent, SpecialOrdersComponent],
@@ -19,6 +19,7 @@ import { SpecialOrdersComponent } from './special-orders/special-orders.componen
     FormsModule,
     ReactiveFormsModule,
     NgxDropzoneModule,
-  ]
+    SharedModule,
+  ],
 })
-export class OrdersModule { }
+export class OrdersModule {}

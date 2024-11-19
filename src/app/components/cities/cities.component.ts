@@ -16,8 +16,7 @@ export class CitiesComponent implements OnInit {
   countries: any;
   chossenCountry: any;
   data: any;
-  no_data: boolean = false;
-  showPlaceholder = false;
+  showPlaceholder = true;
 
   constructor(
     private countryServices: CountriesService,
@@ -60,10 +59,12 @@ export class CitiesComponent implements OnInit {
           this.chossenCountry = country;
           if (res.data.length > 0) {
             this.cities = res.data;
-            this.no_data = false;
+            // this.no_data = false;
+            this.showPlaceholder = false;
           } else {
             this.cities = [];
-            this.no_data = true;
+            this.showPlaceholder = false;
+            // this.no_data = true;
           }
         }
       },

@@ -7,6 +7,7 @@ import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditComponent } from './edit/edit.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { EditComponent } from './edit/edit.component';
     shipmentRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    SharedModule
   ]
 })
 export class shipmentModule { }

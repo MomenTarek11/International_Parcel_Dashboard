@@ -13,11 +13,12 @@ import Swal from "sweetalert2";
   styleUrls: ["./to-client.component.scss"],
 })
 export class ToClientComponent implements OnInit {
-  orders;
+  orders: any[] = [];
   active = 7;
   companies;
   selectedOption;
   company_id;
+  showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -55,7 +56,8 @@ export class ToClientComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res;
+        this.orders = res?.data;
+        this.showPlaceholder = false;
       });
   }
 
