@@ -20,7 +20,9 @@ export class CountriesComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private dialog: MatDialog,
     private toaster: ToastrService
-  ) {}
+  ) {
+    localStorage.removeItem("country");
+  }
 
   ngOnInit(): void {
     this.getAllCountries();

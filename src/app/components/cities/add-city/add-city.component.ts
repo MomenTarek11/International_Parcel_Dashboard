@@ -71,5 +71,6 @@ export class AddCityComponent implements OnInit {
   chooseCountry(country: any) {
     this.Form.patchValue({ country_id: country.id });
     this.choosenCountry = country;
+    localStorage.setItem("country", JSON.stringify(country));
   }
 }
