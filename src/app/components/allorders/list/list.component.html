@@ -1,4 +1,4 @@
-<section id="add-main-page">
+<section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
     <div class="row">
       <div class="row w-100" *ngIf="companies?.data?.length != 0">
@@ -76,10 +76,6 @@
         </div>
       </div>
     </div>
-    <app-placeholder
-      *ngIf="!orders || orders?.length == 0"
-      [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
-    ></app-placeholder>
   </div>
 
   <div class="pagination row py-5" *ngIf="orders?.data.length > 16">
