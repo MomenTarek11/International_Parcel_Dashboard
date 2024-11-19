@@ -15,7 +15,7 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  banners;
+  banners: any;
   baseUrl = environment.baseURL;
   constructor(
     private dialog: MatDialog,

@@ -12,10 +12,18 @@
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
+            <div class="panel-heading py-5 text-center">
+              <div class="row">
+                <div class="col col-sm-12 col-xs-12">
+                  <h4 class="title"><span>شحنات تحت المراجعة </span></h4>
+                </div>
+              </div>
+            </div>
             <div class="panel-body table-responsive">
               <table class="table">
                 <thead class="thead-dark">
                   <tr>
+                    <th scope="col">#</th>
                     <th scope="col">رقم الطلب</th>
                     <th scope="col">اسم العميل</th>
                     <th scope="col">الايميل</th>
@@ -27,7 +35,10 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let order of orders?.data; let i = index">
-                    <th scope="row">{{ order.order_refrence }}</th>
+                    <th scope="row" class="text-light">{{ i + 1 }}</th>
+                    <th scope="row" class="text-light">
+                      {{ order.order_refrence }}
+                    </th>
 
                     <td>{{ order.user.name }}</td>
                     <td>{{ order.user.email }}</td>

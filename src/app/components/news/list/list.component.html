@@ -1,49 +1,62 @@
-<section id="add-main-page">
-  <div class="card">
+<section id="add-main-page" *ngIf="banners?.length > 0">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12 position-relative">
-        <table class="table table-striped mt-5">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">رقم</th>
-              <th scope="col">النص بالعربية</th>
-              <th scope="col">النص بالانجليزية</th>
-              <th scope="col">النص بالصينية</th>
+      <div class="row w-100">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-heading py-5 text-center">
+              <div class="row">
+                <div class="col col-sm-12 col-xs-12">
+                  <h4 class="title"><span>كل الاخبار</span></h4>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body table-responsive">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">رقم</th>
+                    <th scope="col">النص بالعربية</th>
+                    <th scope="col">النص بالانجليزية</th>
+                    <th scope="col">النص بالصينية</th>
 
-              <!-- <th scope="col"> الصورة</th> -->
+                    <!-- <th scope="col"> الصورة</th> -->
 
-              <th scope="col">اعدادات</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let banner of banners; let i = index">
-              <th scope="col">{{ i + 1 }}</th>
-              <td>{{ banner.title_ar }}</td>
-              <td>{{ banner.title_en }}</td>
-              <td>{{ banner.title_cn }}</td>
+                    <th scope="col">اعدادات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let banner of banners; let i = index">
+                    <th scope="col" class="text-light">{{ i + 1 }}</th>
+                    <td>{{ banner.title_ar }}</td>
+                    <td>{{ banner.title_en }}</td>
+                    <td>{{ banner.title_cn }}</td>
 
-              <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{banner.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
+                    <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{banner.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
 
-              <td>
-                <!-- <i style="cursor: pointer;" class="fas fa-check text-success" (click)="activeProduct(product.id)"></i> | -->
+                    <td>
+                      <!-- <i style="cursor: pointer;" class="fas fa-check text-success" (click)="activeProduct(product.id)"></i> | -->
 
-                <i
-                  style="cursor: pointer"
-                  class="fas fa-trash text-danger"
-                  (click)="deleteApp(banner.id)"
-                ></i>
-                |
-                <i
-                  style="cursor: pointer"
-                  class="fas fa-edit text-primary"
-                  (click)="editPackage(banner)"
-                ></i>
-                <!-- |
+                      <i
+                        style="cursor: pointer"
+                        class="fas fa-trash text-danger"
+                        (click)="deleteApp(banner.id)"
+                      ></i>
+                      |
+                      <i
+                        style="cursor: pointer"
+                        class="fas fa-edit text-primary"
+                        (click)="editPackage(banner)"
+                      ></i>
+                      <!-- |
                       <i class="fas fa-eye text-success" style="cursor: pointer;" (click)="productDetails(product)"></i> -->
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

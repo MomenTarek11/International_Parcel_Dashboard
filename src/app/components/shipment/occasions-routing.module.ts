@@ -1,15 +1,19 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './add/add.component';
-import { ListComponent } from './list/list.component';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { AddComponent } from "./add/add.component";
+import { ListComponent } from "./list/list.component";
 
 const routes: Routes = [
-  {path:'list',component:ListComponent,data:{title:'قائمة الشحنات'}},
-  {path:'add',component:AddComponent,data:{title:' إضافة أنواع جديدة'}},
-]
+  { path: "list", component: ListComponent, data: { title: "قائمة الشحنات" } },
+  {
+    path: "add",
+    component: AddComponent,
+    data: { title: " إضافة أنواع جديدة" },
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class shipmentRoutingModule { }
+export class shipmentRoutingModule {}

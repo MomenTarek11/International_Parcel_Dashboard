@@ -13,7 +13,7 @@ import { ProviderDetailsComponent } from "../provider-details/provider-details.c
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  testmoinals;
+  testmoinals: any;
   constructor(
     public route: ActivatedRoute,
     private spinner: NgxSpinnerService,

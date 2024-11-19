@@ -1,47 +1,58 @@
-<section id="add-main-page">
-  <div class="card">
+<section id="add-main-page" *ngIf="testmoinals?.data?.length > 0">
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-md-12">
-        <div class="card-body">
-          <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">الاسم</th>
-                <th scope="col">الوظيفة</th>
-                <th scope="col">التقييم</th>
-                <th scope="col">نص التقييم</th>
+      <div class="row w-100">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-heading py-5 text-center">
+              <div class="row">
+                <div class="col col-sm-12 col-xs-12">
+                  <h4 class="title"><span>أراء العملاء</span></h4>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body table-responsive">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">الاسم</th>
+                    <th scope="col">الوظيفة</th>
+                    <th scope="col">التقييم</th>
+                    <th scope="col">نص التقييم</th>
 
-                <th scope="col">الاجراءات</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of testmoinals?.data; let i = index">
-                <th scope="row">{{ i + 1 }}</th>
-                <td>{{ user?.user.name }}</td>
-                <td>{{ user?.job_title }}</td>
-                <td>{{ user?.rate }}</td>
-                <td>{{ user?.feed_back }}</td>
+                    <th scope="col">الاجراءات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of testmoinals?.data; let i = index">
+                    <th scope="row" class="text-light">{{ i + 1 }}</th>
+                    <td>{{ user?.user.name }}</td>
+                    <td>{{ user?.job_title }}</td>
+                    <td>{{ user?.rate }}</td>
+                    <td>{{ user?.feed_back }}</td>
 
-                <td>
-                  <i
-                    [class]="
-                      user?.in_home == 1 ? 'fas fa-star' : 'fa fa-star-o'
-                    "
-                    class="gold"
-                    style="cursor: pointer"
-                    (click)="addToHome(user)"
-                  ></i>
-                  |
-                  <i
-                    class="fas fa-trash text-danger"
-                    style="cursor: pointer"
-                    (click)="deleteTest(user.id)"
-                  ></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <td>
+                      <i
+                        [class]="
+                          user?.in_home == 1 ? 'fas fa-star' : 'fa fa-star-o'
+                        "
+                        class="gold"
+                        style="cursor: pointer"
+                        (click)="addToHome(user)"
+                      ></i>
+                      |
+                      <i
+                        class="fas fa-trash text-danger"
+                        style="cursor: pointer"
+                        (click)="deleteTest(user.id)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

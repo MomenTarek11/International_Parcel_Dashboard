@@ -1,9 +1,16 @@
 <section id="add-main-page">
-  <div class="container-fluid" *ngIf="orders?.length != 0">
+  <div class="container-fluid">
     <div class="row">
-      <div class="row w-100">
+      <div class="row w-100" *ngIf="companies?.data?.length != 0">
         <div class="col-md-12">
           <div class="panel">
+            <div class="panel-heading py-5 text-center">
+              <div class="row">
+                <div class="col col-sm-12 col-xs-12">
+                  <h4 class="title"><span>الطلبات الجديدة</span></h4>
+                </div>
+              </div>
+            </div>
             <div class="panel-body table-responsive">
               <table class="table">
                 <thead class="thead-dark">
@@ -69,6 +76,10 @@
         </div>
       </div>
     </div>
+    <app-placeholder
+      *ngIf="!orders || orders?.length == 0"
+      [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
+    ></app-placeholder>
   </div>
 
   <div class="pagination row py-5" *ngIf="orders?.data.length > 16">
@@ -97,7 +108,11 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card-body text-center">
-          <h1>لم يتم إضافة أي طلبات جديده بعد</h1>
+          <img
+            src="../../../assets/images/No data-amico.svg"
+            alt=""
+            class="w-25"
+          />
         </div>
       </div>
     </div>

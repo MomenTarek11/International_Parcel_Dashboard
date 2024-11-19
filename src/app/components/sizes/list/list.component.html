@@ -1,41 +1,58 @@
 <section id="add-main-page">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12 position-relative">
-                <table class="table table-striped mt-5">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col"> رقم </th>
-                            <th scope="col"> الاسم </th>
-                            <th scope="col"> الايميل </th>
-                            <th scope="col"> حاله التفعيل </th>
-                            <!-- <th scope="col"> وصف عرض السعر بالانجليزية </th>
-
-                            <th scope="col"> الصورة</th> -->
-
-                            <th scope="col"> اعدادات </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let admin of admins;let i=index">
-                            <th scope="col"> {{i+1}} </th>
-                            <td>{{admin.name}}</td>
-                            <td> {{admin.email}}</td>
-                            <td> {{admin.active == 1 ? 'مفعل' : 'غير مفعل '}}</td>
-                            <!-- <td> {{admin.description_en}}</td> -->
-
-                            <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{admin.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
-
-                            <td>
-
-                                <i style="cursor: pointer;" class="fas fa-trash text-danger" (click)="deleteAdmin(admin.id)"></i> |
-                                <i style="cursor: pointer;" class="fas fa-edit text-primary" (click)="editAdmin(admin)"></i>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="row w-100">
+        <div class="col-md-12">
+          <div class="panel">
+            <div class="panel-heading py-5 text-center">
+              <div class="row">
+                <div class="col col-sm-12 col-xs-12">
+                  <h4 class="title"><span> كل المشرفين </span></h4>
+                </div>
+              </div>
             </div>
+            <div class="panel-body table-responsive">
+              <table class="table">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">رقم</th>
+                    <th scope="col">الاسم</th>
+                    <th scope="col">الايميل</th>
+                    <th scope="col">حاله التفعيل</th>
+
+                    <th scope="col">اعدادات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let admin of admins; let i = index">
+                    <th scope="row" class="text-light fw-bold">{{ i + 1 }}</th>
+                    <td>{{ admin.name }}</td>
+                    <td>{{ admin.email }}</td>
+                    <td>{{ admin.active == 1 ? "مفعل" : "غير مفعل " }}</td>
+                    <!-- <td> {{admin.description_en}}</td> -->
+
+                    <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{admin.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
+
+                    <td>
+                      <i
+                        style="cursor: pointer"
+                        class="fas fa-trash text-danger"
+                        (click)="deleteAdmin(admin.id)"
+                      ></i>
+                      |
+                      <i
+                        style="cursor: pointer"
+                        class="fas fa-edit text-primary"
+                        (click)="editAdmin(admin)"
+                      ></i>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

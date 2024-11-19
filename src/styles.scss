@@ -311,3 +311,7 @@ table {
 .mat-form-field-ripple {
   display: none !important;
 }
+.table th,
+.table td {
+  border-top: transparent !important ;
+}
