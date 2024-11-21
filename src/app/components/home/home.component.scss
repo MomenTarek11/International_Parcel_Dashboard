@@ -1,86 +1,87 @@
-section.home{
-    .media-body{
-        p{
-            cursor: pointer;
-        }
+section.home {
+  .media-body {
+    p {
+      cursor: pointer;
     }
+  }
 }
-
 
 .personalinfo .profilebtn button:nth-child(1) {
-    background-color: #32B457;
-    color:white;
-    border : 1px solid #32B457;
+  background-color: #32b457;
+  color: white;
+  border: 1px solid #32b457;
 }
 .personalinfo .profilebtn button:nth-child(2) {
-   background-color: white;
-  color :#32B457 ; 
-  border : 1px solid #32B457;
+  background-color: white;
+  color: #32b457;
+  border: 1px solid #32b457;
 }
 
 .personalform {
-    margin-top: 10px;
-    min-height: 347px ;
+  margin-top: 10px;
+  min-height: 347px;
 }
 .personalform label {
-    font-weight: 500 ;  
-    font-size: 14px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-.personalform input::placeholder { 
-  color:grey; 
-  font-size:14px;
+.personalform input::placeholder {
+  color: grey;
+  font-size: 14px;
 }
 
-.image{
-    position: relative;
-    overflow: hidden;
-    height: 100px;
-    width:100px;
+.image {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  width: 100px;
 }
-    img.user-image-avatar{
-        position: absolute;
-        /* width: 35%; */
-        height: 100%;
-        top: 0;
-        left: 0;
-        z-index: 2;
-        opacity: 0.4;
-        border-radius: 50%;
-    }
-    svg{
-        position: absolute;
-        z-index: 33;
-         left: 25%;
-         top:25%
-    }
-    .hideEmptyImg[src=""] {
-        visibility: hidden;
-     }
- .showPassword{
-    padding: 7px;
-    /* border: 1px solid #d1cece; */
-    border-left: none;
-    height: 100%;
-  }
+img.user-image-avatar {
+  position: absolute;
+  /* width: 35%; */
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  opacity: 1;
+  border-radius: 50%;
+}
+svg {
+  position: absolute;
+  z-index: 33;
+  left: 25%;
+  top: 25%;
+}
+.hideEmptyImg[src=""] {
+  visibility: hidden;
+}
+.showPassword {
+  padding: 7px;
+  /* border: 1px solid #d1cece; */
+  border-left: none;
+  height: 100%;
+}
 
- #inputPassword4,#inputPassword5,#inputPassword6 {
-    border-bottom-right-radius: 0px;
-    border-top-right-radius:0px;
-  }
+#inputPassword4,
+#inputPassword5,
+#inputPassword6 {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
 
-  img{
-    width: inherit;
-  }
+img {
+  width: inherit;
+}
 
-  .form-control{
-    background-color: #F1F1F1 !important;
-    border: none;
-    height: 60px;    font-size: 14px !important;
-  }
+.form-control {
+  background-color: #f1f1f1 !important;
+  border: none;
+  height: 60px;
+  font-size: 14px !important;
+}
 
-
-  .password-position{
-    left: 15px;
-    top: 20px;
+.password-position {
+  left: 15px;
+  top: 20px;
 }

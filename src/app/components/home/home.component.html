@@ -208,7 +208,7 @@
             <img
               class="user-image-avatar hideEmptyImg"
               src="{{ imgpath }}"
-              alt="wrong"
+              (error)="onImageError($event)"
             />
           </div>
         </div>

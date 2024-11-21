@@ -6,6 +6,7 @@ import { AuthenticationService } from "../auth/authentication.service";
 import Swal from "sweetalert2";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { environment } from "src/environments/environment";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-home",
@@ -20,7 +21,9 @@ export class HomeComponent implements OnInit {
   edit: boolean = true;
   editpassword: boolean = true;
   thisLang: any;
-  userId:any = JSON.parse(localStorage.getItem(`${environment.currentUserKey}`)).data.user.id
+  userId: any = JSON.parse(
+    localStorage.getItem(`${environment.currentUserKey}`)
+  ).data.user.id;
   resu: object = {};
   result: object = {};
   showAvatar = false;
@@ -45,19 +48,16 @@ export class HomeComponent implements OnInit {
   submit: boolean = false;
   constructor(
     private formbuilder: FormBuilder,
-    private service: GlobalService
+    private service: GlobalService,
+    private toaster: ToastrService
   ) {
     this.thisLang = localStorage.getItem("currentLang") || navigator.language;
   }
-
   ngOnInit(): void {
-    console.log(this.userId , 'kasioj');
-    
+    console.log(this.userId, "kasioj");
     this.edit = true;
     this.editpassword = true;
-    //  confirm_password:[{value:'*********',disabled:this.editpassword},Validators.required],
     this.getInfo();
-    // console.log("nnnnnnnnnnnnnnnn",this.result)
     this.personalInfo = this.formbuilder.group({
       name: ["", Validators.required],
       email: ["", Validators.required],
@@ -76,14 +76,12 @@ export class HomeComponent implements OnInit {
         name: [res.data.name, Validators.required],
         email: [res.data.email, Validators.required],
         password: ["", Validators.required],
-        admin_id : [this.userId]
-
+        admin_id: [this.userId],
       });
       this.imgpath = res.data.imagePath;
     });
-    console.log("gfesfawdawrfe",this.imgpath)
+    console.log("gfesfawdawrfe", this.imgpath);
   }
-
   base64(event: any) {
     this.file = event.target.files;
     const reader = new FileReader();
@@ -95,14 +93,6 @@ export class HomeComponent implements OnInit {
     this.showImg = false;
     this.showAvatar = true;
   }
-
-  // editPersonalInfo(){
-  //   this.edit=false;
-  //   this.editpassword=true;
-  // }
-  // editPassword(){
-  //   this.editpassword=false;
-  //  }
   setType(num: any) {
     this.showButtons = false;
     this.type = num;
@@ -124,42 +114,26 @@ export class HomeComponent implements OnInit {
     console.log("Current Type", this.type);
   }
   onSubmit() {
-
-    // let formData = new FormData ()
-    // formData.append('name',this.personalInfo.controls.name.value)
-    // formData.append('email',this.personalInfo.controls.name.value)
-    // formData.append('password',this.personalInfo.controls.name.value)
-    // formData.append('admin_id',this.personalInfo.controls.name.value)
-    // setTimeout(() => {
-      
-    //   console.log(formData);
-    // }, 1000);
-
     if (!this.personalInfo.controls.email.value.length) {
-      Swal.fire("", "please enter your email");
+      this.toaster.warning("رجاء ادخل البريد الالكتروني");
       return;
     }
 
+    this.service.updatePersonalInfo(this.personalInfo.value).subscribe(
+      (res: any) => {
+        console.log(res);
 
-      this.service.updatePersonalInfo(this.personalInfo.value).subscribe(
-        (res: any) => {
-          console.log(res);
-          
-          // location.reload();
-          //  console.log("infoooooo" ,res);
-          Swal.fire("", res.message);
-          this.showButtons = true;
-  
-        },
-        (e: any) => {
-          Swal.fire("", e.error.message);
-          this.showButtons = true;
-        
-        }
-      );
-   
-
-   
-    }
+        this.toaster.success("تم التعديل بنجاح");
+        this.showButtons = true;
+      },
+      (e: any) => {
+        this.toaster.error(e.error.message);
+        this.showButtons = true;
+      }
+    );
   }
-
+  onImageError(event: Event): void {
+    const fallbackImage = "assets/images/img_avatar.png"; // Fallback image path
+    (event.target as HTMLImageElement).src = fallbackImage;
+  }
+}
