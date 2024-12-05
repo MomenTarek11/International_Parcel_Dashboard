@@ -8,7 +8,7 @@
     </div> -->
 
   <div class="container-fluid">
-    <div class="row" *ngIf="orders?.length != 0">
+    <div class="row" *ngIf="orders?.data?.length != 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -34,7 +34,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let order of orders; let i = index">
+                  <tr *ngFor="let order of orders?.data; let i = index">
                     <th scope="row" class="text-light">{{ i + 1 }}</th>
                     <th scope="row" class="text-light">
                       {{ order.order_refrence }}
@@ -45,11 +45,11 @@
                     <td>{{ order.user.phone }}</td>
                     <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{order.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
                     <td>
-                      <span *ngIf="!order.is_changed">
+                      <span *ngIf="!order.is_changed && payed">
                         <i
                           style="cursor: pointer"
                           class="fas fa-check text-success"
-                          (click)="changeStatus(order.id, 3)"
+                          (click)="changeStatus(order.id, 3, '')"
                         ></i>
                         |
                       </span>
@@ -66,7 +66,7 @@
                         <i
                           style="cursor: pointer"
                           class="fa fa-times text-dager"
-                          (click)="cancelOrder(order.id)"
+                          (click)="cancelOrder(order.id, '')"
                         ></i>
                         |
                       </span>
@@ -100,7 +100,10 @@
     ></app-placeholder>
   </div>
 
-  <div class="pagination justify-content-center" *ngIf="orders.length > 16">
+  <div
+    class="pagination justify-content-center"
+    *ngIf="orders?.data?.length > 16"
+  >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
         <li
@@ -120,8 +123,10 @@
     </nav>
   </div>
 </section>
-
-<section id="add-main-page" *ngIf="orders.length == 0 && !showPlaceholder">
+<section
+  id="add-main-page"
+  *ngIf="orders?.data?.length == 0 && !showPlaceholder"
+>
   <div class="card">
     <div class="row">
       <div class="col-md-12">

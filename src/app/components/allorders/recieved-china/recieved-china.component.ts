@@ -13,12 +13,13 @@ import Swal from "sweetalert2";
   styleUrls: ["./recieved-china.component.scss"],
 })
 export class RecievedChinaComponent implements OnInit {
-  orders: any[] = [];
+  orders: any;
   active = 2;
   companies;
   selectedOption;
   company_id;
   showPlaceholder: boolean = true;
+  payed: boolean = false;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -57,21 +58,10 @@ export class RecievedChinaComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res?.data;
+        this.orders = res;
         this.showPlaceholder = false;
       });
   }
-
-  // cancelOrder(order_id,note){
-
-  //   this.spinner.show()
-  //   this.service.cancelOrder(order_id,note).subscribe((res:any)=>{
-  //     this.spinner.hide()
-  //     console.log(res)
-  //     this.clientList(1,this.company_id,this.active)
-  //   })
-  //   this.service.finishOrder(order_id).subscribe(e=>console.log(e))
-  // }
 
   changeStatus(user_id, status_id = 3, note) {
     this.spinner.show();
@@ -82,16 +72,6 @@ export class RecievedChinaComponent implements OnInit {
         this.spinner.hide();
       });
   }
-
-  // confirmOrder(order_id){
-  //   this.spinner.show()
-  //   this.service.ConfirmOrder(order_id).subscribe((res:any)=>{
-  //     this.spinner.hide()
-  //     console.log(res)
-  //     this.clientList(1,this.company_id,this.active)
-
-  //   })
-  // }
 
   reciveOrder(order_id, note) {
     this.spinner.show();
@@ -226,19 +206,12 @@ export class RecievedChinaComponent implements OnInit {
           });
         this.service.finishOrder(order_id).subscribe((e) => console.log(e));
         console.log(price, note, "jhuyfdjtfjk");
-
-        // console.log(price , note);
       },
-      // allowOutsideClick: () => !Swal.isLoading()
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("تم القبول بنجاح", "", "success");
         this.clientList(1, this.company_id, this.active);
       }
     });
-
-    // if (formValues) {
-    //   Swal.fire(JSON.stringify(formValues))
-    // }
   }
 }
