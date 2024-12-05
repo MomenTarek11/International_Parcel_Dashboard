@@ -12,7 +12,7 @@
   <div class="container-fluid">
     <div class="row w-100">
       <div class="col-md-12">
-        <div *ngIf="orders.length != 0">
+        <div *ngIf="orders?.data">
           <div class="row">
             <div class="col-md-12">
               <div class="panel">
@@ -33,14 +33,14 @@
                         <th scope="col">اسم العميل</th>
                         <th scope="col">الايميل</th>
                         <th scope="col">رقم الهاتف</th>
-                        <!-- <th scope="col"> الصورة</th> -->
-
                         <th scope="col">إعدادات</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let order of orders; let i = index">
-                        <th scope="row">{{ order.order_refrence }}</th>
+                      <tr *ngFor="let order of orders?.data; let i = index">
+                        <th scope="row" class="text-light">
+                          {{ order.order_refrence }}
+                        </th>
 
                         <td>{{ order.user.name }}</td>
                         <td>{{ order.user.email }}</td>
@@ -61,6 +61,7 @@
                             <i
                               style="cursor: pointer"
                               class="fa fa-times text-dager"
+                              (click)="cancelOrder(order.id, '')"
                             ></i>
                           </span>
                           |
@@ -95,7 +96,10 @@
     ></app-placeholder>
   </div>
 
-  <div class="pagination justify-content-center" *ngIf="orders.length > 16">
+  <div
+    class="pagination justify-content-center"
+    *ngIf="orders?.data.length > 16"
+  >
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li
@@ -115,7 +119,6 @@
             >{{ i + 1 }}
           </a>
         </li>
-
         <li
           class="page-item"
           (click)="clientList(orders?.current_page + 1, 1, this.active)"
@@ -126,8 +129,7 @@
     </nav>
   </div>
 </section>
-
-<section id="add-main-page" *ngIf="orders.length == 0 && !showPlaceholder">
+<section id="add-main-page" *ngIf="orders?.data.length == 0; showPlaceholder">
   <div class="card">
     <div class="row">
       <div class="col-md-12">

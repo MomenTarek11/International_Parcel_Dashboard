@@ -18,6 +18,7 @@ import { ToClientComponent } from "./to-client/to-client.component";
 import { FinishedComponent } from "./finished/finished.component";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { SharedModule } from "src/app/shared/shared.module";
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SharedModule } from "src/app/shared/shared.module";
     NgxDropzoneModule,
     AllOrdersModule,
     SharedModule,
+    NgxSpinnerModule,
   ],
 })
 export class OrderModule {}

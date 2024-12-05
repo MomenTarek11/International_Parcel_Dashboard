@@ -6,6 +6,7 @@ import { GlobalService } from "src/app/services/global.service";
 import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-list",
@@ -22,12 +23,13 @@ export class ListComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
+    this.spinner.show();
     console.log(this.company_id);
-    //  this.getCompanies();
     this.clientList(1, 0, this.active);
   }
   getCompanies() {
@@ -48,6 +50,7 @@ export class ListComponent implements OnInit {
   }
 
   clientList(page, company, active) {
+    this.showPlaceholder = true;
     console.log("company_id", company);
     console.log("status", active);
     this.spinner.show();
@@ -55,7 +58,6 @@ export class ListComponent implements OnInit {
       .getOrderspages(page, company, active)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.orders = res?.data;
         this.showPlaceholder = false;
@@ -64,9 +66,12 @@ export class ListComponent implements OnInit {
 
   confirmOrder(order_id, note) {
     this.spinner.show();
+
     this.service.ConfirmOrder(order_id, note).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+      this.toaster.success(
+        "تم تاكيد الطلب بنجاح والان هو في خانة جاري التواصل مع المورد"
+      );
       this.clientList(1, this.company_id, this.active);
     });
   }
@@ -74,7 +79,8 @@ export class ListComponent implements OnInit {
     this.spinner.show();
     this.service.cancelOrder(order_id, note).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+      this.toaster.error("تم إلغاء الطلب");
+      this.clientList(1, this.company_id, this.active);
     });
   }
 

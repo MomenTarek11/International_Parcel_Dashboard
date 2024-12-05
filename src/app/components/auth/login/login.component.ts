@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formbuilder.group({
-      phone: ["superadmin@superadmin.com", Validators.required],
-      password: ["123456", Validators.required],
+      phone: ["", Validators.required],
+      password: ["", Validators.required],
     });
   }
   get f() {
@@ -40,19 +40,18 @@ export class LoginComponent implements OnInit {
       window.scroll({ top: 0, left: 0, behavior: "smooth" });
       return;
     }
-    // this.spinner.show()
-    this.service.login(this.form.value).subscribe((response: any) => {
-      // this.spinner.hide()
-      console.log(response);
-      console.log(response);
-      this.toaster.success("تم تسجيل الدخول بنجاح");
-      // this.spinner.hide()
-      // Swal.fire(
-      //   `نجاح تسجيل الدخول`,
-      //   `مرحباً بعودتك, يا أدمن`,
-      //   `success`
-      //   )
-      this.router.navigate(["/home"]);
-    });
+    this.service.login(this.form.value).subscribe(
+      (response: any) => {
+        console.log(response);
+        console.log(response);
+        this.toaster.success("تم تسجيل الدخول بنجاح");
+
+        this.router.navigate(["/home"]);
+      },
+
+      (error) => {
+        this.toaster.error("البريد الالكتروني او كلمة المرور غير صحيحة");
+      }
+    );
   }
 }

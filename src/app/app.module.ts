@@ -26,6 +26,7 @@ import { ToastrModule } from "ngx-toastr";
 import { CountriesModule } from "./components/countries/countries.module";
 import { AddCityComponent } from "./components/cities/add-city/add-city.component";
 import { PlaceholderComponent } from "./shared/placeholder/placeholder.component";
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,7 @@ import { PlaceholderComponent } from "./shared/placeholder/placeholder.component
     MatSnackBarModule,
     MatButtonModule,
     MatMenuModule,
+    NgxSpinnerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
