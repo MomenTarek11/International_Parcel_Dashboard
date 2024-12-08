@@ -479,9 +479,6 @@ export class GlobalService {
   ConfirmOrder(id, note = "") {
     let formData = new FormData();
     formData.append("order_id", id);
-    // if(note){
-    //   return this.http.post(`${environment.endpoint}/backend/orders/confirm?note=${note}`, formData);
-    // }
     return this.http.post(
       `${environment.endpoint}/backend/orders/confirm?note=${note}`,
       formData

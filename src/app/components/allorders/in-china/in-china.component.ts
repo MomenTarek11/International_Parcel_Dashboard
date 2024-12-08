@@ -6,6 +6,7 @@ import { GlobalService } from "src/app/services/global.service";
 import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-in-china",
@@ -13,21 +14,21 @@ import Swal from "sweetalert2";
   styleUrls: ["./in-china.component.scss"],
 })
 export class InChinaComponent implements OnInit {
-  orders: any[] = [];
+  orders: any;
   active = 2;
-  companies;
-  selectedOption;
-  company_id;
+  companies: any;
+  selectedOption: any;
+  company_id: any;
   showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
     console.log(this.company_id);
-
     this.getCompanies();
     this.clientList(1, 0, this.active);
   }
@@ -49,7 +50,6 @@ export class InChinaComponent implements OnInit {
   clientList(page, company, active) {
     console.log("company_id", company);
     console.log("status", active);
-
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 1, 0, 0)
@@ -57,34 +57,37 @@ export class InChinaComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res?.data;
+        this.orders = res;
         this.showPlaceholder = false;
       });
   }
-
   changeStatus(user_id, status_id) {
     this.spinner.show();
     this.service
       .ChangeOrdersStatus(user_id, status_id)
       .subscribe((res: any) => {
-        console.log(res);
-        this.spinner.hide();
-        this.clientList(1, this.company_id, this.active);
+        if (res.status === true) {
+          this.spinner.hide();
+          this.toaster.success(
+            "تم تغيير حالة الطلب بنجاح وهو الان فى طلبات جاري شحنها من الصين"
+          );
+          this.clientList(1, this.company_id, this.active);
+        } else {
+          this.spinner.hide();
+          this.toaster.error(
+            "لم يتم تاكيد الدفع من العميل حتي الان فلا يمكن تغيير حالة الطلب"
+          );
+        }
       });
   }
   confirmOrder(order_id) {
     this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      console.log(res);
-      this.clientList(1, this.company_id, this.active);
-    });
+    this.service.ConfirmOrder(order_id).subscribe((res: any) => {});
   }
   reciveOrder(order_id) {
     this.spinner.show();
     this.service.recieveOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
       this.clientList(1, this.company_id, this.active);
     });
   }
@@ -93,6 +96,9 @@ export class InChinaComponent implements OnInit {
     this.service.finishOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
       console.log(res);
+      this.toaster.success(
+        "تم تاكيد الطلب بنجاح والان هو فى الطلبات التي جاري شحنها من الصين"
+      );
       this.clientList(1, this.company_id, this.active);
     });
   }
@@ -103,11 +109,11 @@ export class InChinaComponent implements OnInit {
       width: "600px",
     });
   }
-
   cancelOrder(order_id, note) {
     this.spinner.show();
     this.service.cancelOrder(order_id, note).subscribe((res: any) => {
       this.spinner.hide();
+      this.toaster.error("تم الغاء الطلب");
       console.log(res);
       this.clientList(1, this.company_id, this.active);
     });
@@ -121,7 +127,6 @@ export class InChinaComponent implements OnInit {
 
       inputAttributes: {
         autocapitalize: "off",
-        // class : "dir-ltr"
       },
       // showCancelButton: true,
       returnInputValueOnDeny: true,
