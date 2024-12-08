@@ -6,6 +6,7 @@ import { GlobalService } from "src/app/services/global.service";
 import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-in-saudi",
@@ -13,16 +14,17 @@ import Swal from "sweetalert2";
   styleUrls: ["./in-saudi.component.scss"],
 })
 export class InSaudiComponent implements OnInit {
-  orders: any[] = [];
+  orders: any;
   active = 5;
-  companies;
-  selectedOption;
-  company_id;
+  companies: any;
+  selectedOption: any;
+  company_id: any;
   showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +58,7 @@ export class InSaudiComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res?.data;
+        this.orders = res;
         this.showPlaceholder = false;
       });
   }
@@ -72,6 +74,7 @@ export class InSaudiComponent implements OnInit {
     this.spinner.show();
     this.service.ConfirmOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
+
       console.log(res);
       this.clientList(1, this.company_id, this.active);
     });
@@ -106,7 +109,11 @@ export class InSaudiComponent implements OnInit {
       .ChangeOrdersStatus(user_id, status_id, note)
       .subscribe((res: any) => {
         console.log(res);
+
         this.spinner.hide();
+        this.toaster.success(
+          "تم قبول الطلب بنجاح وهو فى الشحنات الجارى توصيلها الى العميل"
+        );
         this.clientList(1, this.company_id, this.active);
       });
   }
@@ -116,6 +123,7 @@ export class InSaudiComponent implements OnInit {
     this.service.cancelOrder(order_id, note).subscribe((res: any) => {
       this.spinner.hide();
       console.log(res);
+      this.toaster.error("تم الغاء الطلب");
       this.clientList(1, this.company_id, this.active);
     });
     this.service.finishOrder(order_id).subscribe((e) => console.log(e));

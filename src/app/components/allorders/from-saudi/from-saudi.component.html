@@ -8,7 +8,7 @@
     </div> -->
 
   <div class="container-fluid">
-    <div class="row" *ngIf="orders?.length != 0">
+    <div class="row" *ngIf="orders?.data?.length != 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -34,7 +34,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let order of orders; let i = index">
+                  <tr *ngFor="let order of orders?.data; let i = index">
                     <th scope="row" class="text-light">{{ i + 1 }}</th>
                     <th scope="row" class="text-light">
                       {{ order.order_refrence }}
@@ -59,7 +59,7 @@
                         <i
                           style="cursor: pointer"
                           class="fa fa-times text-dager"
-                          (click)="cancelOrder(order.id)"
+                          (click)="cancelOrder(order.id, '')"
                         ></i>
                       </span>
                       |
@@ -101,7 +101,7 @@
   </div>
   <div
     class="pagination justify-content-center py-4"
-    *ngIf="orders.length > 20"
+    *ngIf="orders?.data?.length > 20"
   >
     <nav aria-label="Page navigation example">
       <ul class="pagination">
@@ -134,7 +134,10 @@
   </div>
 </section>
 
-<section id="add-main-page" *ngIf="orders.length == 0 && !showPlaceholder">
+<section
+  id="add-main-page"
+  *ngIf="orders?.data?.length == 0 && !showPlaceholder"
+>
   <div class="card">
     <div class="row">
       <div class="col-md-12">

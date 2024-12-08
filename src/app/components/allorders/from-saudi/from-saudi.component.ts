@@ -6,6 +6,7 @@ import { GlobalService } from "src/app/services/global.service";
 import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-from-saudi",
@@ -13,16 +14,17 @@ import Swal from "sweetalert2";
   styleUrls: ["./from-saudi.component.scss"],
 })
 export class FromSaudiComponent implements OnInit {
-  orders: any[] = [];
+  orders: any;
   active = 6;
-  companies;
-  selectedOption;
-  company_id;
+  companies: any;
+  selectedOption: any;
+  company_id: any;
   showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -48,7 +50,6 @@ export class FromSaudiComponent implements OnInit {
   clientList(page, company, active) {
     console.log("company_id", company);
     console.log("status", active);
-
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -56,7 +57,7 @@ export class FromSaudiComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res?.data;
+        this.orders = res;
         this.showPlaceholder = false;
       });
   }
@@ -91,6 +92,7 @@ export class FromSaudiComponent implements OnInit {
     this.service.finishOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
       console.log(res);
+      this.toaster.success("تم إستلام الطلب بنجاح");
       this.clientList(1, this.company_id, this.active);
     });
   }
@@ -107,17 +109,11 @@ export class FromSaudiComponent implements OnInit {
     this.service.cancelOrder(order_id, note).subscribe((res: any) => {
       this.spinner.hide();
       console.log(res);
+      this.toaster.error("تم إلغاء الطلب بنجاح");
       this.clientList(1, this.company_id, this.active);
     });
     this.service.finishOrder(order_id).subscribe((e) => console.log(e));
   }
-  // changeStatus(user_id,status_id = 4,note){
-  //   this.spinner.show()
-  //   this.service.ChangeOrdersStatus(user_id,status_id,note).subscribe((res:any)=>{
-  //     console.log(res)
-  //     this.spinner.hide()
-  //   })
-  // }
 
   addNote(order_id) {
     Swal.fire({
