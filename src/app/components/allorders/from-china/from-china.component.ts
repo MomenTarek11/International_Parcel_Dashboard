@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
+import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 
 @Component({
   selector: "app-from-china",
@@ -20,6 +21,7 @@ export class FromChinaComponent implements OnInit {
   selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
+  data: { title: string; button: string; type: string; id: any; note: any };
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -95,35 +97,73 @@ export class FromChinaComponent implements OnInit {
   }
 
   cancelOrder(order_id, note) {
-    this.spinner.show();
-    this.service.cancelOrder(order_id, note).subscribe(
-      (res: any) => {
-        this.spinner.hide();
-        this.toaster.error("تم الغاء الطلب");
-        this.clientList(1, this.company_id, this.active);
-      },
-      (err: any) => {
-        this.spinner.hide();
-        this.toaster.error(err.error.message);
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
+      button: "حذف",
+      type: "cancel_order",
+      id: order_id,
+      note: note,
+    };
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: this.data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.cancelOrder(order_id, note).subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            this.toaster.error("تم الغاء الطلب");
+            this.clientList(1, this.company_id, this.active);
+          },
+          (err: any) => {
+            this.spinner.hide();
+            this.toaster.error(err.error.message);
+          }
+        );
+        this.service.finishOrder(order_id).subscribe((e) => console.log(e));
       }
-    );
-    this.service.finishOrder(order_id).subscribe((e) => console.log(e));
+    });
   }
   changeStatus(user_id, status_id = 4, note) {
-    this.spinner.show();
-    this.service.ChangeOrdersStatus(user_id, status_id, note).subscribe(
-      (res: any) => {
-        this.spinner.hide();
-        this.toaster.success(
-          "اصبح الطلب الان فى الشحنات التى فى ميناء المملكة تحت المراجعة الجمركية"
+    this.data = {
+      title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
+      button: "تأكيد",
+      type: "confirm_order",
+      id: user_id,
+      note: note,
+    };
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: this.data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.ChangeOrdersStatus(user_id, status_id, note).subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            this.toaster.success(
+              "اصبح الطلب الان فى الشحنات التى فى ميناء المملكة تحت المراجعة الجمركية"
+            );
+            this.clientList(1, this.company_id, this.active);
+          },
+          (err: any) => {
+            this.spinner.hide();
+            this.toaster.error(err.error.message);
+          }
         );
-        this.clientList(1, this.company_id, this.active);
-      },
-      (err: any) => {
-        this.spinner.hide();
-        this.toaster.error(err.error.message);
       }
-    );
+    });
   }
 
   addNote(order_id) {

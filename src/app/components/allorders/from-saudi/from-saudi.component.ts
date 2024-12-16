@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
+import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 
 @Component({
   selector: "app-from-saudi",
@@ -20,6 +21,7 @@ export class FromSaudiComponent implements OnInit {
   selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
+  data: any;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -88,12 +90,30 @@ export class FromSaudiComponent implements OnInit {
     });
   }
   finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      console.log(res);
-      this.toaster.success("تم إستلام الطلب بنجاح");
-      this.clientList(1, this.company_id, this.active);
+    this.data = {
+      title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
+      button: "تأكيد",
+      type: "confirm_order",
+      id: order_id,
+    };
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: this.data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.finishOrder(order_id).subscribe((res: any) => {
+          this.spinner.hide();
+          console.log(res);
+          this.toaster.success("تم إستلام الطلب بنجاح");
+          this.clientList(1, this.company_id, this.active);
+        });
+      }
     });
   }
   viewOrder(order) {
@@ -105,14 +125,33 @@ export class FromSaudiComponent implements OnInit {
   }
 
   cancelOrder(order_id, note) {
-    this.spinner.show();
-    this.service.cancelOrder(order_id, note).subscribe((res: any) => {
-      this.spinner.hide();
-      console.log(res);
-      this.toaster.error("تم إلغاء الطلب بنجاح");
-      this.clientList(1, this.company_id, this.active);
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
+      button: "حذف",
+      type: "cancel_order",
+      id: order_id,
+      note: note,
+    };
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: this.data,
     });
-    this.service.finishOrder(order_id).subscribe((e) => console.log(e));
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.cancelOrder(order_id, note).subscribe((res: any) => {
+          this.spinner.hide();
+          console.log(res);
+          this.toaster.error("تم إلغاء الطلب بنجاح");
+          this.clientList(1, this.company_id, this.active);
+        });
+        this.service.finishOrder(order_id).subscribe((e) => console.log(e));
+      }
+    });
   }
 
   addNote(order_id) {
