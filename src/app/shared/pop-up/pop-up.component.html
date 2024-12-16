@@ -1,7 +1,7 @@
 <div class="register-container" data-aos="fade-up" data-aos-duration="1000">
   <h2 class="mb-5">{{ this.Data.title }}</h2>
   <form id="registerForm" [formGroup]="Form" (ngSubmit)="onSubmit()">
-    <div *ngIf="deleteMode == false">
+    <div *ngIf="deleteMode == false && confirmMode == false">
       <div class="input-group">
         <label class="mb-3 text-right">الاسم بالعربي</label>
         <input type="text" formControlName="name_ar" />
@@ -22,10 +22,22 @@
     </div>
     <div
       class="row d-flex justify-content-around align-items-center mt-5"
-      *ngIf="deleteMode == true"
+      *ngIf="deleteMode == true && confirmMode == false"
     >
       <button class="btn btn-danger col-4" (click)="delete()">
         <i class="fa fa-trash mr-2"></i>
+        {{ this.Data.button }}
+      </button>
+      <button type="button" class="btn btn-dark col-4" (click)="close()">
+        الغاء
+      </button>
+    </div>
+    <div
+      class="row d-flex justify-content-around align-items-center mt-5"
+      *ngIf="deleteMode == false && confirmMode == true"
+    >
+      <button class="btn btn-success col-4" (click)="confirm()">
+        <i class="fa-solid fa-check mr-2"></i>
         {{ this.Data.button }}
       </button>
       <button type="button" class="btn btn-dark col-4" (click)="close()">

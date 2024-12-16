@@ -166,7 +166,6 @@ export class RecievedChinaComponent implements OnInit {
           console.log(res);
           this.clientList(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe((e) => console.log(e));
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {

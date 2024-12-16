@@ -494,7 +494,6 @@ export class GlobalService {
       formData
     );
   }
-
   //3
   ChangeOrdersStatus(id, status, note = "") {
     let formData = new FormData();

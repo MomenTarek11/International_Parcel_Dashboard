@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CountriesService } from "../../components/countries/countries.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { CitiesService } from "src/app/components/cities/cities.service";
+import { GlobalService } from "src/app/services/global.service";
 @Component({
   selector: "app-pop-up",
   templateUrl: "./pop-up.component.html",
@@ -14,20 +15,28 @@ export class PopUpComponent {
   Form: FormGroup;
   Data: any;
   deleteMode: boolean = false;
+  confirmMode: boolean = false;
   constructor(
     private data: MatDialogRef<CountriesComponent>,
     @Inject(MAT_DIALOG_DATA) public AllData: any,
     private fb: FormBuilder,
     private service: CountriesService,
     private spinner: NgxSpinnerService,
-    private citiesServ: CitiesService
+    private citiesServ: CitiesService,
+    private globalService: GlobalService
   ) {
     this.Data = AllData;
   }
   ngOnInit(): void {
     console.log(this.Data);
-
-    if (this.Data.type == "delete" || this.Data.type == "delete_city") {
+    if (this.Data.type == "confirm_order") {
+      this.confirmMode = true;
+    }
+    if (
+      this.Data.type == "delete" ||
+      this.Data.type == "delete_city" ||
+      this.Data.type == "cancel_order"
+    ) {
       this.deleteMode = true;
     }
     this.Form = this.fb.group({
@@ -66,10 +75,17 @@ export class PopUpComponent {
           console.log(error);
         }
       );
-    } else {
+    } else if (this.Data.type == "delete_city") {
       this.citiesServ.deleteCity(this.Data.id).subscribe((res: any) => {
         this.spinner.hide(), this.data.close(res.message);
       });
+    } else {
+      this.globalService
+        .cancelOrder(this.Data.id, this.Data.note)
+        .subscribe((res: any) => {
+          this.spinner.hide();
+          this.data.close("تم الغاء الطلب بنجاح");
+        });
     }
   }
   onSubmit() {
@@ -107,7 +123,7 @@ export class PopUpComponent {
             this.data.close(res.message);
           }
         });
-      } else {
+      } else if (this.Data.type == "edit_city") {
         this.citiesServ.updateCity(this.Form.value).subscribe(
           (res: any) => {
             if ((res.status = true)) {
@@ -120,6 +136,21 @@ export class PopUpComponent {
           }
         );
       }
+    }
+  }
+  confirm() {
+    this.spinner.show();
+    if (this.Data.type == "confirm_order") {
+      this.globalService.ConfirmOrder(this.Data.id, this.Data.note).subscribe(
+        (res: any) => {
+          this.spinner.hide();
+          this.data.close(true);
+        },
+        (error: any) => {
+          this.spinner.hide();
+          this.data.close("يوجد مشكلة فى القبول");
+        }
+      );
     }
   }
   close() {

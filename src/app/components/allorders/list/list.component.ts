@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
+import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 
 @Component({
   selector: "app-list",
@@ -20,6 +21,7 @@ export class ListComponent implements OnInit {
   selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
+  data: any;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -61,26 +63,26 @@ export class ListComponent implements OnInit {
       });
   }
 
-  confirmOrder(order_id, note) {
-    this.spinner.show();
-
-    this.service.ConfirmOrder(order_id, note).subscribe((res: any) => {
-      this.spinner.hide();
-      this.toaster.success(
-        "تم تاكيد الطلب بنجاح والان هو في خانة جاري التواصل مع المورد"
-      );
-      this.clientList(1, this.company_id, this.active);
-    });
+  confirmOrder(order_id: any, note: any) {
+    this.data = {
+      title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
+      button: "تأكيد",
+      type: "confirm_order",
+      id: order_id,
+      note: note,
+    };
+    this.openDialog(this.data);
   }
-  cancelOrder(order_id, note) {
-    this.spinner.show();
-    this.service.cancelOrder(order_id, note).subscribe((res: any) => {
-      this.spinner.hide();
-      this.toaster.error("تم إلغاء الطلب");
-      this.clientList(1, this.company_id, this.active);
-    });
+  cancelOrder(order_id: any, note: any) {
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
+      button: "حذف",
+      type: "cancel_order",
+      id: order_id,
+      note: note,
+    };
+    this.openDialog(this.data);
   }
-
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
@@ -117,6 +119,23 @@ export class ListComponent implements OnInit {
         this.cancelOrder(order_id, result.value);
 
         Swal.fire("تم الرفض ", "", "info");
+      }
+    });
+  }
+  openDialog(data: any) {
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: data,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toaster.success(result);
+        this.clientList(1, this.company_id, this.active);
       }
     });
   }
