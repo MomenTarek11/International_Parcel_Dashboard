@@ -30,9 +30,11 @@
 
       <tr>
         <th scope="row">وزن الطلب</th>
-        <td>{{ data?.weight }}</td>
+        <td class="d-flex justify-content-center align-items-center">
+          <span class="mx-1"> {{ data?.type == 1 ? "Kg" : "CBM" }}</span>
+          <span> {{ data?.weight }} </span>
+        </td>
       </tr>
-
       <tr>
         <th scope="row">نوع البضاعة</th>
         <td>
@@ -45,7 +47,7 @@
       </tr>
       <tr>
         <th scope="row">تكلفة الطلب</th>
-        <td>{{ data?.price }}</td>
+        <td>{{ data?.price | currency }}</td>
       </tr>
       <tr>
         <th scope="row">نوع الشحن</th>

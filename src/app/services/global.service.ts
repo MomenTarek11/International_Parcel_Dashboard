@@ -14,10 +14,8 @@ export class GlobalService {
       f
     );
   }
-  getTestmonials(page) {
-    return this.http.get(
-      `${environment.endpoint}/backend/ratings?page=${page}`
-    );
+  getTestmonials() {
+    return this.http.get(`${environment.endpoint}/backend/testimonials`);
   }
   addToTestmonials(id) {
     const formData = new FormData();

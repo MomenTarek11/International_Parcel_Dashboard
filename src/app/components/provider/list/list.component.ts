@@ -6,6 +6,8 @@ import { map } from "rxjs/operators";
 import { GlobalService } from "src/app/services/global.service";
 import Swal from "sweetalert2";
 import { ProviderDetailsComponent } from "../provider-details/provider-details.component";
+import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-list",
@@ -13,26 +15,28 @@ import { ProviderDetailsComponent } from "../provider-details/provider-details.c
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  testmoinals: any[] = [];
+  testmoinals: any;
   showPlaceholder: boolean = true;
+  data: { title: string; button: string; type: string; id: any };
   constructor(
     public route: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private service: GlobalService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toster: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.getTestmonials(1);
+    this.getTestmonials();
   }
-  getTestmonials(page) {
+  getTestmonials() {
     this.spinner.show();
     this.service
-      .getTestmonials(page)
+      .getTestmonials()
       .pipe(map((res) => res["data"]))
       .subscribe((response: any) => {
         console.log(response);
-        this.testmoinals = response?.data;
+        this.testmoinals = response;
         this.showPlaceholder = false;
         this.spinner.hide();
       });
@@ -45,17 +49,34 @@ export class ListComponent implements OnInit {
       width: "600px",
     });
     dialogRef.afterClosed().subscribe((result) => {
-      this.getTestmonials(1);
+      this.getTestmonials();
     });
   }
-  deleteTest(id) {
-    this.spinner.show();
-
-    this.service.DeleteTest(id).subscribe((res) => {
-      this.spinner.hide();
-      Swal.fire("نجااااح", "تم الحذف  بنجاح", "success");
+  deleteTest(id: any) {
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذا الرأي  ؟",
+      button: "حذف",
+      type: "cancel_order",
+      id: id,
+    };
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: this.data,
     });
-    this.getTestmonials(1);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.service.DeleteTest(id).subscribe((res) => {
+          this.spinner.hide();
+          this.toster.success(" تم حذف الرأي بنجاح");
+          this.getTestmonials();
+        });
+      }
+    });
   }
 
   addToHome(id: any) {
@@ -69,14 +90,13 @@ export class ListComponent implements OnInit {
 
     this.service.addToTestmonials(changeStatus).subscribe((res) => {
       this.spinner.hide();
-
       if (id.in_home == 1) {
         Swal.fire("نجاح", "تمت الإزالة بنجاح", "success");
       } else {
         Swal.fire("نجاح", "تمت الإضافة بنجاح", "success");
       }
-      this.getTestmonials(1);
+      this.getTestmonials();
     });
-    this.getTestmonials(1);
+    this.getTestmonials();
   }
 }

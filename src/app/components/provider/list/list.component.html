@@ -1,6 +1,6 @@
 <section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row" *ngIf="testmoinals.length > 0">
+    <div class="row">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -17,9 +17,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">الاسم</th>
-                    <th scope="col">الوظيفة</th>
-                    <th scope="col">التقييم</th>
-                    <th scope="col">نص التقييم</th>
+                    <th scope="col">الوصف</th>
 
                     <th scope="col">الاجراءات</th>
                   </tr>
@@ -27,10 +25,8 @@
                 <tbody>
                   <tr *ngFor="let user of testmoinals; let i = index">
                     <th scope="row" class="text-light">{{ i + 1 }}</th>
-                    <td>{{ user?.user.name }}</td>
-                    <td>{{ user?.job_title }}</td>
-                    <td>{{ user?.rate }}</td>
-                    <td>{{ user?.feed_back }}</td>
+                    <td>{{ user?.name_ar }}</td>
+                    <td>{{ user?.description }}</td>
 
                     <td>
                       <i
@@ -70,9 +66,9 @@
     ></app-placeholder>
   </div>
 
-  <div
+  <!-- <div
     class="pagination justify-content-center py-4"
-    *ngIf="testmoinals.length > 16"
+    *ngIf="testmoinals?.data?.length > 16"
   >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
@@ -91,5 +87,5 @@
         </li>
       </ul>
     </nav>
-  </div>
+  </div> -->
 </section>
