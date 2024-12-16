@@ -14,11 +14,11 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  orders: any = [];
+  orders: any;
   active = 0;
-  companies;
-  selectedOption;
-  company_id;
+  companies: any;
+  selectedOption: any;
+  company_id: any;
   showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
@@ -29,7 +29,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    console.log(this.company_id);
     this.clientList(1, 0, this.active);
   }
   getCompanies() {
@@ -37,7 +36,6 @@ export class ListComponent implements OnInit {
       .getCompanies()
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.companies = res;
       });
@@ -45,21 +43,20 @@ export class ListComponent implements OnInit {
 
   getCompany(company) {
     this.company_id = company;
-    console.log(company);
     this.clientList(1, company, this.active);
   }
 
   clientList(page, company, active) {
     this.showPlaceholder = true;
-    console.log("company_id", company);
-    console.log("status", active);
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
+        console.log(res);
+
         this.spinner.hide();
-        this.orders = res?.data;
+        this.orders = res;
         this.showPlaceholder = false;
       });
   }
@@ -111,9 +108,7 @@ export class ListComponent implements OnInit {
       preConfirm: (text) => {
         this.confirmOrder(order_id, text);
       },
-      preDeny(value) {
-        // console.log(value.value , '2333333');
-      },
+      preDeny(value) {},
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {
       if (result.isConfirmed) {

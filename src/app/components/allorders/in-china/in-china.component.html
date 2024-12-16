@@ -28,6 +28,7 @@
                     <th scope="col">اسم العميل</th>
                     <th scope="col">الايميل</th>
                     <th scope="col">رقم الهاتف</th>
+                    <th scope="col">تاريخ الطلب</th>
                     <!-- <th scope="col"> الصورة</th> -->
                     <th scope="col">إعدادات</th>
                   </tr>
@@ -41,6 +42,7 @@
                     <td>{{ order.user.name }}</td>
                     <td>{{ order.user.email }}</td>
                     <td>{{ order.user.phone }}</td>
+                    <td>{{ order?.updated_at | date }}</td>
 
                     <td>
                       <span>

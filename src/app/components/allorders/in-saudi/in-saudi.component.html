@@ -30,6 +30,7 @@
                     <th scope="col">اسم العميل</th>
                     <th scope="col">الإيميل</th>
                     <th scope="col">رقم الهاتف</th>
+                    <th scope="col">تاريخ الطلب</th>
                     <th scope="col">حالة الدفع</th>
                     <th scope="col">إعدادات</th>
                   </tr>
@@ -43,6 +44,7 @@
                     <td>{{ order.user.name }}</td>
                     <td>{{ order.user.email }}</td>
                     <td>{{ order.user.phone }}</td>
+                    <td>{{ order?.updated_at | date }}</td>
                     <td>
                       <span
                         class="badge"

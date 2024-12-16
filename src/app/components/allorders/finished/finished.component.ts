@@ -13,11 +13,11 @@ import Swal from "sweetalert2";
   styleUrls: ["./finished.component.scss"],
 })
 export class FinishedComponent implements OnInit {
-  orders: any[] = [];
+  orders: any;
   active = 10;
-  companies;
-  selectedOption;
-  company_id;
+  companies: any;
+  selectedOption: any;
+  company_id: any;
   showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
@@ -56,35 +56,10 @@ export class FinishedComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.orders = res?.data;
-        this.showPlaceholder=false
+        this.orders = res;
+        this.showPlaceholder = false;
       });
   }
-
-  // clientList(company,active,page){
-
-  //   console.log('page',page)
-
-  //   this.spinner.show()
-  //   //   var url :any = new URL(`${environment.endpoint}/backend/orders?company_id=1&status_id=${object.status}&is_changed=${object.changed}&accept_change=${object.accept}&canceled=${object.canceled}`);
-  //   var object = {
-  //     company_id : company,
-  //     status_id : active,
-  //     is_changed : 0,
-  //     accept_change : 0,
-  //     canceled : 1,
-  //     page : page
-
-  //   }
-
-  //   console.log(object , "test");
-
-  //   this.service.getOrdersPagination(object).pipe(map(res=>res['data'])).subscribe(res=>{
-  //     console.log(res, "kjiuyfrjyghiluh")
-  //     this.spinner.hide()
-  //     this.orders=res
-  //   })
-  // }
 
   changeStatus(user_id, status_id) {
     this.spinner.show();

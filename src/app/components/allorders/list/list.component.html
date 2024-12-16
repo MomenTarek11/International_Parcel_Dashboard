@@ -1,6 +1,6 @@
 <section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row" *ngIf="orders?.length != 0">
+    <div class="row" *ngIf="orders?.data?.length != 0">
       <div class="col-md-12">
         <div class="panel">
           <div class="panel-heading py-5 text-center">
@@ -19,19 +19,21 @@
                   <th scope="col">اسم العميل</th>
                   <th scope="col">الايميل</th>
                   <th scope="col">رقم الهاتف</th>
+                  <th scope="col">تاريخ الطلب</th>
                   <th scope="col">إعدادات</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let order of orders; let i = index">
+                <tr *ngFor="let order of orders?.data; let i = index">
                   <th scope="row" class="text-light">{{ i + 1 }}</th>
                   <th scope="row" class="text-light">
                     {{ order.order_refrence }}
                   </th>
 
-                  <td>{{ order.user.name }}</td>
-                  <td>{{ order.user.email }}</td>
-                  <td>{{ order.user.phone }}</td>
+                  <td>{{ order?.user.name }}</td>
+                  <td>{{ order?.user.email }}</td>
+                  <td>{{ order?.user.phone }}</td>
+                  <td>{{ order?.updated_at | date }}</td>
 
                   <td>
                     <span>
@@ -76,12 +78,12 @@
     </div>
 
     <app-placeholder
-      *ngIf="showPlaceholder && orders?.length == 0"
+      *ngIf="showPlaceholder && orders?.data?.length == 0"
       [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
     ></app-placeholder>
   </div>
 
-  <div class="pagination row py-5" *ngIf="orders.length > 16">
+  <div class="pagination row py-5" *ngIf="orders?.data?.length > 16">
     <nav aria-label="Page navigation example " class="w-50 m-auto">
       <ul class="pagination w-50 m-auto row">
         <li
@@ -101,7 +103,10 @@
     </nav>
   </div>
 </section>
-<section id="add-main-page" *ngIf="!showPlaceholder && orders?.length == 0">
+<section
+  id="add-main-page"
+  *ngIf="!showPlaceholder && orders?.data?.length == 0"
+>
   <div class="card">
     <div class="row">
       <div class="col-md-12">
