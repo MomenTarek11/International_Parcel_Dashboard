@@ -151,6 +151,16 @@
         <ul class="sidebar-submenu" style="display: none">
           <li [style.display]="orders1 == 1 ? 'block' : 'none'">
             <a
+              [routerLink]="['/app/orders/waiting']"
+              routerLinkActive="active"
+              class="lan-4"
+              href="javascript:void(0)"
+            >
+              طلبات لم تدفع بعد
+            </a>
+          </li>
+          <li [style.display]="orders1 == 1 ? 'block' : 'none'">
+            <a
               [routerLink]="['/app/orders/newOrder']"
               routerLinkActive="active"
               class="lan-4"

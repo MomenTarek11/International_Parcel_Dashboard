@@ -19,6 +19,7 @@ import { FinishedComponent } from "./finished/finished.component";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { SharedModule } from "src/app/shared/shared.module";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { WaitingComponent } from './waiting/waiting.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     FromSaudiComponent,
     ToClientComponent,
     FinishedComponent,
+    WaitingComponent,
   ],
   imports: [
     CommonModule,

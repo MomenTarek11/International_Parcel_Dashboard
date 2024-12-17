@@ -67,7 +67,6 @@ export class ListComponent implements OnInit {
       autoFocus: false,
       data: this.data,
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.service.DeleteTest(id).subscribe((res) => {

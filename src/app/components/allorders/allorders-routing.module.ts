@@ -10,8 +10,14 @@ import { ListComponent } from "./list/list.component";
 import { RecievedChinaComponent } from "./recieved-china/recieved-china.component";
 import { RecivedSaudiComponent } from "./recived-saudi/recived-saudi.component";
 import { ToClientComponent } from "./to-client/to-client.component";
+import { WaitingComponent } from "./waiting/waiting.component";
 
 const routes: Routes = [
+  {
+    path: "waiting",
+    component: WaitingComponent,
+    data: { title: "طلبات جديده" },
+  },
   {
     path: "newOrder",
     component: ListComponent,
