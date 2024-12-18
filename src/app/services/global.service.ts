@@ -417,7 +417,7 @@ export class GlobalService {
     payed?: any
   ) {
     return this.http.get(
-      `${environment.endpoint}/backend/orders?page=${page}&company_id=1&status_id=${status}&is_changed=${changed}&accept_change=${accept}&canceled=${canceled}?payed=${payed}`
+      `${environment.endpoint}/backend/orders?page=${page}&company_id=1&status_id=${status}&is_changed=${changed}&accept_change=${accept}&canceled=${canceled}&payed=${payed}`
     );
   }
 
@@ -531,9 +531,7 @@ export class GlobalService {
     formData.append("order_id", id);
     formData.append("is_changed", changed);
     formData.append("calculated_price", price);
-    // if(note){
-    //   return this.http.post(`${environment.endpoint}/backend/orders/cancel?note=${note}`, formData);
-    // }
+
     return this.http.post(
       `${environment.endpoint}/backend/orders/check-price?note=${note}`,
       formData
@@ -545,7 +543,6 @@ export class GlobalService {
       `${environment.endpoint}/backend/admins/show?admin_id=${id}`
     );
   }
-  //All orders
   allOrders(status_id) {
     return this.http.get(
       `${environment.endpoint}/backend/orders/all?status_id=${status_id}`
@@ -608,8 +605,6 @@ export class GlobalService {
       forms
     );
   }
-
-  // SubCategory
 
   allSubCategories() {
     return this.http.get(`${environment.endpoint}/secondary-specialists`);
