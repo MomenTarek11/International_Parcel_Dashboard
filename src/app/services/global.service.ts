@@ -643,8 +643,6 @@ export class GlobalService {
       deletedsubCat
     );
   }
-  //Cities
-
   allCities() {
     return this.http.get(`${environment.endpoint}/cities`);
   }
