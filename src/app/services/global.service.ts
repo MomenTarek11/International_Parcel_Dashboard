@@ -414,7 +414,7 @@ export class GlobalService {
     changed = 0,
     accept = 0,
     canceled = 0,
-    payed?: any
+    payed = 1
   ) {
     return this.http.get(
       `${environment.endpoint}/backend/orders?page=${page}&company_id=1&status_id=${status}&is_changed=${changed}&accept_change=${accept}&canceled=${canceled}&payed=${payed}`

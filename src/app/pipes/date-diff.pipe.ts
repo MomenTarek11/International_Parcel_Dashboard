@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from "@angular/core";
-
 @Pipe({
   name: "dateDiff",
 })
@@ -15,7 +14,6 @@ export class DateDiffPipe implements PipeTransform {
       const diffIssnMs =
         new Date(value[index].end_date).valueOf() - new Date().valueOf();
       value[index]["dates_count"] = Number(diffInMs / (1000 * 60 * 60 * 24));
-
       var start: any = new Date(value[index].start_date),
         end: any = new Date(value[index].end_date);
       value[index]["dates_percentage"] = Math.round(
