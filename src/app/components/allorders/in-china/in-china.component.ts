@@ -179,7 +179,6 @@ export class InChinaComponent implements OnInit {
         this.changeStatus(order_id, 3);
       },
       preDeny(value) {
-        // console.log(value.value , '2333333');
       },
       allowOutsideClick: () => !Swal.isLoading(),
     }).then((result) => {

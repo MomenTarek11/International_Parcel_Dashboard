@@ -11,8 +11,13 @@ import { RecievedChinaComponent } from "./recieved-china/recieved-china.componen
 import { RecivedSaudiComponent } from "./recived-saudi/recived-saudi.component";
 import { ToClientComponent } from "./to-client/to-client.component";
 import { WaitingComponent } from "./waiting/waiting.component";
+import { AddComponent } from "./add/add.component";
 
 const routes: Routes = [
+  {
+    path: "Add",
+    component: AddComponent,
+  },
   {
     path: "waiting",
     component: WaitingComponent,

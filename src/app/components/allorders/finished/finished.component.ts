@@ -61,15 +61,15 @@ export class FinishedComponent implements OnInit {
       });
   }
 
-  changeStatus(user_id, status_id) {
-    this.spinner.show();
-    this.service
-      .ChangeOrdersStatus(user_id, status_id)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.spinner.hide();
-      });
-  }
+  // changeStatus(user_id, status_id) {
+  //   this.spinner.show();
+  //   this.service
+  //     .ChangeOrdersStatus(user_id, status_id)
+  //     .subscribe((res: any) => {
+  //       console.log(res);
+  //       this.spinner.hide();
+  //     });
+  // }
   confirmOrder(order_id) {
     this.spinner.show();
     this.service.ConfirmOrder(order_id).subscribe((res: any) => {
