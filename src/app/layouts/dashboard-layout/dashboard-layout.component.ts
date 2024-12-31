@@ -17,6 +17,7 @@ import { Title } from "@angular/platform-browser";
   styleUrls: ["./dashboard-layout.component.scss"],
 })
 export class DashboardLayoutComponent implements OnInit {
+pageTitle: any;
   // public pageTitle;
 
   constructor(titleService: Title, router: Router) {

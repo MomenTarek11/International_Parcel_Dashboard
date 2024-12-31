@@ -8,7 +8,9 @@
       style="filter: brightness(0) invert(1)"
     />
   </a>
-  <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+  <div class="back-btn">
+    <i class="fa fa-angle-left" (click)="toggler()"></i>
+  </div>
   <div class="toggle-sidebar" (click)="toggler()" checked="checked">
     <svg
       xmlns="http://www.w3.org/2000/svg"
