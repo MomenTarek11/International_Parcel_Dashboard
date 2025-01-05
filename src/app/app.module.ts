@@ -51,6 +51,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     MatButtonModule,
     MatMenuModule,
     NgxSpinnerModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -17,27 +17,77 @@
                 placeholder="إسم العميل"
               />
             </div>
-            <div class="form-group col-md-4 col-12">
-              <label for="orderDate">رقم هاتف العميل</label>
-              <input
-                type="tel"
-                class="form-control"
-                id="orderDate"
+            <div class="form-group col-md-4 col-12 row flex-column">
+              <label for="exampleInputPhone1" class="borderLeft"
+                >رقم الهاتف</label
+              >
+              <ngx-intl-tel-input
+                #phoneInput
+                [cssClass]="'custom'"
+                [preferredCountries]="['us', 'sa']"
+                [selectedCountryISO]="CountryISO.SaudiArabia"
+                [enablePlaceholder]="true"
+                customPlaceholder="رقم الهاتف"
+                [searchCountryFlag]="false"
+                [searchCountryField]="[
+                  SearchCountryField.Iso2,
+                  SearchCountryField.Name
+                ]"
+                [selectFirstCountry]="true"
+                [maxLength]="15"
+                [phoneValidation]="true"
+                [separateDialCode]="true"
+                [numberFormat]="PhoneNumberFormat.National"
+                name="phone"
                 formControlName="user_phone"
-                placeholder="رقم هاتف العميل"
-              />
+              ></ngx-intl-tel-input>
+              <div
+                *ngIf="submitted && Form.get('phone')?.errors?.required"
+                class="text-danger"
+              >
+                <small *ngIf="Form.get('phone')?.hasError('required')">
+                  يجب ادخال رقم الهاتف
+                </small>
+              </div>
             </div>
             <div class="form-group col-md-4 col-12">
-              <label for="orderDate"> تاريخ الطلب</label>
-              <input
-                type="date"
-                class="form-control"
-                id="orderDate"
-                formControlName="order_date"
-                placeholder="تاريخ الطلب"
-              />
+              <label for="orderNumber">من دولة</label>
+              <ng-select formControlName="source_country_id">
+                <ng-option
+                  *ngFor="let country of countries"
+                  [value]="country.id"
+                  >{{ country.name_ar }}</ng-option
+                >
+              </ng-select>
             </div>
-            <button type="submit" class="btn btn-primary">اضافة طلب</button>
+            <div class="form-group col-md-4 col-12">
+              <label for="orderNumber">الى دولة</label>
+              <ng-select formControlName="destination_country_id">
+                <ng-option
+                  *ngFor="let country of countries"
+                  [value]="country.id"
+                  >{{ country.name_ar }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-md-4 col-12">
+              <label for="orderNumber">نوع الشحنة</label>
+              <ng-select formControlName="shipment_type_id">
+                <ng-option
+                  *ngFor="let country of countries"
+                  [value]="country.id"
+                  >{{ country.name_ar }}</ng-option
+                >
+              </ng-select>
+            </div>
+            <div class="form-group col-md-4 col-12">
+              <label for="orderNumber">طريقة الشحن</label>
+              <ng-select formControlName="destination_country_id">
+                <ng-option *ngFor="let type of types" [value]="type.id">{{
+                  type.name
+                }}</ng-option>
+              </ng-select>
+            </div>
           </form>
         </div>
       </div>

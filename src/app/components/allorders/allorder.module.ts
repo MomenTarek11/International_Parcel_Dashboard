@@ -19,8 +19,10 @@ import { FinishedComponent } from "./finished/finished.component";
 import { NgxDropzoneModule } from "ngx-dropzone";
 import { SharedModule } from "src/app/shared/shared.module";
 import { NgxSpinnerModule } from "ngx-spinner";
-import { WaitingComponent } from './waiting/waiting.component';
-import { AddComponent } from './add/add.component';
+import { WaitingComponent } from "./waiting/waiting.component";
+import { AddComponent } from "./add/add.component";
+import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { AddComponent } from './add/add.component';
     AllOrdersModule,
     SharedModule,
     NgxSpinnerModule,
+    NgxIntlTelInputModule,
+    NgSelectModule,
   ],
 })
 export class OrderModule {}

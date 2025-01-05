@@ -1,5 +1,7 @@
 // @import '~ngx-toastr/toastr';
 @import "ngx-toastr/toastr";
+@import "intl-tel-input/build/css/intlTelInput.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
 $ph-direction: ltr !default;
 $ph-bg: #fff !default;
 $ph-color: #ced4da !default;
@@ -12,7 +14,6 @@ $ph-gutter: 30px !default;
 $ph-spacer: 15px !default;
 
 $ph-avatar-border-radius: 50% !default;
-
 $ph-animation-duration: 0.8s !default;
 :root {
   --bg: #000000;
@@ -324,4 +325,39 @@ table {
 .table th,
 .table td {
   border-top: transparent !important ;
+}
+ngx-intl-tel-input .iti--allow-dropdown {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+ngx-intl-tel-input input {
+  width: 100% !important;
+  height: 100% !important ;
+  background-color: transparent !important;
+  box-shadow: none;
+  border: none;
+}
+ngx-intl-tel-input input:focus-visible {
+  box-shadow: none;
+  border: none;
+  outline: none;
+}
+ngx-intl-tel-input .dropdown-toggle {
+  font-weight: bold;
+  box-shadow: none !important;
+  border: none !important;
+  background-color: #f1f1f1 !important;
+}
+ngx-intl-tel-input input::placeholder {
+  color: rgba(128, 128, 128, 0.363) !important;
 }
