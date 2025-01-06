@@ -16,8 +16,16 @@
                 formControlName="user_name"
                 placeholder="إسم العميل"
               />
+              <div
+                *ngIf="submitted && Form.controls.user_name?.errors?.required"
+                class="text-danger"
+              >
+                <small *ngIf="Form.controls.user_name?.hasError('required')"
+                  >اسم العميل مطلوب</small
+                >
+              </div>
             </div>
-            <div class="form-group col-md-4 col-12 row flex-column">
+            <div class="form-group col-md-4 col-12 row flex-column mr-0">
               <label for="exampleInputPhone1" class="borderLeft"
                 >رقم الهاتف</label
               >
@@ -42,14 +50,15 @@
                 formControlName="user_phone"
               ></ngx-intl-tel-input>
               <div
-                *ngIf="submitted && Form.get('phone')?.errors?.required"
+                *ngIf="submitted && Form.controls.user_phone?.errors?.required"
                 class="text-danger"
               >
-                <small *ngIf="Form.get('phone')?.hasError('required')">
+                <small *ngIf="Form.controls.user_phone?.errors?.required">
                   يجب ادخال رقم الهاتف
                 </small>
               </div>
             </div>
+
             <div class="form-group col-md-4 col-12">
               <label for="orderNumber">من دولة</label>
               <ng-select formControlName="source_country_id">
@@ -59,6 +68,17 @@
                   >{{ country.name_ar }}</ng-option
                 >
               </ng-select>
+              <div
+                *ngIf="
+                  submitted && Form.controls.source_country_id?.errors?.required
+                "
+                class="text-danger"
+              >
+                <small
+                  *ngIf="Form.controls.source_country_id?.hasError('required')"
+                  >من دولة مطلوبة</small
+                >
+              </div>
             </div>
             <div class="form-group col-md-4 col-12">
               <label for="orderNumber">الى دولة</label>
@@ -69,25 +89,244 @@
                   >{{ country.name_ar }}</ng-option
                 >
               </ng-select>
+              <div
+                *ngIf="
+                  submitted &&
+                  Form.controls.destination_country_id?.errors?.required
+                "
+                class="text-danger"
+              >
+                <small
+                  *ngIf="
+                    Form.controls.destination_country_id?.hasError('required')
+                  "
+                  >الى دولة مطلوبة</small
+                >
+              </div>
             </div>
             <div class="form-group col-md-4 col-12">
               <label for="orderNumber">نوع الشحنة</label>
               <ng-select formControlName="shipment_type_id">
                 <ng-option
-                  *ngFor="let country of countries"
-                  [value]="country.id"
-                  >{{ country.name_ar }}</ng-option
+                  *ngFor="let shipment of shipmentTypes"
+                  [value]="shipment.id"
+                  >{{ shipment.name_ar }}</ng-option
                 >
               </ng-select>
+              <div
+                *ngIf="
+                  submitted && Form.controls.shipment_type_id?.errors?.required
+                "
+                class="text-danger"
+              >
+                <small
+                  *ngIf="Form.controls.shipment_type_id?.hasError('required')"
+                  >نوع الشحنة مطلوب</small
+                >
+              </div>
             </div>
             <div class="form-group col-md-4 col-12">
               <label for="orderNumber">طريقة الشحن</label>
-              <ng-select formControlName="destination_country_id">
+              <ng-select formControlName="type">
                 <ng-option *ngFor="let type of types" [value]="type.id">{{
                   type.name
                 }}</ng-option>
               </ng-select>
+              <div
+                *ngIf="submitted && Form.controls.type?.errors?.required"
+                class="text-danger"
+              >
+                <small *ngIf="Form.controls.type?.hasError('required')">
+                  طريقة الشحن مطلوبة
+                </small>
+              </div>
             </div>
+            <div class="form-group col-md-4 col-12">
+              <label for="orderNumber">الوزن</label>
+              <input
+                type="text"
+                class="form-control"
+                id="orderNumber"
+                formControlName="weight"
+                placeholder="الوزن"
+              />
+              <div
+                *ngIf="submitted && Form.controls.weight?.errors?.required"
+                class="text-danger"
+              >
+                <small *ngIf="Form.controls.weight?.hasError('required')"
+                  >الوزن مطلوب</small
+                >
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-12 d-flex">
+              <label for="" class="w-100">
+                <h6>الفاتورة التجارية</h6>
+                <div class="form-row">
+                  <div class="form-group w-100">
+                    <div
+                      [ngClass]="showComercialInvoice ? 'inputs' : ''"
+                      class="w-100 form-control input-file"
+                      (click)="commercialInvoicee.click()"
+                    >
+                      <div class="d-flex overflowx">
+                        <span
+                          *ngFor="let item of commercialInvoice; let i = index"
+                        >
+                          <i
+                            (click)="
+                              commercialInvoiceRemove(item, i);
+                              $event.stopPropagation()
+                            "
+                            class="fa fa-minus-circle removeFile text-danger"
+                            aria-hidden="true"
+                          ></i>
+                          <img
+                            [src]="imagePath[i]"
+                            alt=""
+                            class="mx-1"
+                            style="width: 50px"
+                            mat-raised-button
+                            aria-label="Button that displays a tooltip when focused or hovered over"
+                          />
+                        </span>
+                      </div>
+
+                      <i
+                        class="fas fa-file-pdf text-success"
+                        *ngIf="commercialInvoice.length == 0"
+                        [class]="thisLang == 'ar' ? 'pdf-rtl' : 'pdf-ltr'"
+                      ></i>
+                    </div>
+                    <input
+                      type="file"
+                      #commercialInvoicee
+                      style="display: none"
+                      class="form-control"
+                      (change)="commercialInvoiceChange($event)"
+                      formControlName="invoice"
+                    />
+
+                    <div
+                      *ngIf="
+                        (submitted &&
+                          Form.controls.invoice?.errors?.required) ||
+                        (submitted && commercialInvoice.length == 0)
+                      "
+                      class="text-danger"
+                    >
+                      <small
+                        *ngIf="
+                          (submitted &&
+                            Form.controls.invoice?.errors?.required) ||
+                          (submitted && commercialInvoice.length == 0)
+                        "
+                      >
+                        هذا الحقل مطلوب
+                      </small>
+                    </div>
+                    <p class="fullrequiredFiles" *ngIf="fullComercialInvoice">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-check2"
+                        viewBox="0 0 16 16"
+                      >
+                        <path
+                          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+                        />
+                      </svg>
+                      تم رفع الملف بنجاح
+
+                      <br />
+
+                      <!-- {{ commercialInvoicelength.length }} -->
+                    </p>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <div class="form-group col-md-4 col-12 d-flex">
+              <label for="pacelFrom" class="w-100">
+                <h6>الفاتورة الشحنية</h6>
+
+                <div class="form-group">
+                  <div
+                    [ngClass]="showPackingList ? 'inputs' : ''"
+                    class="w-100 form-control input-file"
+                    (click)="packingListt.click()"
+                  >
+                    <div class="d-flex overflowx">
+                      <span *ngFor="let item of packingList; let i = index">
+                        <i
+                          (click)="
+                            packingListremove(item, i); $event.stopPropagation()
+                          "
+                          class="fa fa-minus-circle removeFile text-danger"
+                          aria-hidden="true"
+                        ></i>
+                        <img
+                          [src]="imagePath2[i]"
+                          alt=""
+                          class="mx-1"
+                          style="width: 50px"
+                        />
+                      </span>
+                    </div>
+
+                    <i
+                      class="fas fa-file-pdf text-success"
+                      *ngIf="packingList.length == 0"
+                      [class]="thisLang == 'ar' ? 'pdf-rtl' : 'pdf-ltr'"
+                    ></i>
+                  </div>
+                  <input
+                    #packingListt
+                    type="file"
+                    style="display: none"
+                    class="form-control"
+                    (change)="packingListChange($event)"
+                    formControlName="list"
+                  />
+                  <div
+                    *ngIf="
+                      (submitted && Form.controls.list?.errors?.required) ||
+                      (submitted && packingList.length == 0)
+                    "
+                    class="text-danger"
+                  >
+                    <small
+                      *ngIf="
+                        (submitted && Form.controls.list?.errors?.required) ||
+                        (submitted && packingList.length == 0)
+                      "
+                    >
+                      هذا الحقل مطلوب
+                    </small>
+                  </div>
+                  <p class="fullrequiredFiles" *ngIf="fullPackingList">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-check2"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+                      />
+                    </svg>
+                    تم رفع الملف بنجاح
+                    <br />
+                    {{ packingListlength.length }}
+                  </p>
+                </div>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary">اضافة</button>
           </form>
         </div>
       </div>

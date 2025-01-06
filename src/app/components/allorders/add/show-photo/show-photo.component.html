@@ -1,0 +1,24 @@
+<div
+  class="ecommerce-gallery overflow-hidden p-3"
+  data-mdb-ecommerce-gallery-init
+  data-mdb-zoom-effect="true"
+  data-mdb-auto-height="true"
+>
+  <div class="row shadow-5">
+    <div class="col-12 mb-1">
+      <div class="lightbox" data-mdb-lightbox-init>
+        <img
+          [src]="imageUrl"
+          alt="Gallery image 1"
+          class="ecommerce-gallery-main-img active w-100"
+        />
+      </div>
+    </div>
+    <div class="col-6 py-3">
+      <button class="btn btn-success w-100" (click)="upload()">Upload</button>
+    </div>
+    <div class="col-6 py-3">
+      <button class="btn btn-danger w-100" (click)="close()">Cancel</button>
+    </div>
+  </div>
+</div>

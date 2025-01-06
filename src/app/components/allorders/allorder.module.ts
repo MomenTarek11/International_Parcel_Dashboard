@@ -23,6 +23,7 @@ import { WaitingComponent } from "./waiting/waiting.component";
 import { AddComponent } from "./add/add.component";
 import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { ShowPhotoComponent } from './add/show-photo/show-photo.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
     FinishedComponent,
     WaitingComponent,
     AddComponent,
+    ShowPhotoComponent,
   ],
   imports: [
     CommonModule,

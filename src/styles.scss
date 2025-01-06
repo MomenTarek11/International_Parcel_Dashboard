@@ -361,3 +361,12 @@ ngx-intl-tel-input .dropdown-toggle {
 ngx-intl-tel-input input::placeholder {
   color: rgba(128, 128, 128, 0.363) !important;
 }
+.ng-select .ng-select-container .ng-value-container .ng-input > input {
+  caret-color: transparent;
+}
+.ng-select .ng-clear-wrapper {
+  display: none;
+}
+.input-file {
+  height: fit-content;
+}

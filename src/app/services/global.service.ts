@@ -841,4 +841,7 @@ export class GlobalService {
       `${environment.endpoint}/backend/orders/show?user_id=${user_id}`
     );
   }
+  getAllShipmentsType() {
+    return this.http.get(`${environment.endpoint}/shipment_types`);
+  }
 }
