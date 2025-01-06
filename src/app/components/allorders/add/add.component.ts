@@ -63,13 +63,12 @@ export class AddComponent implements OnInit {
       shipment_type_id: ["", Validators.required],
       type: ["", Validators.required],
       weight: ["", Validators.required],
-      invoice: [this.commercialInvoice, Validators.required],
-      list: [this.packingList, Validators.required],
+      // invoice: [this.commercialInvoice, Validators.required],
+      // list: [this.packingList, Validators.required],
     });
     this.getCountries();
     this.getAllShipmentTypes();
   }
-
   getCountries() {
     this.services.getAllCountries().subscribe((res: any) => {
       this.countries = res?.data;
@@ -82,7 +81,6 @@ export class AddComponent implements OnInit {
   }
   commercialInvoiceChange(event: any) {
     const inputElement = event.target as HTMLInputElement;
-
     if (
       !(inputElement instanceof HTMLInputElement) ||
       inputElement.type !== "file"
@@ -164,12 +162,23 @@ export class AddComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.Form.patchValue({
-      user_phone: this.Form.controls.user_phone.value.number,
-      user_country_code: this.Form.controls.user_phone.value.dialCode,
+      user_phone: this.Form.controls.user_phone.value.number.replace(
+        /[^0-9]/g,
+        ""
+      ),
+      user_country_code: this.Form.controls.user_phone.value.dialCode.replace(
+        "+",
+        ""
+      ),
     });
-    if (this.Form.invalid) {
-      return;
-    } else {
-    }
+    let form = {
+      ...this.Form.value,
+      invoice: this.commercialInvoice,
+      list: this.packingList,
+    };
+
+    this.globalServices.createOrder(form).subscribe((res: any) => {
+      this.toaster.success("تم اضافة الطلب بنجاح");
+    });
   }
 }

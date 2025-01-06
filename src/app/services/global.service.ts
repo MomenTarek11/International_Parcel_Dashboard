@@ -844,4 +844,27 @@ export class GlobalService {
   getAllShipmentsType() {
     return this.http.get(`${environment.endpoint}/shipment_types`);
   }
+  createOrder(form: any) {
+    const formData = new FormData();
+    console.log(form);
+
+    formData.append("user_name", form.user_name);
+    formData.append("user_phone", form.user_phone);
+    formData.append("user_country_code", form.user_country_code);
+    formData.append("source_country_id", form.source_country_id);
+    formData.append("destination_country_id", form.destination_country_id);
+    formData.append("shipment_type_id", form.shipment_type_id);
+    formData.append("type", form.type);
+    formData.append("weight", form.weight);
+    form.invoice.forEach((file: File, index: any) => {
+      formData.append(`invoice[${index}]`, file);
+    });
+    form.list.forEach((file: File, index: any) => {
+      formData.append(`list[${index}]`, file);
+    });
+    return this.http.post(
+      `${environment.endpoint}/backend/orders/create`,
+      formData
+    );
+  }
 }
