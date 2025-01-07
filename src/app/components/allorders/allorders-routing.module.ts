@@ -12,11 +12,17 @@ import { RecivedSaudiComponent } from "./recived-saudi/recived-saudi.component";
 import { ToClientComponent } from "./to-client/to-client.component";
 import { WaitingComponent } from "./waiting/waiting.component";
 import { AddComponent } from "./add/add.component";
+import { OfflineComponent } from "./offline/offline.component";
 
 const routes: Routes = [
   {
     path: "Add",
     component: AddComponent,
+  },
+  {
+    path: "offline",
+    component: OfflineComponent,
+    data: { title: "طلبات جديده" },
   },
   {
     path: "waiting",

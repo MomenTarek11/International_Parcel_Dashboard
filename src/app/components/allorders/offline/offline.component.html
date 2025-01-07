@@ -1,0 +1,96 @@
+<section id="add-main-page" data-aos="fade-left">
+  <div class="container-fluid">
+    <div class="row" *ngIf="orders?.data?.length != 0">
+      <div class="col-md-12">
+        <div class="panel">
+          <div class="panel-heading py-5 text-center">
+            <div class="row">
+              <div class="col col-sm-12 col-xs-12">
+                <h4 class="title">
+                  <span>الطلبات غير المتصلة بالإنترنت</span>
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div class="panel-body table-responsive">
+            <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">رقم الطلب</th>
+                  <th scope="col">اسم العميل</th>
+                  <th scope="col">الايميل</th>
+                  <th scope="col">رقم الهاتف</th>
+                  <th scope="col">تاريخ الطلب</th>
+                  <th scope="col">إعدادات</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders?.data; let i = index">
+                  <th scope="row" class="text-light">{{ i + 1 }}</th>
+                  <th scope="row" class="text-light">
+                    {{ order.order_refrence }}
+                  </th>
+                  <td>{{ order?.user.name }}</td>
+                  <td>{{ order?.user.email }}</td>
+                  <td>{{ order?.user.phone }}</td>
+                  <td>{{ order?.updated_at | date }}</td>
+                  <td>
+                    <i
+                      class="fas fa-eye text-success"
+                      style="cursor: pointer"
+                      (click)="viewOrder(order)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <app-placeholder
+      *ngIf="showPlaceholder && orders?.data?.length == 0"
+      [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
+    ></app-placeholder>
+  </div>
+
+  <div class="pagination row py-5" *ngIf="orders?.data?.length > 16">
+    <nav aria-label="Page navigation example " class="w-50 m-auto">
+      <ul class="pagination w-50 m-auto row">
+        <li
+          class="page-item col"
+          (click)="clientList(orders?.current_page - 1, 1, this.active)"
+        >
+          <button class="btn btn-primary">السابق</button>
+        </li>
+
+        <li
+          class="page-item col"
+          (click)="clientList(orders?.current_page + 1, 1, this.active)"
+        >
+          <button class="btn btn-primary">التالي</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+<section
+  id="add-main-page"
+  *ngIf="!showPlaceholder && orders?.data?.length == 0"
+>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-body text-center">
+          <img
+            src="../../../assets/images/No data-amico.svg"
+            alt=""
+            class="w-25"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

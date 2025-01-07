@@ -10,6 +10,7 @@ import { GlobalService } from "src/app/services/global.service";
 import { ToastrService } from "ngx-toastr";
 import { MatDialog } from "@angular/material/dialog";
 import { ShowPhotoComponent } from "./show-photo/show-photo.component";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-add",
   templateUrl: "./add.component.html",
@@ -46,7 +47,8 @@ export class AddComponent implements OnInit {
     private services: CountriesService,
     private globalServices: GlobalService,
     private toaster: ToastrService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) {}
   shipmentTypes: any[] = [];
   types: any[] = [
@@ -179,6 +181,7 @@ export class AddComponent implements OnInit {
 
     this.globalServices.createOrder(form).subscribe((res: any) => {
       this.toaster.success("تم اضافة الطلب بنجاح");
+      this.router.navigate(["/app/orders/list"]);
     });
   }
 }
