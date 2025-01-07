@@ -121,16 +121,7 @@
               إضافة طلب
             </a>
           </li>
-          <li [style.display]="orders1 == 1 ? 'block' : 'none'">
-            <a
-              [routerLink]="['/app/orders/offline']"
-              routerLinkActive="active"
-              class="lan-4"
-              href="javascript:void(0)"
-            >
-              الطلبات غير المتصلة بالإنترنت
-            </a>
-          </li>
+
           <li [style.display]="orders1 == 1 ? 'block' : 'none'">
             <a
               [routerLink]="['/app/orders/waiting']"

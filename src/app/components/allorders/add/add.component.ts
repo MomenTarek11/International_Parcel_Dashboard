@@ -181,7 +181,7 @@ export class AddComponent implements OnInit {
 
     this.globalServices.createOrder(form).subscribe((res: any) => {
       this.toaster.success("تم اضافة الطلب بنجاح");
-      this.router.navigate(["/app/orders/list"]);
+      this.router.navigate(["app/orders/confirmedOrders"]);
     });
   }
 }
