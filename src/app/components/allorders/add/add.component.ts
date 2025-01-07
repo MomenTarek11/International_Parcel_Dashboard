@@ -11,6 +11,7 @@ import { ToastrService } from "ngx-toastr";
 import { MatDialog } from "@angular/material/dialog";
 import { ShowPhotoComponent } from "./show-photo/show-photo.component";
 import { Router } from "@angular/router";
+import { NgxSpinnerModule, NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: "app-add",
   templateUrl: "./add.component.html",
@@ -48,7 +49,8 @@ export class AddComponent implements OnInit {
     private globalServices: GlobalService,
     private toaster: ToastrService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) {}
   shipmentTypes: any[] = [];
   types: any[] = [
@@ -162,6 +164,7 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
     this.submitted = true;
     this.Form.patchValue({
       user_phone: this.Form.controls.user_phone.value.number.replace(
@@ -180,8 +183,13 @@ export class AddComponent implements OnInit {
     };
 
     this.globalServices.createOrder(form).subscribe((res: any) => {
+      this.spinner.hide();
       this.toaster.success("تم اضافة الطلب بنجاح");
       this.router.navigate(["app/orders/confirmedOrders"]);
-    });
+    }),
+      (err) => {
+        this.spinner.hide();
+        this.toaster.error("حدث خطأ ما");
+      };
   }
 }
