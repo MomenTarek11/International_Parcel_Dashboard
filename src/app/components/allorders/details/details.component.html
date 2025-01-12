@@ -31,7 +31,10 @@
       <tr>
         <th scope="row">وزن الطلب</th>
         <td class="d-flex justify-content-center align-items-center">
-          <span class="mx-1"> {{ data?.type == 1 ? "Kg" : "CBM" }}</span>
+          <span class="mx-1" *ngIf="madeCBM == false">
+            {{ data?.type == 1 ? "ك.ج" : "طن" }}</span
+          >
+          <span class="mx-1" *ngIf="madeCBM == true"> طن </span>
           <span> {{ data?.weight }} </span>
         </td>
       </tr>
