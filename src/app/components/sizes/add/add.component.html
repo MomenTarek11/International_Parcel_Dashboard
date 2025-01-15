@@ -1,69 +1,181 @@
 <section id="add-main-page">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card-body">
-                    <form [formGroup]="form">
-                        <div class="form-row">
-                            <div class="form-group col-6">
-                                <label for="">الاسم</label>
-                                <input type="text" class="form-control" formControlName="name">
-                                <span class="text-danger" *ngIf="form.controls.name.invalid &&(form.controls.name.dirty || form.controls.name.touched)">صيغة الأسم غير صحيح</span>
-
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="">الايميل</label>
-                                <input type="text"  class="form-control" formControlName="email" >
-                                <span class="text-danger" *ngIf="form.controls.email.invalid &&(form.controls.email.dirty || form.controls.email.touched)">صيغة الايميل غير صحيح</span>
-                            </div>
-                    
-                            <!-- {{test.valid ? 'yes':'noe'}} -->
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-4">
-                                <label for="">الباسورد</label>
-                                <input type="text" class="form-control" formControlName="password">
-                                <span class="text-danger" *ngIf="form.controls.password.invalid &&(form.controls.password.dirty || form.controls.password.touched)">يجب ان يحتوي الباسوورد على حرف كبير</span>
-
-                            </div>
-                            <div class="form-group col-4">
-                                <label for="">تاكيد الباسورد</label>
-                                <input type="text" class="form-control" formControlName="confirm_password">
-                                <span class="text-danger" *ngIf="form.controls.confirm_password.invalid &&(form.controls.confirm_password.dirty || form.controls.confirm_password.touched)">يجب ان يحتوي الباسوورد على حرف كبير</span>
-
-                            </div>
-                            <div class="form-group col-4">
-                                <label for=""> الدور</label>
-                                <input type="text" class="form-control" formControlName="role">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col">
-                                <div class="form-group">
-                                    <label for="">الصلاحيات </label>
-                                    <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="dropdownList" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" [ngModelOptions]="{standalone: true}" (onSelectAll)="onSelectAll($event)">
-                                    </ng-multiselect-dropdown>
-                                </div>
-
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="">صورة الادمن   </label>
-                            <ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif,image/svg+xml" [multiple]="false">
-                                <ngx-dropzone-label>أضغط هنا لإختيار صورة الادمن </ngx-dropzone-label>
-                                <ngx-dropzone-image-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)" [file]="f">
-                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                </ngx-dropzone-image-preview>
-                            </ngx-dropzone>
-                        </div>
-
-                        <div class="form-group text-center mt-5">
-                            <button class="btn btn-primary" type="button" [disabled]="form.invalid" (click)="submit()">إضافة </button>
-                        </div>
-                    </form>
-                </div>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-row">
+              <div class="form-group col-4">
+                <label for="">الاسم</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="name"
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="submitted && form.controls.name.errors?.required"
+                  >يجب ادخال الاسم</span
+                >
+              </div>
+              <div class="form-group col-4">
+                <label for="">الايميل</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="email"
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="submitted && form.controls.email.errors?.required"
+                  >يجب ادخال الايميل</span
+                >
+                <span
+                  class="text-danger"
+                  *ngIf="submitted && form.controls.email.errors?.email"
+                  >ادخل ايميل صحيح</span
+                >
+              </div>
+              <div class="form-group col-4">
+                <label for=""> الدور</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="role"
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="submitted && form.controls.role.errors?.required"
+                  >يجب ادخال الدور</span
+                >
+              </div>
+              <!-- {{test.valid ? 'yes':'noe'}} -->
             </div>
+            <div class="form-row">
+              <div class="form-group col-4">
+                <label for="">الباسورد</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="password"
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="submitted && form.controls.password.errors?.required"
+                  >يجب ادخال الباسورد</span
+                >
+              </div>
+              <div class="form-group col-4">
+                <label for="">تاكيد الباسورد</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="confirm_password"
+                />
+                <span
+                  class="text-danger"
+                  *ngIf="
+                    submitted && form.controls.confirm_password.errors?.required
+                  "
+                  >يجب ادخال تاكيد الباسورد</span
+                >
+                <span class="text-danger" *ngIf="notEqual == true"
+                  >الباسورد غير متطابق</span
+                >
+              </div>
+              <div class="form-group col-4">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="">الصلاحيات </label>
+                    <ng-select formControlName="sections" [multiple]="true">
+                      <ng-template ng-header-tmp>
+                        <div class="d-flex w-100 justify-content-around">
+                          <button
+                            class="btn btn-primary"
+                            (click)="onSelectAll()"
+                          >
+                            اختيار الكل
+                          </button>
+                          <button
+                            class="btn btn-primary"
+                            (click)="onClearAll()"
+                          >
+                            حذف الكل
+                          </button>
+                        </div>
+                      </ng-template>
+                      <ng-option
+                        *ngFor="let role of AllPermitions"
+                        [value]="role.section_name"
+                        >{{ role.section_name }}</ng-option
+                      >
+                    </ng-select>
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        submitted && form.controls.sections.errors?.required
+                      "
+                      >يجب ادخال الصلاحيات</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group w-100 m-auto">
+              <div class="item-wrapper one">
+                <div class="item">
+                  <div class="item-inner">
+                    <div class="item-content">
+                      <div class="image-upload">
+                        <label style="cursor: pointer" for="file_upload">
+                          <img
+                            [src]="uploadedImage"
+                            alt=""
+                            class="uploaded-image"
+                            style="object-fit: contain"
+                          />
+
+                          <div class="h-100">
+                            <div class="dplay-tbl">
+                              <div class="dplay-tbl-cell">
+                                <i class="fa fa-cloud-upload"></i>
+                                <h5><b>ادخل صورة الادمن</b></h5>
+                              </div>
+                            </div>
+                          </div>
+                          <input
+                            data-required="image"
+                            type="file"
+                            id="file_upload"
+                            class="image-input"
+                            data-traget-resolution="image_resolution"
+                            (change)="UploadImage($event)"
+                          />
+                        </label>
+                      </div>
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          submitted && form.controls.image.errors?.required
+                        "
+                        >يجب ادخال صورة الادمن</span
+                      >
+                    </div>
+                    <!--item-content-->
+                  </div>
+                </div>
+                <!--item-->
+              </div>
+            </div>
+
+            <div class="form-group text-center mt-5">
+              <button class="btn btn-primary" type="button" (click)="submit()">
+                إضافة
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </section>

@@ -10,6 +10,7 @@ import { EditComponent } from "./edit/edit.component";
 // import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatSelectModule } from "@angular/material/select";
 import { SharedModule } from "src/app/shared/shared.module";
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [AddComponent, ListComponent, EditComponent],
@@ -22,6 +23,7 @@ import { SharedModule } from "src/app/shared/shared.module";
     // NgMultiSelectDropDownModule.forRoot(),
     MatSelectModule,
     SharedModule,
+    NgSelectModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
 })

@@ -606,7 +606,10 @@
           </li>
         </ul>
       </li>
-      <li class="sidebar-list">
+      <li
+        class="sidebar-list"
+        [style.display]="countries == '1' ? 'block' : 'none'"
+      >
         <a class="sidebar-link sidebar-title" href="javascript:void(0)">
           <svg
             class="svg-icon"
@@ -645,7 +648,7 @@
           </li>
         </ul>
       </li>
-      <li class="sidebar-list">
+      <li class="sidebar-list" [style.display]="cities == '1' ? 'block' : 'none'">
         <a class="sidebar-link sidebar-title" href="javascript:void(0)">
           <svg
             class="svg-icon"

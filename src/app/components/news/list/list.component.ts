@@ -36,7 +36,7 @@ export class ListComponent implements OnInit {
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
         this.spinner.hide();
-        this.banners = res;
+        this.banners = res.reverse();
         this.showPlaceholder = false;
       });
   }
