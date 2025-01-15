@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { GlobalService } from "src/app/services/global.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 // import { Toast, ToastrService } from 'ngx-toastr';
 @Component({
   selector: "app-add",
@@ -176,7 +177,13 @@ export class AddComponent implements OnInit {
     { section_id: 22, section_name: "المدن" },
   ];
   uploadedImage: any;
-  constructor(private fb: FormBuilder, private service: GlobalService) {}
+  constructor(
+    private fb: FormBuilder,
+    private service: GlobalService,
+    private toaster: ToastrService,
+    private router: Router,
+    private spinner: NgxSpinnerService
+  ) {}
   ngOnInit(): void {
     this.form = this.fb.group({
       name: ["", Validators.required],
@@ -197,9 +204,24 @@ export class AddComponent implements OnInit {
         this.notEqual = true;
         return;
       } else {
-        this.service.addAdmin(this.form.value).subscribe((res: any) => {
-          console.log(res);
-        });
+        this.spinner.show();
+        this.service.addAdmin(this.form.value).subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            if (res.status == false) {
+              for (let i = 0; i < res.errors.length; i++) {
+                this.toaster.error(res.errors[i]);
+              }
+            } else {
+              this.toaster.success("تم اضافة الادمن بنجاح");
+              this.router.navigate(["/app/admins/list"]);
+            }
+          },
+          (err: any) => {
+            this.spinner.hide();
+            this.toaster.error("حدث خطأ");
+          }
+        );
       }
     }
   }

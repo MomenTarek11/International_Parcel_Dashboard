@@ -26,8 +26,7 @@ export class EditComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    // private toastr: ToastrService
+    @Inject(MAT_DIALOG_DATA) public data: any // private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -37,13 +36,8 @@ export class EditComponent implements OnInit {
       email: [this.data.email, Validators.required],
       password: ["", Validators.required],
       role: [this.data.role, Validators.required],
-
-      // description_en:[this.data.description_en,Validators.required],
     });
-    // this.permissions = [...this.data.roles]
     this.dropdownList = [
-      // { section_id: 1, section_name: 'اسعار الشحن الدولى' },
-
       { section_id: 10, section_name: "الطلبات" },
       { section_id: 11, section_name: "الطلبات-طلبات جديدة" },
       { section_id: 12, section_name: "الطلبات-جاري التواصل مع المورد" },
@@ -71,9 +65,6 @@ export class EditComponent implements OnInit {
       { section_id: 7, section_name: "التحويلات" },
       { section_id: 8, section_name: "شريط الأخبار" },
       { section_id: 9, section_name: "رسائل العملاء" },
-
-      // { section_id: 3, section_name: 'عروض الاسعار' },
-      // { section_id: 5, section_name: ' الخدمات' },
     ];
     this.selectedItems = [];
     for (let i = 0; i < this.dropdownList.length; i++) {
@@ -87,8 +78,6 @@ export class EditComponent implements OnInit {
         this.data?.sections[i],
         "just for test"
       );
-
-      // console.log("this is i" , this.dropdownList[i]);
     }
     this.permissions = this.selectedItems;
     this.dropdownSettings = {
@@ -119,11 +108,10 @@ export class EditComponent implements OnInit {
     console.log(item);
   }
 
-
-  itemDeselect(item: any){
+  itemDeselect(item: any) {
     this.permissions.splice(this.permissions.indexOf(item), 1);
-      console.log("removed");
-      return;
+    console.log("removed");
+    return;
   }
 
   onSelectAll(items: any) {
