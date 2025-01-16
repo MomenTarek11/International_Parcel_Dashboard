@@ -1,6 +1,6 @@
 <section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row" *ngIf="shippment.length > 0">
+    <div class="row" *ngIf="shippment?.data?.length > 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -21,15 +21,17 @@
                     <th scope="col">تاريخ التحويل</th>
 
                     <th scope="col">المبلغ المدفوع</th>
+                    <th scope="col">المبلغ المتبقي</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let shippmento of shippment; let i = index">
+                  <tr *ngFor="let shippmento of shippment?.data; let i = index">
                     <th scope="col" class="text-light">{{ i + 1 }}</th>
                     <td>{{ shippmento.user.name }}</td>
                     <td>{{ shippmento.user.phone }}</td>
                     <td>{{ shippmento.created_at | date }}</td>
                     <td>{{ shippmento.payed }}</td>
+                    <td>{{ shippmento.order?.remain }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -38,7 +40,7 @@
         </div>
       </div>
     </div>
-      <app-placeholder
+    <app-placeholder
       *ngIf="showPlaceholder"
       [header]="[
         '#',
@@ -52,7 +54,10 @@
     ></app-placeholder>
   </div>
 
-  <div class="pagination justify-content-center py-4" *ngIf="shippment.length > 20">
+  <div
+    class="pagination justify-content-center py-4"
+    *ngIf="shippment?.data?.length > 20"
+  >
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
         <li

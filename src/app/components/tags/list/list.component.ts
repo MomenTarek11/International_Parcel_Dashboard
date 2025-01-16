@@ -12,7 +12,7 @@ import { EditComponent } from "../edit/edit.component";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  shippment: any[] = [];
+  shippment: any;
   showPlaceholder: boolean = true;
   constructor(
     private dialog: MatDialog,
@@ -31,7 +31,7 @@ export class ListComponent implements OnInit {
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
         this.spinner.hide();
-        this.shippment = res?.data;
+        this.shippment = res;
         this.showPlaceholder = false;
         console.log(res);
       });

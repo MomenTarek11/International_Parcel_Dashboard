@@ -102,9 +102,7 @@ export class EditComponent implements OnInit {
   }
   onItemSelect(item: any) {
     console.log(this.permissions);
-
     this.permissions.push(item);
-
     console.log(item);
   }
 
