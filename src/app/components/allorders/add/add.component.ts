@@ -54,8 +54,8 @@ export class AddComponent implements OnInit {
   ) {}
   shipmentTypes: any[] = [];
   types: any[] = [
-    { id: 0, name: "جوي" },
-    { id: 1, name: "بحرى" },
+    { id: 0, name: "بحرى" },
+    { id: 1, name: "جوى" },
   ];
   ngOnInit(): void {
     this.Form = this.fb.group({
@@ -67,8 +67,6 @@ export class AddComponent implements OnInit {
       shipment_type_id: ["", Validators.required],
       type: ["", Validators.required],
       weight: ["", Validators.required],
-      // invoice: [this.commercialInvoice, Validators.required],
-      // list: [this.packingList, Validators.required],
     });
     this.getCountries();
     this.getAllShipmentTypes();
