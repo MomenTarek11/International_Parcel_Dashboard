@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -862,6 +863,15 @@ export class GlobalService {
     });
     return this.http.post(
       `${environment.endpoint}/backend/orders/create`,
+      formData
+    );
+  }
+  updateNote(form: any): Observable<any> {
+    const formData = new FormData();
+    formData.append("notes", form.notes);
+    formData.append("order_id", form.order_id);
+    return this.http.post(
+      `${environment.endpoint}/backend/orders/notes`,
       formData
     );
   }

@@ -7,6 +7,8 @@ import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.component";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-recieved-china",
@@ -25,7 +27,8 @@ export class RecievedChinaComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -88,8 +91,7 @@ export class RecievedChinaComponent implements OnInit {
           .ChangeOrdersStatus(user_id, status_id, note)
           .subscribe((res: any) => {
             console.log(res);
-            this.spinner.hide(); 
-            
+            this.spinner.hide();
           });
       }
     });
@@ -150,40 +152,22 @@ export class RecievedChinaComponent implements OnInit {
   }
 
   addNote(order_id) {
-    Swal.fire({
-      title: "اكتب الملاحظات",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off",
-        class: "dir-ltr",
-        dir: "auto",
-      },
-      // showCancelButton: true,
-      returnInputValueOnDeny: true,
-
-      confirmButtonText: "قبول",
-      showDenyButton: true,
-      showCancelButton: true,
-      denyButtonText: "رفض",
-      cancelButtonText: "الغاء",
-      showLoaderOnConfirm: true,
-      preConfirm: (text) => {
-        this.changeStatus(order_id, 3, text);
-      },
-      preDeny(value) {
-        // console.log(value.value , '2333333');
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("تم القبول بنجاح", "", "success");
-      } else if (result.isDenied) {
-        this.cancelOrder(order_id, result.value);
-        console.log(result.value);
-
-        Swal.fire("تم الرفض ", "", "info");
-      }
-    });
+    this.dialog
+      .open(NotesPopUpComponent, {
+        width: "500px",
+        maxWidth: "90vw",
+        height: "auto",
+        maxHeight: "90vh",
+        autoFocus: false,
+        data: order_id,
+      })
+      .afterClosed()
+      .subscribe((result: any) => {
+        if (result) {
+          this.toaster.success(result);
+          this.clientList(1, this.company_id, this.active);
+        }
+      });
   }
 
   async changePayment(order_id) {

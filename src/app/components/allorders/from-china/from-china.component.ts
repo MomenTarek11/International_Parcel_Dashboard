@@ -8,6 +8,7 @@ import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.component";
 
 @Component({
   selector: "app-from-china",
@@ -167,41 +168,21 @@ export class FromChinaComponent implements OnInit {
   }
 
   addNote(order_id) {
-    Swal.fire({
-      title: "اكتب الملاحظات",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off",
-        class: "dir-ltr",
-        dir: "auto",
-      },
-      // showCancelButton: true,
-      returnInputValueOnDeny: true,
-
-      confirmButtonText: "قبول",
-      showDenyButton: true,
-      showCancelButton: true,
-      denyButtonText: "رفض",
-      cancelButtonText: "الغاء",
-      showLoaderOnConfirm: true,
-      preConfirm: (text) => {
-        this.changeStatus(order_id, 4, text);
-      },
-      preDeny(value) {
-        // console.log(value.value , '2333333');
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("تم القبول بنجاح", "", "success");
-        this.clientList(1, this.company_id, this.active);
-      } else if (result.isDenied) {
-        this.cancelOrder(order_id, result.value);
-        console.log(result.value);
-
-        Swal.fire("تم الرفض ", "", "info");
-        this.clientList(1, this.company_id, this.active);
-      }
-    });
+    this.dialog
+      .open(NotesPopUpComponent, {
+        width: "500px",
+        maxWidth: "90vw",
+        height: "auto",
+        maxHeight: "90vh",
+        autoFocus: false,
+        data: order_id,
+      })
+      .afterClosed()
+      .subscribe((result: any) => {
+        if (result) {
+          this.toaster.success(result);
+          this.clientList(1, this.company_id, this.active);
+        }
+      });
   }
 }

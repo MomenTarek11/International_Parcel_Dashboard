@@ -1,0 +1,27 @@
+.card {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform 0.3s ease;
+}
+
+textarea.form-control {
+  resize: none; /* Prevent resizing */
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  transition: border-color 0.3s ease;
+}
+
+textarea.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 8px rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  border-radius: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}

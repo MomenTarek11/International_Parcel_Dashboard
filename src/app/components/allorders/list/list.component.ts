@@ -8,6 +8,7 @@ import { DetailsComponent } from "../details/details.component";
 import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.component";
 
 @Component({
   selector: "app-list",
@@ -28,7 +29,6 @@ export class ListComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toaster: ToastrService
   ) {}
-
   ngOnInit(): void {
     this.spinner.show();
     this.clientList(1, 0, this.active);
@@ -91,35 +91,22 @@ export class ListComponent implements OnInit {
   }
 
   addNote(order_id) {
-    Swal.fire({
-      title: "اكتب الملاحظات",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off",
-      },
-      // showCancelButton: true,
-      returnInputValueOnDeny: true,
-
-      confirmButtonText: "قبول",
-      showDenyButton: true,
-      showCancelButton: true,
-      denyButtonText: "رفض",
-      cancelButtonText: "الغاء",
-      showLoaderOnConfirm: true,
-      preConfirm: (text) => {
-        this.confirmOrder(order_id, text);
-      },
-      preDeny(value) {},
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("تم القبول بنجاح", "", "success");
-      } else if (result.isDenied) {
-        this.cancelOrder(order_id, result.value);
-
-        Swal.fire("تم الرفض ", "", "info");
-      }
-    });
+    this.dialog
+      .open(NotesPopUpComponent, {
+        width: "500px",
+        maxWidth: "90vw",
+        height: "auto",
+        maxHeight: "90vh",
+        autoFocus: false,
+        data: order_id,
+      })
+      .afterClosed()
+      .subscribe((result: any) => {
+        if (result) {
+          this.toaster.success(result);
+          this.clientList(1, this.company_id, this.active);
+        }
+      });
   }
   openDialog(data: any) {
     const dialogRef = this.dialog.open(PopUpComponent, {
