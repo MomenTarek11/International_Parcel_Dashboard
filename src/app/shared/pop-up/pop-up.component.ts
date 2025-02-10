@@ -35,7 +35,8 @@ export class PopUpComponent {
     if (
       this.Data.type == "delete" ||
       this.Data.type == "delete_city" ||
-      this.Data.type == "cancel_order"
+      this.Data.type == "cancel_order" ||
+      this.Data.type == "delete_admin"
     ) {
       this.deleteMode = true;
     }
@@ -78,6 +79,12 @@ export class PopUpComponent {
     } else if (this.Data.type == "delete_city") {
       this.citiesServ.deleteCity(this.Data.id).subscribe((res: any) => {
         this.spinner.hide(), this.data.close(res.message);
+      });
+    } else if (this.Data.type == "delete_admin") {
+      // this.spinner.show();
+      this.globalService.deleteAdmin(this.Data.id).subscribe((res) => {
+        this.spinner.hide();
+        this.data.close('تم حذف المشرف بنجاح');
       });
     } else {
       this.globalService

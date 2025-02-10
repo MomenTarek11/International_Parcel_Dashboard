@@ -29,22 +29,19 @@
                     <td>{{ admin.name }}</td>
                     <td>{{ admin.email }}</td>
                     <td>{{ admin.active == 1 ? "مفعل" : "غير مفعل " }}</td>
-                    <!-- <td> {{admin.description_en}}</td> -->
-
-                    <!-- <td> <img style="width: 50px;height: 50px;border-radius: 50%;" src="{{admin.imagePath}}" onerror="this.src='assets/images/image-not-found.svg'" alt=""></td> -->
-
+                  
                     <td>
                       <i
                         style="cursor: pointer"
                         class="fas fa-trash text-danger"
                         (click)="deleteAdmin(admin.id)"
                       ></i>
-                      |
+                      <!-- |
                       <i
                         style="cursor: pointer"
                         class="fas fa-edit text-primary"
                         (click)="editAdmin(admin)"
-                      ></i>
+                      ></i> -->
                     </td>
                   </tr>
                 </tbody>

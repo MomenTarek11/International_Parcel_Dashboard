@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { EditComponent } from "../edit/edit.component";
+import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-list",
@@ -17,7 +19,8 @@ export class ListComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private spinner: NgxSpinnerService,
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -46,10 +49,24 @@ export class ListComponent implements OnInit {
   }
 
   deleteAdmin(admin_id) {
-    this.spinner.show();
-    this.globalService.deleteAdmin(admin_id).subscribe((res) => {
-      this.spinner.hide();
-      Swal.fire("نجاح", "تم حذف الادمن بنجاح", "success");
+    let dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: {
+        title: "هل انت واثق انك تريد حذف هذا المشرف ؟",
+        button: "حذف",
+        type: "delete_admin",
+        id: admin_id,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.toaster.success(result);
+      }
       this.allAdmins();
     });
   }
