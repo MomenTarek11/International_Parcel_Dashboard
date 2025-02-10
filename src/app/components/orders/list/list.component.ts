@@ -13,7 +13,7 @@ import { UserDetailsComponent } from "../../users/user-details/user-details.comp
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  clients: any[] = [];
+  clients: any;
   active = 1;
   showPlaceholder: boolean = true;
   constructor(
@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
       .subscribe((res) => {
         console.log(res);
         this.spinner.hide();
-        this.clients = res?.data;
+        this.clients = res;
         this.showPlaceholder = false;
       });
   }
