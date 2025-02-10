@@ -30,12 +30,9 @@
 
                     <td>
                       <i
-                        [class]="
-                          user?.in_home == 1 ? 'fas fa-star' : 'fa fa-star-o'
-                        "
-                        class="gold"
+                        class="fas fa-pencil text-success"
                         style="cursor: pointer"
-                        (click)="addToHome(user)"
+                        (click)="editTest(user)"
                       ></i>
                       |
                       <i
