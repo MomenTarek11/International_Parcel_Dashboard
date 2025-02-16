@@ -13,6 +13,9 @@ export class SidebarComponent implements OnInit {
   );
   shippmentPrice = 0;
   orders = 0;
+  orders1_1 = 0;
+  orders1_2 = 0;
+  orders1_3 = 0;
   orders1 = 0;
   orders2 = 0;
   orders3 = 0;
@@ -44,53 +47,71 @@ export class SidebarComponent implements OnInit {
       if (this.permissions.data.user.sections[i] == "اسعار الشحن الدولى") {
         this.shippmentPrice = 1;
       }
+      if (this.permissions.data.user.sections[i] == "إضافة طلب") {
+        this.orders1_1 = 1;
+        this.orders1 = 1;
+      }
+      if (this.permissions.data.user.sections[i] == "طلبات لم تدفع بعد") {
+        this.orders1_2 = 1;
+        this.orders1 = 1;
+      }
       if (this.permissions.data.user.sections[i] == "الطلبات") {
-        this.orders = 1;
+        this.orders1 = 1;
       }
       if (this.permissions.data.user.sections[i] == "الطلبات-طلبات جديدة") {
+        this.orders1_3 = 1;
         this.orders1 = 1;
       }
       if (
         this.permissions.data.user.sections[i] ==
         "الطلبات-جاري التواصل مع المورد"
       ) {
+        this.orders1 = 1;
         this.orders2 = 1;
       }
       if (
         this.permissions.data.user.sections[i] == "الطلبات-شحنات تحت المراجعة"
       ) {
+        this.orders1 = 1;
         this.orders3 = 1;
       }
       if (this.permissions.data.user.sections[i] == "الطلبات-الطلبات المعلقة") {
+        this.orders1 = 1;
         this.orders4 = 1;
       }
       if (
         this.permissions.data.user.sections[i] == "الطلبات-جاري شحنها من الصين"
       ) {
+        this.orders1 = 1;
         this.orders5 = 1;
       }
       if (
         this.permissions.data.user.sections[i] ==
         "الطلبات-شحنات في ميناء المملكة تحت المراجعة الجمركية"
       ) {
+        this.orders1 = 1;
         this.orders6 = 1;
       }
       if (
         this.permissions.data.user.sections[i] ==
         "الطلبات-شحنات جاري تفريغها في مستودعاتنا"
       ) {
+        this.orders1 = 1;
         this.orders7 = 1;
       }
       if (
         this.permissions.data.user.sections[i] ==
         "الطلبات-شحنات جاري توصيلها للعميل"
       ) {
+        this.orders1 = 1;
         this.orders8 = 1;
       }
       if (this.permissions.data.user.sections[i] == "الطلبات-شحنات منتهية") {
+        this.orders1 = 1;
         this.orders9 = 1;
       }
       if (this.permissions.data.user.sections[i] == "الطلبات-شحنات ملغية") {
+        this.orders1 = 1;
         this.orders10 = 1;
       }
 
