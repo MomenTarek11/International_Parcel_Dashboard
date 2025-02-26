@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
   styleUrls: ["./edit.component.scss"],
 })
 export class EditComponent implements OnInit {
+  submitted: boolean = false;
   form: FormGroup;
   image_edit = false;
   dropdownList = [];
@@ -130,25 +131,10 @@ export class EditComponent implements OnInit {
     console.log("this.data");
     console.log(this.data);
   }
-
+  get f() {
+    return this.form.controls;
+  }
   files: File[] = [];
-
-  onSelect(event) {
-    console.log(event.addedFiles[0]);
-    this.files = [];
-    this.files.push(...event.addedFiles);
-  }
-  onItemSelect(item: any) {
-    console.log(this.permissions);
-    this.permissions.push(item);
-    console.log(item);
-  }
-
-  itemDeselect(item: any) {
-    this.permissions.splice(this.permissions.indexOf(item), 1);
-    console.log("removed");
-    return;
-  }
 
   onSelectAll() {
     const selected = this.AllPermitions.map((item) => item.section_name);
@@ -157,13 +143,13 @@ export class EditComponent implements OnInit {
   onClearAll() {
     this.form.get("sections").patchValue([]);
   }
-  onRemove(event) {
-    console.log(event);
-    this.files.splice(this.files.indexOf(event), 1);
-  }
 
   submit() {
+    this.submitted = true;
     console.log("Form Work");
+    if (this.form.invalid) {
+      return;
+    }
     this.spinner.show();
     let form = {
       ...this.form.value,
@@ -191,9 +177,9 @@ export class EditComponent implements OnInit {
   }
   UploadImage(event: any) {
     const file = event.target.files[0];
-    // this.form.patchValue({
-    //   image: file,
-    // });
+    this.form.patchValue({
+      image: file,
+    });
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e: any) => {

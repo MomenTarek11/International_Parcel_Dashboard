@@ -7,15 +7,30 @@
             <div class="form-group">
               <label for="">الاسم</label>
               <input type="text" class="form-control" formControlName="name" />
+              <span
+                class="text-danger"
+                *ngIf="submitted && f.name?.errors?.required"
+                >يجب ادخال الاسم</span
+              >
             </div>
             <div class="form-group">
               <label for="">الايميل</label>
               <input type="text" class="form-control" formControlName="email" />
+              <span
+                class="text-danger"
+                *ngIf="submitted && f.email?.errors?.required"
+                >يجب ادخال الايميل</span
+              >
             </div>
 
             <div class="form-group">
               <label for=""> الدور</label>
               <input type="text" class="form-control" formControlName="role" />
+              <span
+                class="text-danger"
+                *ngIf="submitted && f.role?.errors?.required"
+                >يجب ادخال الدور</span
+              >
             </div>
 
             <div>
