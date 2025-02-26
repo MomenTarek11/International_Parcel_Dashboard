@@ -162,7 +162,6 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.spinner.show();
     this.submitted = true;
     this.Form.patchValue({
       user_phone: this.Form.controls.user_phone.value.number.replace(
@@ -179,15 +178,17 @@ export class AddComponent implements OnInit {
       invoice: this.commercialInvoice,
       list: this.packingList,
     };
-
-    this.globalServices.createOrder(form).subscribe((res: any) => {
-      this.spinner.hide();
-      this.toaster.success("تم اضافة الطلب بنجاح");
-      this.router.navigate(["app/orders/recievedChina"]);
-    }),
-      (err) => {
+    if (this.Form.valid) {
+      this.spinner.show();
+      this.globalServices.createOrder(form).subscribe((res: any) => {
         this.spinner.hide();
-        this.toaster.error("حدث خطأ ما");
-      };
+        this.toaster.success("تم اضافة الطلب بنجاح");
+        this.router.navigate(["app/orders/recievedChina"]);
+      }),
+        (err) => {
+          this.spinner.hide();
+          this.toaster.error("حدث خطأ ما");
+        };
+    }
   }
 }

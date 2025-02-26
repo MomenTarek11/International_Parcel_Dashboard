@@ -1,81 +1,135 @@
 <section id="add-main-page">
-    <div class="card">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card-body">
-                    <form [formGroup]="form">
-                        <div class="form-group">
-                            <label for="">الاسم</label>
-                            <input type="text" class="form-control" formControlName="name">
-                        </div>
-                        <div class="form-group">
-                            <label for="">الايميل</label>
-                            <input type="text" class="form-control" formControlName="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="">الباسورد</label>
-                            <input type="text" class="form-control" formControlName="password">
-                        </div>
-                        <div class="form-group">
-                            <label for=""> الدور</label>
-                            <input type="text" class="form-control" formControlName="role">
-                        </div>
+  <div class="card">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-body">
+          <form [formGroup]="form">
+            <div class="form-group">
+              <label for="">الاسم</label>
+              <input type="text" class="form-control" formControlName="name" />
+            </div>
+            <div class="form-group">
+              <label for="">الايميل</label>
+              <input type="text" class="form-control" formControlName="email" />
+            </div>
 
-                        <div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">الاقسام المتاحة</label>
+            <div class="form-group">
+              <label for=""> الدور</label>
+              <input type="text" class="form-control" formControlName="role" />
+            </div>
 
-                                </div>
-                                <div class="col-md-6" style="text-align: end;">
-                                    <i style="cursor: pointer;" class="fas fa-edit text-primary" (click)="this.show = !this.show"></i>
-
-                                </div>
-                            </div>
-                            <div *ngIf="show == false">
-                                <span class="badge badge-success" *ngFor="let item of data.sections">
-                                    {{item}}
-                             </span>
-                            </div>
-                            <div class="form-group" *ngIf="show==true">
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="">الصلاحيات </label>
-                                        <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="dropdownList" singleSelection="true" [(ngModel)]="selectedItems" (onSelect)="onItemSelect($event)" (onDeSelect)="itemDeselect($event)" [ngModelOptions]="{standalone: true}" (onSelectAll)="onSelectAll($event)">
-                                        </ng-multiselect-dropdown>
-                                    </div>
-
-
-                                </div>
-                            </div>
+            <div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="">الاقسام المتاحة</label>
+                </div>
+                <div class="col-md-6" style="text-align: end">
+                  <i
+                    style="cursor: pointer"
+                    class="fas fa-edit text-primary"
+                    (click)="this.show = !this.show"
+                  ></i>
+                </div>
+              </div>
+              <div *ngIf="show == false">
+                <span
+                  class="badge badge-success"
+                  *ngFor="let item of data.sections"
+                >
+                  {{ item }}
+                </span>
+              </div>
+              <div class="form-group" *ngIf="show == true">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="">الصلاحيات </label>
+                    <ng-select formControlName="sections" [multiple]="true">
+                      <ng-template ng-header-tmp>
+                        <div class="d-flex w-100 justify-content-around">
+                          <button
+                            class="btn btn-primary"
+                            (click)="onSelectAll()"
+                          >
+                            اختيار الكل
+                          </button>
+                          <button
+                            class="btn btn-primary"
+                            (click)="onClearAll()"
+                          >
+                            حذف الكل
+                          </button>
                         </div>
-                        <!-- <div class="form-group">
+                      </ng-template>
+                      <ng-option
+                        *ngFor="let role of AllPermitions"
+                        [value]="role.section_name"
+                        >{{ role.section_name }}</ng-option
+                      >
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group">
                             <label for="">تاكيد الباسورد</label>
                             <input type="text" class="form-control" formControlName="password_confirmation">
                         </div> -->
-                        <div class="form-group my-4">
-                            <label for="">صورة الادمن </label>
-                            <ng-container *ngIf="image_edit">
-                                <ngx-dropzone (change)="onSelect($event)" accept="image/jpeg,image/jpg,image/png,image/gif" [multiple]="true">
-                                    <ngx-dropzone-label>أضغط هنا لإختيار صورة البانر</ngx-dropzone-label>
-                                    <ngx-dropzone-image-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)" [file]="f">
-                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-                                    </ngx-dropzone-image-preview>
-                                </ngx-dropzone>
-                            </ng-container>
-                            <div class="text-center" *ngIf="!image_edit">
-                                <div style="position: relative;">
-                                    <i style="cursor: pointer;    cursor: pointer;position: absolute;top: 3px;" class="fas fa-edit text-primary" (click)="image_edit=!image_edit"></i>
-                                    <img style="width: 150px;height: 150px;" src="{{data.imagePath}}" alt="">
-                                </div>
+            <div class="form-group w-100 m-auto">
+              <div class="item-wrapper one">
+                <div class="item">
+                  <div class="item-inner">
+                    <div class="item-content">
+                      <div class="image-upload">
+                        <label style="cursor: pointer" for="file_upload">
+                          <img
+                            [src]="uploadedImage"
+                            alt=""
+                            class="uploaded-image"
+                            style="
+                              object-fit: contain;
+                              width: 100px;
+                              height: 100px;
+                            "
+                          />
+
+                          <div class="h-100">
+                            <div class="dplay-tbl">
+                              <div class="dplay-tbl-cell">
+                                <i class="fa fa-cloud-upload"></i>
+                                <h5><b>عدل صورة الادمن</b></h5>
+                              </div>
                             </div>
-                        </div>
-                        <div class="form-group text-center mt-5">
-                            <button class="btn btn-primary" type="button" (click)="submit()">تعديل الادمن </button>
-                        </div>
-                    </form>
+                          </div>
+                          <input
+                            data-required="image"
+                            type="file"
+                            id="file_upload"
+                            class="image-input"
+                            data-traget-resolution="image_resolution"
+                            (change)="UploadImage($event)"
+                          />
+                        </label>
+                      </div>
+                      <span
+                        class="text-danger"
+                        *ngIf="form.controls.image.errors?.required"
+                        >يجب ادخال صورة الادمن</span
+                      >
+                    </div>
+                    <!--item-content-->
+                  </div>
                 </div>
+                <!--item-->
+              </div>
             </div>
+            <div class="form-group text-center mt-5">
+              <button class="btn btn-primary" type="button" (click)="submit()">
+                تعديل الادمن
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </section>

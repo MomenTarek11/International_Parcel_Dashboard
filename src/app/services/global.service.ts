@@ -331,7 +331,7 @@ export class GlobalService {
     }
     if (f.sections.length > 0) {
       for (let i = 0; i < f.sections.length; i++) {
-        formData.append(`sections[${i}]`, f.sections[i].section_name);
+        formData.append(`sections[${i}]`, f.sections[i]);
       }
     }
     return this.http.post(

@@ -41,11 +41,16 @@ export class ListComponent implements OnInit {
   }
 
   editAdmin(admin) {
-    let dialogRef = this.dialog.open(EditComponent, {
-      data: admin,
-      height: "600px",
-      width: "600px",
-    });
+    let dialogRef = this.dialog
+      .open(EditComponent, {
+        data: admin,
+        height: "600px",
+        width: "600px",
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        this.allAdmins();
+      });
   }
 
   deleteAdmin(admin_id) {

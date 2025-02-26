@@ -7,6 +7,8 @@ import { GlobalService } from "src/app/services/global.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ProviderDetailsComponent } from "../../provider/provider-details/provider-details.component";
 import { UserDetailsComponent } from "../../users/user-details/user-details.component";
+import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
+import { ToastrService } from "ngx-toastr";
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
@@ -16,10 +18,12 @@ export class ListComponent implements OnInit {
   clients: any;
   active = 1;
   showPlaceholder: boolean = true;
+  data: any;
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private toster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -58,6 +62,31 @@ export class ListComponent implements OnInit {
       data: client,
       height: "450px",
       width: "600px",
+    });
+  }
+  deleteClient(id: any) {
+    this.data = {
+      title: "هل انت واثق انك تريد حذف هذا العميل  ؟",
+      button: "حذف",
+      type: "cancel_order",
+      id: id,
+    };
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      width: "500px",
+      maxWidth: "90vw",
+      height: "auto",
+      maxHeight: "90vh",
+      autoFocus: false,
+      data: this.data,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // this.service.DeleteTest(id).subscribe((res) => {
+        //   this.spinner.hide();
+        //   this.toster.success(" تم حذف الرأي بنجاح");
+        //   this.clientList(this.active, 1);
+        // });
+      }
     });
   }
 }

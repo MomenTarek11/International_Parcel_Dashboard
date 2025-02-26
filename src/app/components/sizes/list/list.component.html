@@ -29,19 +29,19 @@
                     <td>{{ admin.name }}</td>
                     <td>{{ admin.email }}</td>
                     <td>{{ admin.active == 1 ? "مفعل" : "غير مفعل " }}</td>
-                  
+
                     <td>
                       <i
                         style="cursor: pointer"
                         class="fas fa-trash text-danger"
                         (click)="deleteAdmin(admin.id)"
                       ></i>
-                      <!-- |
+                      |
                       <i
                         style="cursor: pointer"
                         class="fas fa-edit text-primary"
                         (click)="editAdmin(admin)"
-                      ></i> -->
+                      ></i>
                     </td>
                   </tr>
                 </tbody>
