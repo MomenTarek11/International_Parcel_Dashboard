@@ -341,7 +341,7 @@ export class GlobalService {
   }
 
   allAdmins() {
-    return this.http.get(`${environment.endpoint}/backend/backend_admins`);
+    return this.http.get(`${environment.endpoint}/backend/admins`);
   }
   deleteAdmin(id) {
     return this.http.get(

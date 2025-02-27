@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { AuthenticationService } from "src/app/components/auth/authentication.service";
 import { environment } from "src/environments/environment";
 declare var $, jQuery: any;
 
@@ -8,294 +9,322 @@ declare var $, jQuery: any;
   styleUrls: ["./sidebar.component.scss"],
 })
 export class SidebarComponent implements OnInit {
-  permissions = JSON.parse(
-    localStorage.getItem(`${environment.currentUserKey}`)
-  );
-  shippmentPrice = 0;
-  orders = 0;
-  orders1_1 = 0;
-  orders1_2 = 0;
-  orders1_3 = 0;
-  orders1 = 0;
-  orders2 = 0;
-  orders3 = 0;
-  orders4 = 0;
-  orders5 = 0;
-  orders6 = 0;
-  orders7 = 0;
-  orders8 = 0;
-  orders9 = 0;
-  orders10 = 0;
+  showSideBar: boolean = true;
+  sidebar: any = [];
+  user: any;
+  filteredSidebar: any;
+  remainingSidebar: any;
 
-  priceOffer = 0;
-  testmonial = 0;
-  services = 0;
-  banners = 0;
-  admins = 0;
-  clients = 0;
-  transaction = 0;
-  promocode = 0;
-  types = 0;
-  news = 0;
-  messages = 0;
-  countries = 0;
-  cities = 0;
-
-  constructor() {}
+  constructor(private service: AuthenticationService) {
+    this.service.currentUser.subscribe((user) => {
+      this.user = user;
+      console.log(user);
+    });
+  }
+  totalTags: any = [
+    {
+      id: 1,
+      name: "الطلبات",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+    },
+    {
+      id: 2,
+      name: "إضافة طلب",
+      child: true,
+      path: "/app/orders/Add",
+      active: { exact: true },
+    },
+    {
+      id: 3,
+      name: "طلبات لم تدفع بعد",
+      child: true,
+      path: "/app/orders/waiting",
+      active: { exact: true },
+    },
+    {
+      id: 4,
+      name: "طلبات جديدة",
+      child: true,
+      path: "/app/orders/newOrder",
+      active: { exact: true },
+    },
+    {
+      id: 5,
+      name: "جاري التواصل مع المورد",
+      child: true,
+      path: "/app/orders/confirmedOrders",
+      active: { exact: true },
+    },
+    {
+      id: 6,
+      name: "شحنات تحت المراجعة",
+      child: true,
+      path: "/app/orders/recievedChina",
+      active: { exact: true },
+    },
+    {
+      id: 7,
+      name: "الطلبات المعلقة",
+      child: true,
+      path: "/app/orders/inChina",
+      active: { exact: true },
+    },
+    {
+      id: 8,
+      name: "طلبات جاري شحنها من الصين",
+      child: true,
+      path: "/app/orders/fromChina",
+      active: { exact: true },
+    },
+    {
+      id: 9,
+      child: true,
+      name: "شحنات في ميناء المملكة تحت المراجعة الجمركية",
+      path: "/app/orders/recievedSaudi",
+      active: { exact: true },
+    },
+    {
+      id: 10,
+      name: "شحنات جاري تفريغها في مستودعاتنا",
+      child: true,
+      path: "/app/orders/inSaudi",
+      active: { exact: true },
+    },
+    {
+      id: 11,
+      name: "شحنات جاري توصيلها للعميل",
+      child: true,
+      path: "/app/orders/fromSaudi",
+      active: { exact: true },
+    },
+    {
+      id: 12,
+      name: "شحنات منتهية",
+      child: true,
+      path: "/app/orders/toClient",
+      active: { exact: true },
+    },
+    {
+      id: 13,
+      name: "شحنات ملغية",
+      path: "/app/orders/Finished",
+      child: true,
+      active: { exact: true },
+    },
+    {
+      id: 14,
+      name: "اراء العملاء",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع الاراء",
+          path: "/app/testmonials/list",
+        },
+        {
+          name: "اضافة رأي",
+          path: "/app/testmonials/add",
+        },
+      ],
+    },
+    {
+      id: 15,
+      name: "البانرات",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع البانرات",
+          path: "/app/banner/list",
+        },
+        {
+          name: "اضافة بانر",
+          path: "/app/banner/add",
+        },
+      ],
+    },
+    {
+      id: 16,
+      name: "المسؤولين",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع الادمن",
+          path: "/app/admins/list",
+        },
+        {
+          name: "اضافة ادمن",
+          path: "/app/admins/add",
+        },
+      ],
+    },
+    {
+      id: 17,
+      name: "أنواع الشحنات",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع الشحنات",
+          path: "/app/shippment/list",
+        },
+        {
+          name: "اضافة شحنة",
+          path: "/app/shippment/add",
+        },
+      ],
+    },
+    {
+      id: 18,
+      name: "العملاء",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع العملاء",
+          path: "/app/clients/list",
+        },
+      ],
+    },
+    {
+      id: 19,
+      name: "البروموكود",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع البروموكود",
+          path: "/app/promocode/list",
+        },
+        {
+          name: "اضافة بروموكود",
+          path: "/app/promocode/add",
+        },
+      ],
+    },
+    {
+      id: 20,
+      name: "التحويلات",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع التحويلات",
+          path: "/app/transactions/list",
+        },
+      ],
+    },
+    {
+      id: 21,
+      name: "شريط الأخبار",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع النصوص",
+          path: "/app/news/list",
+        },
+        {
+          name: "اضافة نص",
+          path: "/app/news/add",
+        },
+      ],
+    },
+    {
+      id: 22,
+      name: "رسائل العملاء",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع الرسائل",
+          path: "/app/contact-us/list",
+        },
+      ],
+    },
+    {
+      id: 23,
+      name: "الدول",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع الدول",
+          path: "/app/countries",
+        },
+        {
+          name: "اضافة دولة",
+          path: "/app/countries/add",
+        },
+      ],
+    },
+    {
+      id: 24,
+      name: "المدن",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع المدن",
+          path: "/app/cities",
+        },
+        {
+          name: "اضافة مدينة",
+          path: "/app/cities/add",
+        },
+      ],
+    },
+  ];
+  sidebarIds: any;
   ngOnInit(): void {
-    for (let i = 0; i < this.permissions.data.user.sections.length; i++) {
-      if (this.permissions.data.user.sections[i] == "اسعار الشحن الدولى") {
-        this.shippmentPrice = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "إضافة طلب") {
-        this.orders1_1 = 1;
-        this.orders1 = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "طلبات لم تدفع بعد") {
-        this.orders1_2 = 1;
-        this.orders1 = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الطلبات") {
-        this.orders1 = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الطلبات-طلبات جديدة") {
-        this.orders1_3 = 1;
-        this.orders1 = 1;
-      }
-      if (
-        this.permissions.data.user.sections[i] ==
-        "الطلبات-جاري التواصل مع المورد"
-      ) {
-        this.orders1 = 1;
-        this.orders2 = 1;
-      }
-      if (
-        this.permissions.data.user.sections[i] == "الطلبات-شحنات تحت المراجعة"
-      ) {
-        this.orders1 = 1;
-        this.orders3 = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الطلبات-الطلبات المعلقة") {
-        this.orders1 = 1;
-        this.orders4 = 1;
-      }
-      if (
-        this.permissions.data.user.sections[i] == "الطلبات-جاري شحنها من الصين"
-      ) {
-        this.orders1 = 1;
-        this.orders5 = 1;
-      }
-      if (
-        this.permissions.data.user.sections[i] ==
-        "الطلبات-شحنات في ميناء المملكة تحت المراجعة الجمركية"
-      ) {
-        this.orders1 = 1;
-        this.orders6 = 1;
-      }
-      if (
-        this.permissions.data.user.sections[i] ==
-        "الطلبات-شحنات جاري تفريغها في مستودعاتنا"
-      ) {
-        this.orders1 = 1;
-        this.orders7 = 1;
-      }
-      if (
-        this.permissions.data.user.sections[i] ==
-        "الطلبات-شحنات جاري توصيلها للعميل"
-      ) {
-        this.orders1 = 1;
-        this.orders8 = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الطلبات-شحنات منتهية") {
-        this.orders1 = 1;
-        this.orders9 = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الطلبات-شحنات ملغية") {
-        this.orders1 = 1;
-        this.orders10 = 1;
-      }
-
-      if (this.permissions.data.user.sections[i] == "عروض الاسعار") {
-        this.priceOffer = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "اراء العملاء") {
-        this.testmonial = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الخدمات") {
-        this.services = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "البانرات") {
-        this.banners = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الادمن") {
-        this.admins = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "العملاء") {
-        this.clients = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "البروموكود") {
-        this.promocode = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "التحويلات") {
-        this.transaction = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "انواع الشحنات") {
-        this.types = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "شريط الأخبار") {
-        this.news = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "رسائل العملاء") {
-        this.messages = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "الدول") {
-        this.countries = 1;
-      }
-      if (this.permissions.data.user.sections[i] == "المدن") {
-        this.cities = 1;
-      }
+    // if (this.user.permissions?.length > 0) {
+    //   if (this.user.permissions[0] == "*") {
+    //     this.sidebar = this.totalTags;
+    //     localStorage.setItem("sidebar", JSON.stringify(this.sidebar));
+    //   } else {
+    //     this.sidebar = [
+    //       this.totalTags[0],
+    //       ...this.totalTags.filter((item: any) => {
+    //         return (
+    //           this.user.permissions.includes(item.id) &&
+    //           item.id !== this.totalTags[0].id
+    //         );
+    //       }),
+    //     ];
+    //     localStorage.setItem("sidebar", JSON.stringify(this.sidebar));
+    //   }
+    // }
+    this.sidebarIds = [5, 17, 23, 24];
+    if (this.sidebarIds.length < 13) {
+      this.sidebarIds.push(1);
     }
-    console.log(this.permissions.data.user.sections);
-    // left sidebar and vertical menu
-    if ($("#pageWrapper").hasClass("compact-wrapper")) {
-      jQuery(".sidebar-title").append(
-        '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-      );
-      jQuery(".sidebar-title").click(function () {
-        jQuery(".sidebar-title")
-          .removeClass("active")
-          .find("div")
-          .replaceWith(
-            '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-          );
-        jQuery(".sidebar-submenu, .menu-content").slideUp("normal");
-        jQuery(".menu-content").slideUp("normal");
-        if (jQuery(this).next().is(":hidden") == true) {
-          jQuery(this).addClass("active");
-          jQuery(this)
-            .find("div")
-            .replaceWith(
-              '<div class="according-menu"><i class="fa fa-angle-down"></i></div>'
-            );
-          jQuery(this).next().slideDown("normal");
-        } else {
-          jQuery(this)
-            .find("div")
-            .replaceWith(
-              '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-            );
-        }
-      });
-      jQuery(".sidebar-submenu, .menu-content").hide();
-      jQuery(".submenu-title").append(
-        '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-      );
-      jQuery(".submenu-title").click(function () {
-        jQuery(".submenu-title")
-          .removeClass("active")
-          .find("div")
-          .replaceWith(
-            '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-          );
-        jQuery(".submenu-content").slideUp("normal");
-        if (jQuery(this).next().is(":hidden") == true) {
-          jQuery(this).addClass("active");
-          jQuery(this)
-            .find("div")
-            .replaceWith(
-              '<div class="according-menu"><i class="fa fa-angle-down"></i></div>'
-            );
-          jQuery(this).next().slideDown("normal");
-        } else {
-          jQuery(this)
-            .find("div")
-            .replaceWith(
-              '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-            );
-        }
-      });
-      jQuery(".submenu-content").hide();
-    } else if ($("#pageWrapper").hasClass("horizontal-wrapper")) {
-      var contentwidth = jQuery(window).width();
-      if (contentwidth < "992") {
-        $("#pageWrapper")
-          .removeClass("horizontal-wrapper")
-          .addClass("compact-wrapper");
-        $(".page-body-wrapper")
-          .removeClass("horizontal-menu")
-          .addClass("sidebar-icon");
-        jQuery(".submenu-title").append(
-          '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-        );
-        jQuery(".submenu-title").click(function () {
-          jQuery(".submenu-title").removeClass("active");
-          jQuery(".submenu-title")
-            .find("div")
-            .replaceWith(
-              '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-            );
-          jQuery(".submenu-content").slideUp("normal");
-          if (jQuery(this).next().is(":hidden") == true) {
-            jQuery(this).addClass("active");
-            jQuery(this)
-              .find("div")
-              .replaceWith(
-                '<div class="according-menu"><i class="fa fa-angle-down"></i></div>'
-              );
-            jQuery(this).next().slideDown("normal");
-          } else {
-            jQuery(this)
-              .find("div")
-              .replaceWith(
-                '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-              );
-          }
-        });
-        jQuery(".submenu-content").hide();
-
-        jQuery(".sidebar-title").append(
-          '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-        );
-        jQuery(".sidebar-title").click(function () {
-          jQuery(".sidebar-title").removeClass("active");
-          jQuery(".sidebar-title")
-            .find("div")
-            .replaceWith(
-              '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-            );
-          jQuery(".sidebar-submenu, .menu-content").slideUp("normal");
-          if (jQuery(this).next().is(":hidden") == true) {
-            jQuery(this).addClass("active");
-            jQuery(this)
-              .find("div")
-              .replaceWith(
-                '<div class="according-menu"><i class="fa fa-angle-down"></i></div>'
-              );
-            jQuery(this).next().slideDown("normal");
-          } else {
-            jQuery(this)
-              .find("div")
-              .replaceWith(
-                '<div class="according-menu"><i class="fa fa-angle-right"></i></div>'
-              );
-          }
-        });
-        jQuery(".sidebar-submenu, .menu-content").hide();
-      }
-    }
+    this.sidebar = this.totalTags.filter((tag) =>
+      this.sidebarIds.includes(tag.id)
+    );
+    this.filteredSidebar = this.sidebar.filter((i: any) => i.id < 13);
+    this.remainingSidebar = this.sidebar.filter((i: any) => i.id >= 13); // Second Section
+    console.log(this.sidebar);
   }
   toggler() {
-    jQuery(".sidebar-main").toggleClass("hide");
-    if (jQuery(".sidebar-main").hasClass("hide")) {
-      jQuery(
-        ".page-wrapper.compact-wrapper .page-body-wrapper.sidebar-icon .page-body"
-      ).css("margin-right", "0");
-    } else {
-      jQuery(
-        ".page-wrapper.compact-wrapper .page-body-wrapper.sidebar-icon .page-body"
-      ).css("margin-right", "280px");
+    this.showSideBar = !this.showSideBar;
+  }
+  toggleMenu(item: any) {
+    if (item.parent) {
+      item.toggle = !item.toggle;
     }
-    // if(jQuery(''))
-    // jQuery()
   }
 }
