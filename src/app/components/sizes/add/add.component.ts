@@ -110,9 +110,9 @@ export class AddComponent implements OnInit {
   }
   onSelectAll() {
     const selected = this.AllPermitions.map((item) => item.section_name);
-    this.form.get("sections").patchValue(selected);
+    this.form.get("permissions").patchValue(selected);
   }
   onClearAll() {
-    this.form.get("sections").patchValue([]);
+    this.form.get("permissions").patchValue([]);
   }
 }

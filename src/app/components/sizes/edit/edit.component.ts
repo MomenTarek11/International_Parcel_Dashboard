@@ -23,38 +23,34 @@ export class EditComponent implements OnInit {
   permissions = [];
   show = false;
   uploadedImage: any;
+
   AllPermitions: any = [
-    { section_id: 1, section_name: "اسعار الشحن الدولى" },
-    { section_id: 1, section_name: "اراء العملاء" },
-    { section_id: 2, section_name: "البانرات" },
-    { section_id: 3, section_name: "الادمن" },
-    { section_id: 4, section_name: "انواع الشحنات" },
-    { section_id: 5, section_name: "العملاء" },
-    { section_id: 6, section_name: "البروموكود" },
-    { section_id: 7, section_name: "التحويلات" },
-    { section_id: 8, section_name: "شريط الأخبار" },
-    { section_id: 9, section_name: "رسائل العملاء" },
-    { section_id: 10, section_name: "الطلبات" },
-    { section_id: 11, section_name: "إضافة طلب" },
-    { section_id: 12, section_name: "طلبات لم تدفع بعد" },
-    { section_id: 13, section_name: "الطلبات-طلبات جديدة" },
-    { section_id: 14, section_name: "الطلبات-جاري التواصل مع المورد" },
-    { section_id: 15, section_name: "الطلبات-شحنات تحت المراجعة" },
-    { section_id: 16, section_name: "الطلبات-الطلبات المعلقة" },
-    { section_id: 17, section_name: "الطلبات-جاري شحنها من الصين" },
+    { section_id: 1, section_name: "إضافة طلب" },
+    { section_id: 2, section_name: "طلبات لم تدفع بعد" },
+    { section_id: 3, section_name: "طلبات جديدة" },
+    { section_id: 4, section_name: "جاري التواصل مع المورد" },
+    { section_id: 5, section_name: "شحنات تحت المراجعة" },
+    { section_id: 6, section_name: "الطلبات المعلقة" },
+    { section_id: 7, section_name: "طلبات جاري شحنها من الصين" },
     {
-      section_id: 18,
-      section_name: "الطلبات-شحنات في ميناء المملكة تحت المراجعة الجمركية",
+      section_id: 8,
+      section_name: "شحنات في ميناء المملكة تحت المراجعة الجمركية",
     },
-    {
-      section_id: 19,
-      section_name: "الطلبات-شحنات جاري تفريغها في مستودعاتنا",
-    },
-    { section_id: 20, section_name: "الطلبات-شحنات جاري توصيلها للعميل" },
-    { section_id: 21, section_name: "الطلبات-شحنات منتهية" },
-    { section_id: 22, section_name: "الطلبات-شحنات ملغية" },
-    { section_id: 23, section_name: "الدول" },
-    { section_id: 24, section_name: "المدن" },
+    { section_id: 9, section_name: "شحنات جاري تفريغها في مستودعاتنا" },
+    { section_id: 10, section_name: "شحنات جاري توصيلها للعميل" },
+    { section_id: 11, section_name: "شحنات منتهية" },
+    { section_id: 12, section_name: "شحنات ملغية" },
+    { section_id: 13, section_name: "آراء العملاء" },
+    { section_id: 14, section_name: "البانرات" },
+    { section_id: 15, section_name: "المسؤولين" },
+    { section_id: 16, section_name: "أنواع الشحنات" },
+    { section_id: 17, section_name: "العملاء" },
+    { section_id: 18, section_name: "البروموكود" },
+    { section_id: 19, section_name: "التحويلات" },
+    { section_id: 20, section_name: "شريط الأخبار" },
+    { section_id: 21, section_name: "رسائل العملاء" },
+    { section_id: 22, section_name: "الدول" },
+    { section_id: 23, section_name: "المدن" },
   ];
   constructor(
     private formbuilder: FormBuilder,
@@ -67,67 +63,16 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data?.sections);
+    console.log(this.data?.permissions);
     this.form = this.formbuilder.group({
       name: [this.data?.name, Validators.required],
       email: [this.data?.email, Validators.required],
-      role: [this.data?.role, Validators.required],
       image: [this.data?.image],
-      sections: [this.data?.sections],
+      permissions: [[]],
     });
     this.uploadedImage = this.data?.imagePath;
-    // this.dropdownList = [
-    //   { section_id: 10, section_name: "الطلبات" },
-    //   { section_id: 11, section_name: "الطلبات-طلبات جديدة" },
-    //   { section_id: 12, section_name: "الطلبات-جاري التواصل مع المورد" },
-    //   { section_id: 13, section_name: "الطلبات-شحنات تحت المراجعة" },
-    //   { section_id: 14, section_name: "الطلبات-الطلبات المعلقة" },
-    //   { section_id: 15, section_name: "الطلبات-جاري شحنها من الصين" },
-    //   {
-    //     section_id: 16,
-    //     section_name: "الطلبات-شحنات في ميناء المملكة تحت المراجعة الجمركية",
-    //   },
-    //   {
-    //     section_id: 17,
-    //     section_name: "الطلبات-شحنات جاري تفريغها في مستودعاتنا",
-    //   },
-    //   { section_id: 18, section_name: "الطلبات-شحنات جاري توصيلها للعميل" },
-    //   { section_id: 19, section_name: "الطلبات-شحنات منتهية" },
-    //   { section_id: 20, section_name: "الطلبات-شحنات ملغية" },
 
-    //   { section_id: 1, section_name: "اراء العملاء" },
-    //   { section_id: 2, section_name: "البانرات" },
-    //   { section_id: 3, section_name: "الادمن" },
-    //   { section_id: 4, section_name: "انواع الشحنات" },
-    //   { section_id: 5, section_name: "العملاء" },
-    //   { section_id: 6, section_name: "البروموكود" },
-    //   { section_id: 7, section_name: "التحويلات" },
-    //   { section_id: 8, section_name: "شريط الأخبار" },
-    //   { section_id: 9, section_name: "رسائل العملاء" },
-    // ];
-    this.selectedItems = [];
-    // for (let i = 0; i < this.dropdownList.length; i++) {
-    //   for (let y = 0; y < this.data?.sections.length; y++) {
-    //     if (this.dropdownList[i]?.section_name == this.data?.sections[y]) {
-    //       this.selectedItems.push(this.dropdownList[i]);
-    //     }
-    //   }
-    //   console.log(
-    //     this.dropdownList[1].section_name,
-    //     this.data?.sections[i],
-    //     "just for test"
-    //   );
-    // }
-    // this.permissions = this.selectedItems;
-    // this.dropdownSettings = {
-    //   singleSelection: false,
-    //   idField: "section_id",
-    //   textField: "section_name",
-    //   selectAllText: " اختيار الكل",
-    //   unSelectAllText: " الغاء الاختيار",
-    //   itemsShowLimit: 3,
-    //   allowSearchFilter: true,
-    // };
+    // this.selectedItems = [];
     console.log("this.data");
     console.log(this.data);
   }
@@ -138,10 +83,10 @@ export class EditComponent implements OnInit {
 
   onSelectAll() {
     const selected = this.AllPermitions.map((item) => item.section_name);
-    this.form.get("sections").patchValue(selected);
+    this.form.get("permissions").patchValue(selected);
   }
   onClearAll() {
-    this.form.get("sections").patchValue([]);
+    this.form.get("permissions").patchValue([]);
   }
 
   submit() {
@@ -151,13 +96,9 @@ export class EditComponent implements OnInit {
       return;
     }
     this.spinner.show();
-    let form = {
-      ...this.form.value,
-      // image: this.files[0],
-      admin_id: this.data.id,
-    };
-    console.log("submitting the form", form);
-    this.service.editAdmin(form).subscribe(
+
+    console.log("submitting the form", this.form.value);
+    this.service.editAdmin(this.form.value, this.data.id).subscribe(
       (res: any) => {
         console.log(res);
         this.spinner.hide();

@@ -314,26 +314,22 @@ export class GlobalService {
     }
     return this.http.post(`${environment.endpoint}/backend/admins`, formData);
   }
-  editAdmin(f) {
+  editAdmin(f, id: any) {
+    console.log(f);
     const formData = new FormData();
     formData.append("name", f.name);
-    formData.append("email", f.email);
-    formData.append("admin_id", f.admin_id);
-    formData.append("role", f.role);
-
-    if (f.password !== undefined) {
-      formData.append("password", f.password);
-    }
-    if (f.image !== undefined) {
+    // formData.append("email", f.email);
+    if (f.image != undefined || f.image != null) {
       formData.append("image", f.image);
     }
-    if (f.sections.length > 0) {
-      for (let i = 0; i < f.sections.length; i++) {
-        formData.append(`sections[${i}]`, f.sections[i]);
+    if (f.permissions.length > 0) {
+      for (let i = 0; i < f.permissions.length; i++) {
+        console.log(f.permissions, "perkdfslj,.md");
+        formData.append(`permissions[${i}]`, f.permissions[i]);
       }
     }
     return this.http.post(
-      `${environment.endpoint}/backend/admins/edit`,
+      `${environment.endpoint}/backend/admins/${id}`,
       formData
     );
   }

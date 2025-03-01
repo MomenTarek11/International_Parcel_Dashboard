@@ -291,6 +291,7 @@ export class SidebarComponent implements OnInit {
   sidebarIds: any;
   ngOnInit(): void {
     this.sidebarIds = this.user?.data?.permissions || [];
+    // this.sidebarIds = [15];  for testing
 
     if (this.sidebarIds.includes("*")) {
       this.sidebar = this.totalTags;
@@ -299,17 +300,24 @@ export class SidebarComponent implements OnInit {
         this.sidebarIds.includes(tag.id)
       );
     }
-    // Ensure "الطلبات" (Orders) is always included if less than 13 elements
-    if (
-      this.sidebar.length < 13 &&
-      this.sidebar.length > 0 &&
-      !this.sidebar.some((tag) => tag.id === 0)
-    ) {
-      this.sidebar.push(this.totalTags.find((tag) => tag.id === 0));
+
+    // Check if sidebar contains at least one ID from 1 to 12
+    const hasIdsFrom1to12 = this.sidebar.some(
+      (tag) => tag.id >= 1 && tag.id <= 12
+    );
+
+    // Ensure "الطلبات" (Orders) with id: 0 is included if IDs 1-12 exist
+    if (hasIdsFrom1to12 && !this.sidebar.some((tag) => tag.id === 0)) {
+      const ordersTag = this.totalTags.find((tag) => tag.id === 0);
+      if (ordersTag) {
+        this.sidebar.push(ordersTag);
+      }
     }
+
     // Split sidebar into sections
     this.filteredSidebar = this.sidebar.filter((tag) => tag.id < 13);
     this.remainingSidebar = this.sidebar.filter((tag) => tag.id >= 13);
+
     localStorage.setItem("sidebar", JSON.stringify(this.sidebar));
     console.log(this.sidebar);
   }
