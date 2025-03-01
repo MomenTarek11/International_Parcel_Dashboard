@@ -303,18 +303,16 @@ export class GlobalService {
     formData.append("name", f.name);
     formData.append("email", f.email);
     formData.append("password", f.password);
-    formData.append("confirm_password", f.confirm_password);
+    formData.append("password_confirmation", f.password_confirmation);
     formData.append("image", f.image);
-    formData.append("role", f.role);
-    if (f.sections.length > 0) {
-      for (let i = 0; i < f.sections.length; i++) {
-        formData.append(`sections[${i}]`, f.sections[i]);
+    if (f.permissions.length > 0) {
+      for (let i = 0; i < f.permissions.length; i++) {
+        console.log(f.permissions, "perkdfslj,.md");
+
+        formData.append(`permissions[${i}]`, f.permissions[i]);
       }
     }
-    return this.http.post(
-      `${environment.endpoint}/backend/backend_admins/create`,
-      formData
-    );
+    return this.http.post(`${environment.endpoint}/backend/admins`, formData);
   }
   editAdmin(f) {
     const formData = new FormData();
@@ -343,10 +341,8 @@ export class GlobalService {
   allAdmins() {
     return this.http.get(`${environment.endpoint}/backend/admins`);
   }
-  deleteAdmin(id) {
-    return this.http.get(
-      `${environment.endpoint}/backend/admins/delete?admin_id=${id}`
-    );
+  deleteAdmin(id: any) {
+    return this.http.delete(`${environment.endpoint}/backend/admins/${id}`);
   }
 
   addShippment(f) {

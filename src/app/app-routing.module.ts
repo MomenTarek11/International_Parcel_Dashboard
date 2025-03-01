@@ -27,6 +27,7 @@ import { PopUpComponent } from "./shared/pop-up/pop-up.component";
 import { AddComponent } from "./components/countries/add/add.component";
 import { CountriesModule } from "./components/countries/countries.module";
 import { CitiesModule } from "./components/cities/cities.module";
+import { SidebarGuard } from "./guards/sidebar.guard";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -45,34 +46,103 @@ const routes: Routes = [
   },
   {
     path: "app",
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard], // First, check if the user is authenticated
     component: DashboardLayoutComponent,
     children: [
-      { path: "promocode", loadChildren: () => UsersModule },
-      { path: "testmonials", loadChildren: () => ProviderModule },
-      { path: "clients", loadChildren: () => OrdersModule },
-      { path: "chinaHarbour", loadChildren: () => CountryModule },
-      { path: "saudiHarbour", loadChildren: () => CityModule },
-      { path: "international", loadChildren: () => CategoryModule },
-      { path: "services", loadChildren: () => SubcategoriesModule },
-      { path: "company", loadChildren: () => ProductsModule },
-      { path: "colors", loadChildren: () => ColorsModule },
-      { path: "admins", loadChildren: () => SizesModule },
-      { path: "banner", loadChildren: () => OccasionsModule },
-      { path: "transactions", loadChildren: () => TagsModule },
-      { path: "orders", loadChildren: () => OrderModule },
-      { path: "shippment", loadChildren: () => shipmentModule },
-      { path: "news", loadChildren: () => NewsModule },
-      { path: "contact-us", loadChildren: () => contactUsModule },
+      {
+        path: "promocode",
+        canActivate: [SidebarGuard],
+        loadChildren: () => UsersModule,
+      },
+      {
+        path: "testmonials",
+        canActivate: [SidebarGuard],
+        loadChildren: () => ProviderModule,
+      },
+      {
+        path: "clients",
+        canActivate: [SidebarGuard],
+        loadChildren: () => OrdersModule,
+      },
+      {
+        path: "chinaHarbour",
+        canActivate: [SidebarGuard],
+        loadChildren: () => CountryModule,
+      },
+      {
+        path: "saudiHarbour",
+        canActivate: [SidebarGuard],
+        loadChildren: () => CityModule,
+      },
+      {
+        path: "international",
+        canActivate: [SidebarGuard],
+        loadChildren: () => CategoryModule,
+      },
+      {
+        path: "services",
+        canActivate: [SidebarGuard],
+        loadChildren: () => SubcategoriesModule,
+      },
+      {
+        path: "company",
+        canActivate: [SidebarGuard],
+        loadChildren: () => ProductsModule,
+      },
+      {
+        path: "colors",
+        canActivate: [SidebarGuard],
+        loadChildren: () => ColorsModule,
+      },
+      {
+        path: "admins",
+        canActivate: [SidebarGuard],
+        loadChildren: () => SizesModule,
+      },
+      {
+        path: "banner",
+        canActivate: [SidebarGuard],
+        loadChildren: () => OccasionsModule,
+      },
+      {
+        path: "transactions",
+        canActivate: [SidebarGuard],
+        loadChildren: () => TagsModule,
+      },
+      {
+        path: "orders",
+        canActivate: [SidebarGuard],
+        loadChildren: () => OrderModule,
+      },
+      {
+        path: "shippment",
+        canActivate: [SidebarGuard],
+        loadChildren: () => shipmentModule,
+      },
+      {
+        path: "news",
+        canActivate: [SidebarGuard],
+        loadChildren: () => NewsModule,
+      },
+      {
+        path: "contact-us",
+        canActivate: [SidebarGuard],
+        loadChildren: () => contactUsModule,
+      },
       {
         path: "countries",
+        canActivate: [SidebarGuard],
         loadChildren: () => CountriesModule,
       },
-      { path: "cities", loadChildren: () => CitiesModule },
+      {
+        path: "cities",
+        canActivate: [SidebarGuard],
+        loadChildren: () => CitiesModule,
+      },
     ],
   },
+
   {
-    
     path: "**",
     pathMatch: "full",
     component: WrongRouteComponent,

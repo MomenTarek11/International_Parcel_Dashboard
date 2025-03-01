@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   showConfirm: boolean = false;
   showConfirm2: boolean = false;
   showConfirm3: boolean = false;
-
+  user: any;
   showPasswordError: boolean = false;
   showNewPasswordError: boolean = false;
   showConfirmPasswordError: boolean = false;
@@ -49,38 +49,36 @@ export class HomeComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private service: GlobalService,
-    private toaster: ToastrService
+    private toaster: ToastrService,
+    private authService: AuthenticationService
   ) {
     this.thisLang = localStorage.getItem("currentLang") || navigator.language;
   }
   ngOnInit(): void {
-    console.log(this.userId, "kasioj");
-    this.edit = true;
-    this.editpassword = true;
-    this.getInfo();
+    // Initialize form
     this.personalInfo = this.formbuilder.group({
       name: ["", Validators.required],
       email: ["", Validators.required],
-      password: ["", Validators.required],
+      password: [""], // Keep empty, don't auto-fill passwords
     });
-    this.showImg = true;
-    this.showAvatar = false;
 
-    this.firstRow = true;
-    this.secondtRow = false;
-  }
-  getInfo() {
-    this.service.personalData(this.userId).subscribe((res: any) => {
-      console.log(res.data);
-      this.personalInfo = this.formbuilder.group({
-        name: [res.data.name, Validators.required],
-        email: [res.data.email, Validators.required],
-        password: ["", Validators.required],
-        admin_id: [this.userId],
-      });
-      this.imgpath = res.data.imagePath;
+    // **Subscribe to the currentUser observable to get the latest user data**
+    this.authService.currentUser.subscribe((user) => {
+      if (user) {
+        this.user = user;
+        console.log("User from LocalStorage:", user);
+
+        // **Update form fields with user data**
+        this.personalInfo.patchValue({
+          name: user?.data?.user?.name || "",
+          email: user?.data?.user?.email || "",
+        });
+
+        // **Set user profile image**
+        this.imgpath =
+          user?.data?.user?.imagePath || "assets/images/default-avatar.png";
+      }
     });
-    console.log("gfesfawdawrfe", this.imgpath);
   }
   base64(event: any) {
     this.file = event.target.files;
@@ -93,6 +91,7 @@ export class HomeComponent implements OnInit {
     this.showImg = false;
     this.showAvatar = true;
   }
+  
   setType(num: any) {
     this.showButtons = false;
     this.type = num;
@@ -118,11 +117,9 @@ export class HomeComponent implements OnInit {
       this.toaster.warning("رجاء ادخل البريد الالكتروني");
       return;
     }
-
     this.service.updatePersonalInfo(this.personalInfo.value).subscribe(
       (res: any) => {
         console.log(res);
-
         this.toaster.success("تم التعديل بنجاح");
         this.showButtons = true;
       },

@@ -59,8 +59,7 @@ export class AuthenticationService {
       );
   }
   logout() {
-    this.clearLocalStorageUser();
-    this.currentUserSubject.next(null);
+    localStorage.clear();
     this.router.navigate([""]);
   }
 }
