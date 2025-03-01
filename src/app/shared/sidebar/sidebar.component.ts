@@ -290,8 +290,9 @@ export class SidebarComponent implements OnInit {
   ];
   sidebarIds: any;
   ngOnInit(): void {
-    this.sidebarIds = this.user?.data?.permissions || [];
-    // this.sidebarIds = [15];  for testing
+    // this.sidebarIds = this.user?.data?.permissions || [];
+    this.sidebarIds = [17];
+    // for testing
 
     if (this.sidebarIds.includes("*")) {
       this.sidebar = this.totalTags;

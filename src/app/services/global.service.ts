@@ -867,4 +867,7 @@ export class GlobalService {
       formData
     );
   }
+  deleteClient(id: any) {
+    return this.http.delete(`${environment.endpoint}/backend/users/${id}`);
+  }
 }

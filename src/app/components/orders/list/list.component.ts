@@ -81,11 +81,11 @@ export class ListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // this.service.DeleteTest(id).subscribe((res) => {
-        //   this.spinner.hide();
-        //   this.toster.success(" تم حذف الرأي بنجاح");
-        //   this.clientList(this.active, 1);
-        // });
+        this.service.deleteClient(id).subscribe((res) => {
+          this.spinner.hide();
+          this.toster.success(" تم حذف العميل بنجاح");
+          this.clientList(this.active, 1);
+        });
       }
     });
   }
