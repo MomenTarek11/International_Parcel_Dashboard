@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from "@angular/animations";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { AuthenticationService } from "src/app/components/auth/authentication.service";
 import { environment } from "src/environments/environment";
@@ -7,6 +8,17 @@ declare var $, jQuery: any;
   selector: "app-sidebar",
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
+  animations: [
+    trigger("submenuAnimation", [
+      transition(":enter", [
+        style({ height: "0px", opacity: 0 }),
+        animate("300ms ease-out", style({ height: "*", opacity: 1 })),
+      ]),
+      transition(":leave", [
+        animate("300ms ease-in", style({ height: "0px", opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class SidebarComponent implements OnInit {
   showSideBar: boolean = true;
@@ -290,9 +302,7 @@ export class SidebarComponent implements OnInit {
   ];
   sidebarIds: any;
   ngOnInit(): void {
-    // this.sidebarIds = this.user?.data?.permissions || [];
-    this.sidebarIds = [17];
-    // for testing
+    this.sidebarIds = this.user?.data?.permissions || [];
 
     if (this.sidebarIds.includes("*")) {
       this.sidebar = this.totalTags;
@@ -301,8 +311,6 @@ export class SidebarComponent implements OnInit {
         this.sidebarIds.includes(tag.id)
       );
     }
-
-    // Check if sidebar contains at least one ID from 1 to 12
     const hasIdsFrom1to12 = this.sidebar.some(
       (tag) => tag.id >= 1 && tag.id <= 12
     );

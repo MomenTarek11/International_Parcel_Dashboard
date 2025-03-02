@@ -1,34 +1,38 @@
 .counter {
-    color: black;
-    border-radius: 50%;
-    border: 1px solid #ddddff;
-    padding: 0em 0.4em;
-    margin-left: 2em;
-    background: #ddddff;
+  color: black;
+  border-radius: 50%;
+  border: 1px solid #ddddff;
+  padding: 0em 0.4em;
+  margin-left: 2em;
+  background: #ddddff;
 }
 
 li {
-    display: flex;
-    align-content: center;
-    align-items: center;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }
 
 .sidebarto {
-    display: none !important;
+  display: none !important;
 }
 
 .mj {
-    margin-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .hide {
-    transition: all 1s linear;
-    display: none !important;
+  transition: all 1s linear;
+  display: none !important;
 }
 
 .log-img {
-    width: 3em;
-    border-radius: 23px;
-    position: relative;
-    top: -5px;
+  width: 3em;
+  border-radius: 23px;
+  position: relative;
+  top: -5px;
+}
+.sidebar-submenu {
+  overflow: hidden;
+  transition: height 0.3s ease-out, opacity 0.3s ease-out;
 }

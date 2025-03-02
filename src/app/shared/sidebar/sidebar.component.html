@@ -121,7 +121,7 @@
         </a>
 
         <!-- Child Items -->
-        <ul class="sidebar-submenu" *ngIf="item.toggle">
+        <ul class="sidebar-submenu" *ngIf="item.toggle" @submenuAnimation>
           <li *ngFor="let child of sidebar" [hidden]="!child.child">
             <a
               [routerLink]="child.path"
@@ -160,7 +160,7 @@
         </a>
 
         <!-- Child Items -->
-        <ul class="sidebar-submenu" *ngIf="item.toggle">
+        <ul class="sidebar-submenu" *ngIf="item.toggle" @submenuAnimation>
           <li *ngFor="let child of item.children">
             <a
               [routerLink]="child.path"
