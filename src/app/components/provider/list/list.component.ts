@@ -35,7 +35,6 @@ export class ListComponent implements OnInit {
       .getTestmonials()
       .pipe(map((res) => res["data"]))
       .subscribe((response: any) => {
-        console.log(response);
         this.testmoinals = response;
         this.showPlaceholder = false;
         this.spinner.hide();

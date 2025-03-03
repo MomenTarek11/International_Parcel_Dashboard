@@ -33,7 +33,6 @@ export class ListComponent implements OnInit {
         this.spinner.hide();
         this.shippment = res;
         this.showPlaceholder = false;
-        console.log(res);
       });
   }
 }

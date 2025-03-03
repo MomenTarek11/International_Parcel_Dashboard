@@ -65,7 +65,6 @@ export class AddCityComponent implements OnInit {
         }
       );
     } else {
-      console.log("hamo", this.Form.value);
     }
   }
   chooseCountry(country: any) {

@@ -66,8 +66,6 @@ export class HomeComponent implements OnInit {
     this.authService.currentUser.subscribe((user) => {
       if (user) {
         this.user = user;
-        console.log("User from LocalStorage:", user);
-
         // **Update form fields with user data**
         this.personalInfo.patchValue({
           name: user?.data?.user?.name || "",
@@ -86,12 +84,11 @@ export class HomeComponent implements OnInit {
     reader.readAsDataURL(this.file[0]);
     reader.onload = () => {
       this.base64Image = reader.result;
-      console.log("saasdswqadqwedwq", this.file[0]);
     };
     this.showImg = false;
     this.showAvatar = true;
   }
-  
+
   setType(num: any) {
     this.showButtons = false;
     this.type = num;
@@ -110,7 +107,6 @@ export class HomeComponent implements OnInit {
       this.secondtRow = false;
       this.edit = true;
     }
-    console.log("Current Type", this.type);
   }
   onSubmit() {
     if (!this.personalInfo.controls.email.value.length) {
@@ -119,7 +115,6 @@ export class HomeComponent implements OnInit {
     }
     this.service.updatePersonalInfo(this.personalInfo.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.toaster.success("تم التعديل بنجاح");
         this.showButtons = true;
       },

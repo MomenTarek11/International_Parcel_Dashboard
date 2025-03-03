@@ -33,14 +33,12 @@ export class ListComponent implements OnInit {
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
         this.spinner.hide();
-        console.log("res");
-        console.log(res);
+
         this.banners = res;
         this.showPlaceholder = false;
       });
   }
   deleteApp(banner_id) {
-    console.log(banner_id);
     this.spinner.show();
     this.service.deleteBanners(banner_id).subscribe((res) => {
       this.spinner.hide();
@@ -49,7 +47,6 @@ export class ListComponent implements OnInit {
     });
   }
   editPackage(category) {
-    console.log(category);
     let dialogRef = this.dialog.open(EditComponent, {
       data: category,
       height: "650px",

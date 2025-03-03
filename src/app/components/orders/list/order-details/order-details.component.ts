@@ -14,11 +14,7 @@ export class OrderDetailsComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
-    console.log("this.data");
-    console.log(this.data);
-    console.log(this.data);
-  }
+  ngOnInit(): void {}
 
   productDetails(product) {
     this.dialog.closeAll();

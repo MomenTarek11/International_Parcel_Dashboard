@@ -63,7 +63,6 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data?.permissions);
     this.form = this.formbuilder.group({
       name: [this.data?.name, Validators.required],
       email: [this.data?.email, Validators.required],
@@ -71,8 +70,6 @@ export class EditComponent implements OnInit {
       permissions: [[]],
     });
     this.uploadedImage = this.data?.imagePath;
-    console.log("this.data");
-    console.log(this.data);
   }
   get f() {
     return this.form.controls;
@@ -88,16 +85,14 @@ export class EditComponent implements OnInit {
   }
   submit() {
     this.submitted = true;
-    console.log("Form Work");
+
     if (this.form.invalid) {
       return;
     }
     this.spinner.show();
 
-    console.log("submitting the form", this.form.value);
     this.service.editAdmin(this.form.value, this.data.id).subscribe(
       (res: any) => {
-        console.log(res);
         this.spinner.hide();
         if (res.status == true) {
           this.toastr.success("تم تعديل المسؤول بنجاح");

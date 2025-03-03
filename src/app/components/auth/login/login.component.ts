@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
     }
     this.service.login(this.form.value).subscribe(
       (response: any) => {
-        console.log(response);
-        console.log(response);
         this.toaster.success("تم تسجيل الدخول بنجاح");
 
         this.router.navigate(["/home"]);

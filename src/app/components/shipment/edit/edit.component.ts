@@ -26,7 +26,6 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     this.form = this.formbuilder.group({
       shipment_type_id: [this.data.id, Validators.required],
       name_ar: [this.data.name_ar, Validators.required],
@@ -35,18 +34,16 @@ export class EditComponent implements OnInit {
       plan_price: [this.data.plan_price, Validators.required],
       ship_price: [this.data.ship_price, Validators.required],
     });
-    console.log("this.data");
-    console.log(this.data);
   }
 
   // onSelect(event) {
-  //   console.log(event.addedFiles[0]);
+  //
   //   this.files=[]
   //   this.files.push(...event.addedFiles);
   // }
 
   // onRemove(event) {
-  //   console.log(event);
+  //
   //   this.files.splice(this.files.indexOf(event), 1);
   // }
 
@@ -65,7 +62,6 @@ export class EditComponent implements OnInit {
       },
       (err: any) => {
         this.spinner.hide();
-        console.log(err);
         this.toaster.error(err.error.message);
       }
     );

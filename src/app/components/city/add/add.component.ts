@@ -38,7 +38,7 @@ export class AddComponent implements OnInit {
     this.submitted=true;
     this.spinner.show()
     this.service.addsaudiHarbour(this.form.value).subscribe(res=>{
-      console.log(res)
+     
       this.spinner.hide()
       Swal.fire(
         'نجااااح',

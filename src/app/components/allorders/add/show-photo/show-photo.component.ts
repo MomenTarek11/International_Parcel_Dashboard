@@ -26,7 +26,6 @@ export class ShowPhotoComponent implements OnInit {
       this.imageUrl = this.AllData.data;
     }
 
-    console.log("Image URL to display:", this.imageUrl);
   }
 
   close(): void {

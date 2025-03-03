@@ -24,8 +24,6 @@ export class ListComponent implements OnInit {
     this.globalService.allColors().pipe(map(res=>res['data'])).subscribe(res=>{
       this.spinner.hide()
       this.colors=res
-      console.log('allColors')
-      console.log(res)
     })
   }
   activeProduct(product_id){

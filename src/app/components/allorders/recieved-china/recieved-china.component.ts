@@ -32,7 +32,6 @@ export class RecievedChinaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.company_id);
     this.getCompanies();
     this.clientList(1, 0, this.active);
   }
@@ -41,27 +40,21 @@ export class RecievedChinaComponent implements OnInit {
       .getCompanies()
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.companies = res;
       });
   }
   getCompany(company) {
     this.company_id = company;
-    console.log(company);
     this.clientList(1, company, this.active);
   }
 
   clientList(page, company, active) {
-    console.log("company_id", company);
-    console.log("status", active);
-
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 0, 0, 0)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.orders = res;
         this.showPlaceholder = false;
@@ -90,7 +83,6 @@ export class RecievedChinaComponent implements OnInit {
         this.service
           .ChangeOrdersStatus(user_id, status_id, note)
           .subscribe((res: any) => {
-            console.log(res);
             this.spinner.hide();
           });
       }
@@ -101,7 +93,7 @@ export class RecievedChinaComponent implements OnInit {
     this.spinner.show();
     this.service.recieveOrder(order_id, note).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+
       this.clientList(1, this.company_id, this.active);
     });
   }
@@ -110,7 +102,7 @@ export class RecievedChinaComponent implements OnInit {
     this.spinner.show();
     this.service.finishOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+
       this.clientList(1, this.company_id, this.active);
     });
   }
@@ -143,10 +135,10 @@ export class RecievedChinaComponent implements OnInit {
       if (result) {
         this.service.cancelOrder(order_id, note).subscribe((res: any) => {
           this.spinner.hide();
-          console.log(res);
+
           this.clientList(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe((e) => console.log(e));
+        this.service.finishOrder(order_id).subscribe();
       }
     });
   }
@@ -188,7 +180,7 @@ export class RecievedChinaComponent implements OnInit {
         this.spinner.show();
         this.service.changePayment(order_id, 1, text).subscribe((res: any) => {
           this.spinner.hide();
-          console.log(res);
+
           this.clientList(1, this.company_id, this.active);
         });
       },
@@ -210,7 +202,6 @@ export class RecievedChinaComponent implements OnInit {
       showCancelButton: true,
       cancelButtonText: "الغاء",
       preConfirm: () => {
-        console.log(document.getElementById("swal-input1"));
         let priceElement = document.getElementById(
           "swal-input1"
         ) as HTMLInputElement;
@@ -225,11 +216,10 @@ export class RecievedChinaComponent implements OnInit {
           .changePayment(order_id, 1, price, note)
           .subscribe((res: any) => {
             this.spinner.hide();
-            console.log(res);
+
             this.clientList(1, this.company_id, this.active);
           });
-        this.service.finishOrder(order_id).subscribe((e) => console.log(e));
-        console.log(price, note, "jhuyfdjtfjk");
+        this.service.finishOrder(order_id).subscribe();
       },
     }).then((result) => {
       if (result.isConfirmed) {

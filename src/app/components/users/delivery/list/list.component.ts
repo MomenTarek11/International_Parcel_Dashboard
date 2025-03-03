@@ -35,7 +35,6 @@ export class ListComponent implements OnInit {
   getUsers(status_id){
     this.spinner.show()
     this.service.allUsers(status_id).pipe(map(res=>res['data'])).subscribe((response:any)=>{
-      console.log(response)
       this.users = response.data
     this.spinner.hide()
     })

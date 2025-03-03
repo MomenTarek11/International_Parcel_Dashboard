@@ -56,10 +56,8 @@ export class StoresComponent implements OnInit {
       expire_at:this.date,
       
     }
-    console.log(f)
     this.spinner.show()
     this.service.addpromoCode(f).subscribe((res:any)=>{
-      console.log(res)
       this.spinner.hide()
       if(res.status == true){
         Swal.fire(

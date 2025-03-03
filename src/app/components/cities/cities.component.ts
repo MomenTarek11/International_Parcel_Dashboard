@@ -53,7 +53,6 @@ export class CitiesComponent implements OnInit {
         }
       },
       (error: any) => {
-        console.log(error);
       }
     );
   }
@@ -78,7 +77,6 @@ export class CitiesComponent implements OnInit {
       },
       (err: any) => {
         this.showPlaceholder = false;
-        console.log(err);
       }
     );
     localStorage.setItem("country", JSON.stringify(country));

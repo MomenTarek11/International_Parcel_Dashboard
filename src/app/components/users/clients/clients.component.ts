@@ -33,7 +33,6 @@ export class ClientsComponent implements OnInit {
       .pipe(map((res) => res["data"]))
       .subscribe((response: any) => {
         this.spinner.hide();
-        console.log(response);
         this.promocodes = response;
         this.showPlaceholder = false;
       });

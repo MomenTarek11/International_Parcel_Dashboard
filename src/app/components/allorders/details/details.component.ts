@@ -14,7 +14,6 @@ export class DetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     
     if (this.data.weight >= 1000) {
       this.data.weight /= 1000;

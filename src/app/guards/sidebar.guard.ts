@@ -17,9 +17,6 @@ export class SidebarGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    console.log("Current Route:", state.url);
-
-    // Retrieve sidebar items from localStorage
     const sidebar = JSON.parse(localStorage.getItem("sidebar") || "[]");
 
     // Function to extract all paths (including children)
@@ -40,17 +37,13 @@ export class SidebarGuard implements CanActivate {
 
     // Extract all allowed paths (including nested children)
     const allowedPaths = extractPaths(sidebar);
-    console.log("Allowed Paths:", allowedPaths);
 
     // Get the current route path
     const currentPath = state.url;
 
     if (allowedPaths.includes(currentPath)) {
-      console.log("Match Found: true");
       return true;
     }
-
-    console.log("Match Found: false. Redirecting...");
     this.toaster.error("انت ليس معك تصريح للذهاب لهذه الصفحة");
     this.router.navigate(["/home"]); // Redirect to a safe page
     return false;

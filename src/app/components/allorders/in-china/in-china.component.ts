@@ -31,7 +31,6 @@ export class InChinaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.company_id);
     this.getCompanies();
     this.clientList(1, 0, this.active);
   }
@@ -40,25 +39,20 @@ export class InChinaComponent implements OnInit {
       .getCompanies()
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.companies = res;
       });
   }
   getCompany(company) {
     this.company_id = company;
-    console.log(company);
     this.clientList(1, company, this.active);
   }
   clientList(page, company, active) {
-    console.log("company_id", company);
-    console.log("status", active);
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 1, 0, 0)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.orders = res;
         this.showPlaceholder = false;
@@ -116,7 +110,7 @@ export class InChinaComponent implements OnInit {
     this.spinner.show();
     this.service.finishOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+
       this.toaster.success(
         "تم تاكيد الطلب بنجاح والان هو فى الطلبات التي جاري شحنها من الصين"
       );
@@ -151,10 +145,10 @@ export class InChinaComponent implements OnInit {
       if (result) {
         this.service.cancelOrder(order_id, note).subscribe((res: any) => {
           this.spinner.hide();
-          console.log(res);
+
           this.clientList(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe((e) => console.log(e));
+        this.service.finishOrder(order_id).subscribe( );
       }
     });
   }

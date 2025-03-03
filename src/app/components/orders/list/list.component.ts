@@ -36,7 +36,6 @@ export class ListComponent implements OnInit {
       .getClients(active, page)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.clients = res;
         this.showPlaceholder = false;
@@ -51,7 +50,6 @@ export class ListComponent implements OnInit {
     this.spinner.show();
 
     this.service.changeStatus(user_id, status_id).subscribe((res) => {
-      console.log(res);
       this.spinner.hide();
       // this.clients=res
     });

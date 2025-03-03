@@ -38,7 +38,6 @@ export class AddComponent implements OnInit {
     this.spinner.show();
     this.service.addNews(this.form.value).subscribe(
       (res: any) => {
-        console.log(res);
         this.spinner.hide();
         if (res.status == true) {
           this.toaster.success("تم اضافة الخبر بنجاح");

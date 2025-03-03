@@ -33,25 +33,20 @@ export class AddComponent implements OnInit {
   files: File[] = [];
 
   onSelect(event) {
-    console.log(event.addedFiles[0]);
     this.files = [];
     this.files.push(...event.addedFiles);
   }
 
   onRemove(event) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
   submit() {
-    console.log("Form Work");
     this.spinner.show();
     let x = {
       image: this.files[0],
     };
-    console.log(x);
     this.service.addBanners(x).subscribe((res: any) => {
-      console.log(res);
       this.spinner.hide();
       if (res.status == true) {
         Swal.fire("نجاح", "تم إضافة بانر بنجاح", "success").then(() => {

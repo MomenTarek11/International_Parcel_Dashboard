@@ -18,14 +18,12 @@ export class NotesPopUpComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.AllData);
     this.Form = this.fb.group({
       notes: ["", Validators.required],
       order_id: [this.AllData],
     });
   }
   onSubmit() {
-    console.log(this.Form.value);
     this.service.updateNote(this.Form.value).subscribe(
       (res: any) => {
         this.data.close(res.message);

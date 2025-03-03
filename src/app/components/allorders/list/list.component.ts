@@ -55,7 +55,6 @@ export class ListComponent implements OnInit {
       .getOrderspages(page, company, active, 0, 0, 0, 1)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.orders = res;
         this.showPlaceholder = false;

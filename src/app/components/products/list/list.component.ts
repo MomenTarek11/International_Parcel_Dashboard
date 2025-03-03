@@ -41,7 +41,6 @@ export class ListComponent implements OnInit {
     })
   }
   editPackage(category){
-    console.log(category)
     let dialogRef = this.dialog.open(EditComponent, {
       data:category,
       height: '650px',

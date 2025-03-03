@@ -36,14 +36,11 @@ export class AddComponent implements OnInit {
 
 
   submit(){
-    console.log('Form Work')
     this.spinner.show()
     let x={
       ...this.form.value,
     }
-    console.log(x)
     this.service.addShippment(x).subscribe((res:any)=>{
-      console.log(res)
     this.spinner.hide()
         if(res.status == true ){
           Swal.fire(

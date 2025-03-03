@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     AOS.init();
+    console.clear();
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {

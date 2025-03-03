@@ -36,7 +36,6 @@ export class ListComponent implements OnInit {
         this.spinner.hide();
         this.admins = res;
         this.showPlaceholder = false;
-        console.log(res);
       });
   }
 

@@ -33,14 +33,11 @@ export class ListComponent implements OnInit {
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
         this.spinner.hide();
-        console.log("res");
-        console.log(res, "jiughjk");
         this.messages = res?.data;
         this.showPlaceholder = false;
       });
   }
   deleteApp(type_id) {
-    console.log(type_id);
     this.spinner.show();
     this.service.deleteShippment(type_id).subscribe((res) => {
       this.spinner.hide();
@@ -48,15 +45,5 @@ export class ListComponent implements OnInit {
       this.getMessages(1);
     });
   }
-  editPackage(category) {
-    console.log(category);
-    // let dialogRef = this.dialog.open(EditComponent, {
-    //   data:category,
-    //   height: '650px',
-    //   width: '600px',
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.getMessages(1)
-    // });
-  }
+ 
 }

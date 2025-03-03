@@ -41,7 +41,6 @@ export class ListComponent implements OnInit {
       });
   }
   deleteApp(banner_id) {
-    console.log(banner_id);
     this.spinner.show();
     this.service.deleteNews(banner_id).subscribe((res: any) => {
       this.spinner.hide();
@@ -50,7 +49,6 @@ export class ListComponent implements OnInit {
     });
   }
   editPackage(category) {
-    console.log(category);
     let dialogRef = this.dialog.open(EditComponent, {
       data: category,
     });

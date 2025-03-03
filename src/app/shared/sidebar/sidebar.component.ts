@@ -29,7 +29,6 @@ export class SidebarComponent implements OnInit {
   constructor(private service: AuthenticationService) {
     this.service.currentUser.subscribe((user) => {
       this.user = user;
-      console.log(user);
     });
   }
   totalTags: any = [
@@ -328,7 +327,6 @@ export class SidebarComponent implements OnInit {
     this.remainingSidebar = this.sidebar.filter((tag) => tag.id >= 13);
 
     localStorage.setItem("sidebar", JSON.stringify(this.sidebar));
-    console.log(this.sidebar);
   }
 
   toggler() {

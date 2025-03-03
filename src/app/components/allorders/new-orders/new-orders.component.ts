@@ -24,7 +24,6 @@ export class NewOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.company_id);
     this.getCompanies();
     this.clientList(0, this.active);
   }
@@ -33,26 +32,21 @@ export class NewOrdersComponent implements OnInit {
       .getCompanies()
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.companies = res;
       });
   }
   getCompany(company) {
     this.company_id = company;
-    console.log(company);
     this.clientList(company, this.active);
   }
   clientList(company, active) {
-    console.log("company_id", company);
-    console.log("status", active);
 
     this.spinner.show();
     this.service
       .getOrders(company, active)
       .pipe(map((res) => res["data"].data))
       .subscribe((res) => {
-        console.log(res);
         this.spinner.hide();
         this.orders = res;
       });
@@ -63,7 +57,6 @@ export class NewOrdersComponent implements OnInit {
     this.service
       .ChangeOrdersStatus(user_id, status_id)
       .subscribe((res: any) => {
-        console.log(res);
         this.spinner.hide();
       });
   }
@@ -71,7 +64,7 @@ export class NewOrdersComponent implements OnInit {
     this.spinner.show();
     this.service.ConfirmOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+
       this.clientList(this.company_id, this.active);
     });
   }
@@ -79,7 +72,7 @@ export class NewOrdersComponent implements OnInit {
     this.spinner.show();
     this.service.recieveOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+
       this.clientList(this.company_id, this.active);
     });
   }
@@ -87,7 +80,7 @@ export class NewOrdersComponent implements OnInit {
     this.spinner.show();
     this.service.finishOrder(order_id).subscribe((res: any) => {
       this.spinner.hide();
-      console.log(res);
+
       this.clientList(this.company_id, this.active);
     });
   }

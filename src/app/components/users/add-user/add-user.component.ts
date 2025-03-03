@@ -23,8 +23,6 @@ export class AddUserComponent implements OnInit {
   }
 
   submit(){
-    // console.log('Form Work')
-    // console.log(this.form.value)
     Swal.fire(
       'نجاح',
       'تم إضافة الشخص بنجاح',

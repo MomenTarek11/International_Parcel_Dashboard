@@ -23,7 +23,6 @@ export class EditCategoryComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.data)
     this.form=this.formbuilder.group({
       name_ar:[this.data.name_ar,Validators.required],
       name_en:[this.data.name_en,Validators.required],
@@ -55,9 +54,7 @@ onRemove(event) {
       image:this.files[0],
       company_id:this.data.id
     }
-    console.log('submitting the form', form)
     this.service.editinterNationalCompany(form).subscribe((res:any)=>{
-      console.log(res)
     this.spinner.hide()
     if(res.status == true){
       Swal.fire(

@@ -28,7 +28,6 @@ export class PopUpComponent {
     this.Data = AllData;
   }
   ngOnInit(): void {
-    console.log(this.Data);
     if (this.Data.type == "confirm_order") {
       this.confirmMode = true;
     }
@@ -73,7 +72,6 @@ export class PopUpComponent {
         },
         (error) => {
           this.spinner.hide();
-          console.log(error);
         }
       );
     } else if (this.Data.type == "delete_city") {
@@ -84,7 +82,7 @@ export class PopUpComponent {
       // this.spinner.show();
       this.globalService.deleteAdmin(this.Data.id).subscribe((res) => {
         this.spinner.hide();
-        this.data.close('تم حذف المشرف بنجاح');
+        this.data.close("تم حذف المشرف بنجاح");
       });
     } else {
       this.globalService
@@ -106,7 +104,6 @@ export class PopUpComponent {
           },
           (err) => {
             this.spinner.hide();
-            console.log(err);
           }
         );
       } else if (this.Data.type == "edit") {
@@ -117,7 +114,6 @@ export class PopUpComponent {
           },
           (err) => {
             this.spinner.hide();
-            console.log(err);
           }
         );
       } else if (this.Data.type == "add_city") {
@@ -139,7 +135,6 @@ export class PopUpComponent {
             }
           },
           (error: any) => {
-            console.log(error);
           }
         );
       }

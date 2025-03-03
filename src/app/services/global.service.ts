@@ -298,7 +298,7 @@ export class GlobalService {
   }
 
   addAdmin(f) {
-    console.log(f);
+    
     const formData = new FormData();
     formData.append("name", f.name);
     formData.append("email", f.email);
@@ -307,7 +307,6 @@ export class GlobalService {
     formData.append("image", f.image);
     if (f.permissions.length > 0) {
       for (let i = 0; i < f.permissions.length; i++) {
-        console.log(f.permissions, "perkdfslj,.md");
 
         formData.append(`permissions[${i}]`, f.permissions[i]);
       }
@@ -315,7 +314,6 @@ export class GlobalService {
     return this.http.post(`${environment.endpoint}/backend/admins`, formData);
   }
   editAdmin(f, id: any) {
-    console.log(f);
     const formData = new FormData();
     formData.append("name", f.name);
     // formData.append("email", f.email);
@@ -324,7 +322,6 @@ export class GlobalService {
     }
     if (f.permissions.length > 0) {
       for (let i = 0; i < f.permissions.length; i++) {
-        console.log(f.permissions, "perkdfslj,.md");
         formData.append(`permissions[${i}]`, f.permissions[i]);
       }
     }
@@ -415,10 +412,10 @@ export class GlobalService {
   getOrdersPagination(object) {
     var url: any = new URL(`${environment.endpoint}/backend/orders`);
     for (const [key, value] of Object.entries(object)) {
-      console.log(key, value);
+     
       url.searchParams.append(key, value);
     }
-    console.log(url, "url here");
+  
 
     return this.http.get(url.href);
   }
@@ -564,25 +561,25 @@ export class GlobalService {
   }
   addCategory(f) {
     const formData: FormData = new FormData();
-    console.log(f);
+   
     formData.append("name_en", f.name_en);
     formData.append("name_ar", f.name_ar);
     formData.append("image", f.image);
-    console.log(formData);
+   
     return this.http.post(
       `${environment.endpoint}/main-specialists/create`,
       formData
     );
   }
   editCategory(f) {
-    console.log("ss", f);
+    
     const formData: FormData = new FormData();
     formData.append("image", f.image);
     formData.append("title_ar", f.name);
     formData.append("main_specialist_id", f.main_specialist_id);
     formData.append("name_ar", f.name_ar);
     formData.append("name_en", f.name_en);
-    console.log("hello form", formData);
+  
     return this.http.post(
       `${environment.endpoint}/main-specialists/edit`,
       formData
@@ -612,7 +609,7 @@ export class GlobalService {
     );
   }
   editSubCategory(f) {
-    console.log(f);
+    
     const formData: FormData = new FormData();
     formData.append("name_en", f.name_en);
     formData.append("name_ar", f.name_ar);
@@ -620,7 +617,7 @@ export class GlobalService {
     formData.append("image", f.image);
     formData.append("title_ar", f.title_ar);
     formData.append("secondary_specialist_id", f.secondary_specialist_id);
-    console.log(formData);
+    
     return this.http.post(
       `${environment.endpoint}/secondary-specialists/edit`,
       formData
@@ -638,7 +635,7 @@ export class GlobalService {
     return this.http.get(`${environment.endpoint}/cities`);
   }
   addCity(f) {
-    console.log(f);
+   
     const addedCity: FormData = new FormData();
     addedCity.append("name_en", f.name_en);
     addedCity.append("name_ar", f.name_ar);
@@ -646,13 +643,6 @@ export class GlobalService {
     return this.http.post(`${environment.endpoint}/cities/create`, addedCity);
   }
   editCity(f) {
-    // const formData:FormData = new FormData()
-    console.log(f);
-    // formData.append('name_en',f.name_en)
-    // formData.append('title_ar',f.name_ar)
-    // formData.append('name_ar',f.name_ar)
-    // formData.append('city_id',f.id)
-    // formData.append('image',f.image)
     return this.http.post(`${environment.endpoint}/cities/edit`, f);
   }
   deleteCity(city_id) {
@@ -677,7 +667,6 @@ export class GlobalService {
     return this.http.post(`${environment.endpoint}/banners/create`, formData);
   }
   editBanner(f) {
-    console.log(f);
     const formData: FormData = new FormData();
     formData.append("title_en", f.title_en);
     formData.append("title_ar", f.title_ar);
@@ -689,7 +678,7 @@ export class GlobalService {
     return this.http.post(`${environment.endpoint}/banners/edit`, formData);
   }
   deleteBanner(banner_id) {
-    console.log(banner_id);
+   
     return this.http.get(
       `${environment.endpoint}/banners/delete?banner_id=${banner_id}`
     );
@@ -713,7 +702,7 @@ export class GlobalService {
 
   //All Users
   allUsers(active) {
-    console.log(active);
+   
 
     return this.http.get(
       `${environment.endpoint}/users?type=1&active=${active}`
@@ -721,7 +710,7 @@ export class GlobalService {
   }
 
   allProviders(active) {
-    console.log(active);
+    
     return this.http.get(
       `${environment.endpoint}/users?type=2&active=${active}`
     );
@@ -748,11 +737,6 @@ export class GlobalService {
   }
 
   changeUserStatus(user_id, active_id) {
-    // const formData:FormData = new FormData()
-    // formData.append('user_id',user_id)
-    // formData.append('active_id',active_id)
-    console.log("hello fro change", user_id, active_id);
-    // ${environment.endpoint}/users?type=2&active=${active}
     return this.http.get(
       `${environment.endpoint}/users/active?user_id=${user_id}&active=${active_id}`
     );
@@ -837,7 +821,6 @@ export class GlobalService {
   }
   createOrder(form: any) {
     const formData = new FormData();
-    console.log(form);
 
     formData.append("user_name", form.user_name);
     formData.append("user_phone", form.user_phone);

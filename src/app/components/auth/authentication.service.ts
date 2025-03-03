@@ -38,7 +38,6 @@ export class AuthenticationService {
     const formData: FormData = new FormData();
     formData.append("email", form.phone);
     formData.append("password", form.password);
-    // new Response(formData).text().then(console.log)
     return this.http
       .post(`${environment.endpoint}/backend/login`, formData)
       .pipe(

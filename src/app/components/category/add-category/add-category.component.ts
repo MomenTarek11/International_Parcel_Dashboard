@@ -38,26 +38,22 @@ export class AddCategoryComponent implements OnInit {
 
 
   onSelect(event) {
-    console.log(event.addedFiles[0]);
     this.files=[]
     this.files.push(...event.addedFiles);
   }
 
   onRemove(event) {
-    console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
 
   submit(){
-    console.log('Form Work')
     this.spinner.show()
     let x={
       ...this.form.value,
       image:this.files[0]
     }
-    console.log(x)
     this.service.addinterNationalCompany(x).subscribe(res=>{
-      console.log(res)
+   
     this.spinner.hide()
     Swal.fire(
         'نجاح',

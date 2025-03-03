@@ -38,7 +38,6 @@ export class AddComponent implements OnInit {
 
   submit() {
     this.spinner.show();
-    console.log(this.form.value);
     this.service.addShipmentType(this.form.value).subscribe(
       (res: any) => {
         this.spinner.hide();
@@ -51,7 +50,6 @@ export class AddComponent implements OnInit {
       },
       (err: any) => {
         this.spinner.hide();
-        console.log(err);
         this.toaster.error(err.error.message);
       }
     );

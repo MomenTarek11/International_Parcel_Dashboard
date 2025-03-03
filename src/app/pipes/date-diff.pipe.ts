@@ -4,7 +4,6 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class DateDiffPipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): unknown {
-    // console.log(value)
     for (let index = 0; index < value?.length; index++) {
       var today: any = new Date();
 
@@ -20,7 +19,6 @@ export class DateDiffPipe implements PipeTransform {
         ((end - start) * 100) / today
       );
     }
-    // console.log(value)
     return value;
   }
 }

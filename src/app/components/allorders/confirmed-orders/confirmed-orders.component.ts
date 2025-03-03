@@ -31,41 +31,27 @@ export class ConfirmedOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.orders);
     // this.getCompanies();
     this.clientList(1, 0, this.active);
   }
 
   getCompany(company) {
     this.company_id = company;
-    console.log(company);
     this.clientList(1, company, this.active);
   }
   clientList(page, company, active) {
-    console.log("company_id", company);
-    console.log("status", active);
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        console.log("dsafasd", res);
         this.spinner.hide();
         this.orders = res;
         this.showPlaceholder = false;
-        console.log("orders", this.orders);
       });
   }
 
-  // changeStatus(user_id, status_id) {
-  //   this.spinner.show();
-  //   this.service
-  //     .ChangeOrdersStatus(user_id, status_id)
-  //     .subscribe((res: any) => {
-  //       console.log(res);
-  //       this.spinner.hide();
-  //     });
-  // }
+
   reciveOrder(order_id, note) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
