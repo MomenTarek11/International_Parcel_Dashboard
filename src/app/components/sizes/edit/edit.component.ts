@@ -71,8 +71,6 @@ export class EditComponent implements OnInit {
       permissions: [[]],
     });
     this.uploadedImage = this.data?.imagePath;
-
-    // this.selectedItems = [];
     console.log("this.data");
     console.log(this.data);
   }
@@ -82,13 +80,12 @@ export class EditComponent implements OnInit {
   files: File[] = [];
 
   onSelectAll() {
-    const selected = this.AllPermitions.map((item) => item.section_name);
+    const selected = this.AllPermitions.map((item) => item.section_id);
     this.form.get("permissions").patchValue(selected);
   }
   onClearAll() {
     this.form.get("permissions").patchValue([]);
   }
-
   submit() {
     this.submitted = true;
     console.log("Form Work");
