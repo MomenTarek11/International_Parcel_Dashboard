@@ -298,7 +298,6 @@ export class GlobalService {
   }
 
   addAdmin(f) {
-    
     const formData = new FormData();
     formData.append("name", f.name);
     formData.append("email", f.email);
@@ -307,7 +306,6 @@ export class GlobalService {
     formData.append("image", f.image);
     if (f.permissions.length > 0) {
       for (let i = 0; i < f.permissions.length; i++) {
-
         formData.append(`permissions[${i}]`, f.permissions[i]);
       }
     }
@@ -412,10 +410,8 @@ export class GlobalService {
   getOrdersPagination(object) {
     var url: any = new URL(`${environment.endpoint}/backend/orders`);
     for (const [key, value] of Object.entries(object)) {
-     
       url.searchParams.append(key, value);
     }
-  
 
     return this.http.get(url.href);
   }
@@ -514,14 +510,14 @@ export class GlobalService {
     );
   }
 
-  changePayment(id, changed: any = 1, price, note = "") {
+  UpdatePayment(form: any) {
     let formData = new FormData();
-    formData.append("order_id", id);
-    formData.append("is_changed", changed);
-    formData.append("calculated_price", price);
+    formData.append("order_id", form.order_id);
+    formData.append("is_changed", form.isChanged);
+    formData.append("calculated_price", form.price);
 
     return this.http.post(
-      `${environment.endpoint}/backend/orders/check-price?note=${note}`,
+      `${environment.endpoint}/backend/orders/update-price`,
       formData
     );
   }
@@ -561,25 +557,24 @@ export class GlobalService {
   }
   addCategory(f) {
     const formData: FormData = new FormData();
-   
+
     formData.append("name_en", f.name_en);
     formData.append("name_ar", f.name_ar);
     formData.append("image", f.image);
-   
+
     return this.http.post(
       `${environment.endpoint}/main-specialists/create`,
       formData
     );
   }
   editCategory(f) {
-    
     const formData: FormData = new FormData();
     formData.append("image", f.image);
     formData.append("title_ar", f.name);
     formData.append("main_specialist_id", f.main_specialist_id);
     formData.append("name_ar", f.name_ar);
     formData.append("name_en", f.name_en);
-  
+
     return this.http.post(
       `${environment.endpoint}/main-specialists/edit`,
       formData
@@ -609,7 +604,6 @@ export class GlobalService {
     );
   }
   editSubCategory(f) {
-    
     const formData: FormData = new FormData();
     formData.append("name_en", f.name_en);
     formData.append("name_ar", f.name_ar);
@@ -617,7 +611,7 @@ export class GlobalService {
     formData.append("image", f.image);
     formData.append("title_ar", f.title_ar);
     formData.append("secondary_specialist_id", f.secondary_specialist_id);
-    
+
     return this.http.post(
       `${environment.endpoint}/secondary-specialists/edit`,
       formData
@@ -635,7 +629,6 @@ export class GlobalService {
     return this.http.get(`${environment.endpoint}/cities`);
   }
   addCity(f) {
-   
     const addedCity: FormData = new FormData();
     addedCity.append("name_en", f.name_en);
     addedCity.append("name_ar", f.name_ar);
@@ -678,7 +671,6 @@ export class GlobalService {
     return this.http.post(`${environment.endpoint}/banners/edit`, formData);
   }
   deleteBanner(banner_id) {
-   
     return this.http.get(
       `${environment.endpoint}/banners/delete?banner_id=${banner_id}`
     );
@@ -702,15 +694,12 @@ export class GlobalService {
 
   //All Users
   allUsers(active) {
-   
-
     return this.http.get(
       `${environment.endpoint}/users?type=1&active=${active}`
     );
   }
 
   allProviders(active) {
-    
     return this.http.get(
       `${environment.endpoint}/users?type=2&active=${active}`
     );

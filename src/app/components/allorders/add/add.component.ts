@@ -163,32 +163,47 @@ export class AddComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
+    // Ensure user_phone exists before modifying
+    const userPhone = this.Form.controls.user_phone.value?.number || "";
+    const userCountryCode = this.Form.controls.user_phone.value?.dialCode || "";
+
     this.Form.patchValue({
-      user_phone: this.Form.controls.user_phone.value.number.replace(
-        /[^0-9]/g,
-        ""
-      ),
-      user_country_code: this.Form.controls.user_phone.value.dialCode.replace(
-        "+",
-        ""
-      ),
+      user_phone: userPhone.replace(/[^0-9]/g, "").slice(1), // Remove first digit
+      user_country_code: userCountryCode.replace("+", ""),
     });
+
+    // Ensure form values are updated
+    this.Form.updateValueAndValidity();
+
+    console.log("Form Status:", this.Form.status); // Should be "VALID" if correct
+    console.log("Form Errors:", this.Form.errors); // Should be null if valid
+    console.log("Form Controls:", this.Form.controls); // Check individual controls
+
     let form = {
       ...this.Form.value,
       invoice: this.commercialInvoice,
       list: this.packingList,
     };
-    if (this.Form.valid) {
-      this.spinner.show();
-      this.globalServices.createOrder(form).subscribe((res: any) => {
-        this.spinner.hide();
-        this.toaster.success("تم اضافة الطلب بنجاح");
-        this.router.navigate(["app/orders/recievedChina"]);
-      }),
-        (err) => {
-          this.spinner.hide();
-          this.toaster.error("حدث خطأ ما");
-        };
-    }
+
+    setTimeout(() => {
+      console.log("Final Form Status:", this.Form.status); // Check again after delay
+      if (this.Form.valid) {
+        this.spinner.show();
+        this.globalServices.createOrder(form).subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            this.toaster.success("تم اضافة الطلب بنجاح");
+            this.router.navigate(["app/orders/recievedChina"]);
+          },
+          (err) => {
+            this.spinner.hide();
+            this.toaster.error("حدث خطأ ما");
+          }
+        );
+      } else {
+        console.log("❌ Form is still invalid!", form);
+      }
+    }, 100); // Small delay to allow form revalidation
   }
 }

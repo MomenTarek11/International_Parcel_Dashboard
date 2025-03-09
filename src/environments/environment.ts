@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   // endpoint: "https://apitest.ipe2w.com/api",
   endpoint: "https://api.ipe2w.com/api",
   // baseURL: "https://apitest.ipe2w.com/api",

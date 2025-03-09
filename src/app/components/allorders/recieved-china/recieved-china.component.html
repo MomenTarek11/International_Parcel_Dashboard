@@ -45,15 +45,15 @@
                     <td>{{ order.user.phone }}</td>
                     <td>{{ order?.updated_at | date }}</td>
                     <td>
-                      <span *ngIf="!order.is_changed && payed">
+                      <span *ngIf="order.user.status == 2">
                         <i
                           style="cursor: pointer"
                           class="fas fa-check text-success"
-                          (click)="changeStatus(order.id, 3, '')"
+                          (click)="acceptOfflineOrder(order.id)"
                         ></i>
                         |
                       </span>
-                      <span *ngIf="!order.is_changed">
+                      <span *ngIf="!order.is_changed && order.user.status != 2">
                         <i
                           style="cursor: pointer"
                           class="fa fa-usd text-success"

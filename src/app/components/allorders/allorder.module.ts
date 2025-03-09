@@ -25,6 +25,7 @@ import { NgxIntlTelInputModule } from "ngx-intl-tel-input";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { ShowPhotoComponent } from './add/show-photo/show-photo.component';
 import { OfflineComponent } from './offline/offline.component';
+import { PaymentPopUpComponent } from './recieved-china/payment-pop-up/payment-pop-up.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { OfflineComponent } from './offline/offline.component';
     AddComponent,
     ShowPhotoComponent,
     OfflineComponent,
+    PaymentPopUpComponent,
   ],
   imports: [
     CommonModule,

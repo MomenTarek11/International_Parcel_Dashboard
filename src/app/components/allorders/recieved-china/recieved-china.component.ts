@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.component";
 import { ToastrService } from "ngx-toastr";
+import { PaymentPopUpComponent } from "./payment-pop-up/payment-pop-up.component";
 
 @Component({
   selector: "app-recieved-china",
@@ -61,13 +62,12 @@ export class RecievedChinaComponent implements OnInit {
       });
   }
 
-  changeStatus(user_id, status_id = 3, note) {
+  acceptOfflineOrder(user_id) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
       button: "تأكيد",
       type: "confirm_order",
       id: user_id,
-      note: note,
     };
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",
@@ -81,9 +81,11 @@ export class RecievedChinaComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.service
-          .ChangeOrdersStatus(user_id, status_id, note)
+          .UpdatePayment({ order_id: user_id, isChanged: 0, price: 0 })
           .subscribe((res: any) => {
             this.spinner.hide();
+            this.toaster.success("تم التحديث بنجاح");
+            this.clientList(1, this.company_id, this.active);
           });
       }
     });
@@ -161,71 +163,23 @@ export class RecievedChinaComponent implements OnInit {
         }
       });
   }
-
-  async changePayment(order_id) {
-    Swal.fire({
-      title: "اكتب المبلغ",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off",
-        class: "dir-ltr",
-        dir: "auto",
-      },
-      // showCancelButton: true,
-      confirmButtonText: "اضافة",
-      showCancelButton: true,
-      cancelButtonText: "الغاء",
-      showLoaderOnConfirm: true,
-      preConfirm: (text) => {
-        this.spinner.show();
-        this.service.changePayment(order_id, 1, text).subscribe((res: any) => {
-          this.spinner.hide();
-
+  changePayment(id: any) {
+    this.dialog
+      .open(PaymentPopUpComponent, {
+        width: "400px",
+        height: "auto",
+        maxWidth: "90vw",
+        maxHeight: "90vh",
+        autoFocus: false,
+        data: id,
+      })
+      .afterClosed()
+      .subscribe((result: any) => {
+        console.log(result);
+        if (result) {
+          this.toaster.success(result);
           this.clientList(1, this.company_id, this.active);
-        });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("تم القبول بنجاح", "", "success");
-        this.clientList(1, this.company_id, this.active);
-      }
-    });
-
-    await Swal.fire({
-      title: "اكتب المبلغ و التعليق",
-      html:
-        '<input id="swal-input1" placeholder="اكتب المبلغ هنا" class="swal2-input">' +
-        '<input id="swal-input2" placeholder="اكتب التعليق " class="swal2-input">',
-      focusConfirm: false,
-      confirmButtonText: "اضافة",
-      showCancelButton: true,
-      cancelButtonText: "الغاء",
-      preConfirm: () => {
-        let priceElement = document.getElementById(
-          "swal-input1"
-        ) as HTMLInputElement;
-        let noteElement = document.getElementById(
-          "swal-input2"
-        ) as HTMLInputElement;
-
-        let price = priceElement?.value;
-        let note = noteElement?.value;
-        this.spinner.show();
-        this.service
-          .changePayment(order_id, 1, price, note)
-          .subscribe((res: any) => {
-            this.spinner.hide();
-
-            this.clientList(1, this.company_id, this.active);
-          });
-        this.service.finishOrder(order_id).subscribe();
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("تم القبول بنجاح", "", "success");
-        this.clientList(1, this.company_id, this.active);
-      }
-    });
+        }
+      });
   }
 }

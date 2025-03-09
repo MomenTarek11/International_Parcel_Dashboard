@@ -57,7 +57,6 @@ export class FromChinaComponent implements OnInit {
         this.showPlaceholder = false;
       });
   }
-
   confirmOrder(order_id) {
     this.spinner.show();
     this.service.ConfirmOrder(order_id).subscribe((res: any) => {
