@@ -1,12 +1,4 @@
 <section id="add-main-page" data-aos="fade-left">
-  <!-- <div class="form-group">
-        <label for=""> اسم الشركة </label>
-        <select class="form-control p-1" (change)="getCompany($event.target.value)">
-            <option></option>
-            <option  [value]="company.id" *ngFor="let company of companies">{{ company.name_ar }}</option>
-        </select>
-    </div> -->
-
   <div class="container-fluid">
     <div class="row" *ngIf="orders?.data?.length != 0">
       <div class="row w-100">
@@ -86,7 +78,6 @@
       [header]="['#', ' عربي', ' انجليزي', 'صيني', 'Action']"
     ></app-placeholder>
   </div>
-
   <div class="pagination justify-content-center" *ngIf="orders?.length > 16">
     <nav aria-label="Page navigation example" class="w-50 mx-auto">
       <ul class="pagination w-50 m-auto row">
