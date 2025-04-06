@@ -13,7 +13,7 @@ import { EditCountryComponent } from "../edit-country/edit-country.component";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  brands;
+  // brands;
   baseUrl = environment.baseURL;
   countries;
   constructor(

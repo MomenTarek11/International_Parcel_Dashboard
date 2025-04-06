@@ -35,10 +35,6 @@ export class ConfirmedOrdersComponent implements OnInit {
     this.clientList(1, 0, this.active);
   }
 
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
   clientList(page, company, active) {
     this.spinner.show();
     this.service
@@ -50,7 +46,6 @@ export class ConfirmedOrdersComponent implements OnInit {
         this.showPlaceholder = false;
       });
   }
-
 
   reciveOrder(order_id, note) {
     this.data = {

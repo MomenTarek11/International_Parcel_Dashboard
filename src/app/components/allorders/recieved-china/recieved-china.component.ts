@@ -33,24 +33,9 @@ export class RecievedChinaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowOrders(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-
-  clientList(page, company, active) {
+ShowOrders(page, company, active) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 0, 0, 0)
@@ -85,29 +70,12 @@ export class RecievedChinaComponent implements OnInit {
           .subscribe((res: any) => {
             this.spinner.hide();
             this.toaster.success("تم التحديث بنجاح");
-            this.clientList(1, this.company_id, this.active);
+            this.ShowOrders(1, this.company_id, this.active);
           });
       }
     });
   }
 
-  reciveOrder(order_id, note) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id, note).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
@@ -138,9 +106,9 @@ export class RecievedChinaComponent implements OnInit {
         this.service.cancelOrder(order_id, note).subscribe((res: any) => {
           this.spinner.hide();
 
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrders(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe();
+        // this.service.finishOrder(order_id).subscribe();
       }
     });
   }
@@ -159,7 +127,7 @@ export class RecievedChinaComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrders(1, this.company_id, this.active);
         }
       });
   }
@@ -178,7 +146,7 @@ export class RecievedChinaComponent implements OnInit {
         console.log(result);
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrders(1, this.company_id, this.active);
         }
       });
   }

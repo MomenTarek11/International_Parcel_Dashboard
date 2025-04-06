@@ -148,7 +148,7 @@ export class InChinaComponent implements OnInit {
 
           this.clientList(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe( );
+        // this.service.finishOrder(order_id).subscribe( );
       }
     });
   }

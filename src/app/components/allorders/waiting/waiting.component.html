@@ -25,10 +25,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let order of orders?.data; let i = index">
-                  <th scope="row" class="text-light">{{ i + 1 }}</th>
-                  <th scope="row" class="text-light">
+                  <td scope="row">{{ i + 1 }}</td>
+                  <td scope="row">
                     {{ order.order_refrence }}
-                  </th>
+                  </td>
 
                   <td>{{ order?.user.name }}</td>
                   <td>{{ order?.user.email }}</td>
@@ -59,15 +59,16 @@
     <nav aria-label="Page navigation example " class="w-50 m-auto">
       <ul class="pagination w-50 m-auto row">
         <li
+          *ngIf="orders?.current_page > 1"
           class="page-item col"
-          (click)="clientList(orders?.current_page - 1, 1, this.active)"
+          (click)="getWaitingOrders(orders?.current_page - 1, 1, this.active)"
         >
           <button class="btn btn-primary">السابق</button>
         </li>
-
         <li
+          *ngIf="orders?.current_page < orders?.last_page"
           class="page-item col"
-          (click)="clientList(orders?.current_page + 1, 1, this.active)"
+          (click)="getWaitingOrders(orders?.current_page + 1, 1, this.active)"
         >
           <button class="btn btn-primary">التالي</button>
         </li>
