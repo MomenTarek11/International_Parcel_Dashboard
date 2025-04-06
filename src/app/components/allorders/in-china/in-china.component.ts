@@ -116,6 +116,7 @@ export class InChinaComponent implements OnInit {
 
           this.ShowPendingOrders(1, this.company_id, this.active);
         });
+
       }
     });
   }

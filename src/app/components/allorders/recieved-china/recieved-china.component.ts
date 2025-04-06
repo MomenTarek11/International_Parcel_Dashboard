@@ -35,6 +35,7 @@ export class RecievedChinaComponent implements OnInit {
     this.ShowOrders(1, 0, this.active);
   }
 ShowOrders(page:number, company:any, active:number) {
+
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 0, 0, 0)
@@ -76,6 +77,7 @@ ShowOrders(page:number, company:any, active:number) {
   }
 
   viewOrder(order:any) {
+
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
       height: "450px",
@@ -106,6 +108,7 @@ ShowOrders(page:number, company:any, active:number) {
 
           this.ShowOrders(1, this.company_id, this.active);
         });
+
       }
     });
   }

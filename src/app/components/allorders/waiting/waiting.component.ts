@@ -12,6 +12,7 @@ import { DetailsComponent } from "../details/details.component";
 export class WaitingComponent implements OnInit {
   orders: any;
   active: number = 0;
+
   showPlaceholder: boolean = true;
 
   constructor(

@@ -1,14 +1,4 @@
 <section id="add-main-page">
-  <!-- <div class="form-group">
-    <label for=""> اسم الشركة </label>
-    <select class="form-control p-1" (change)="getCompany($event.target.value)">
-      <option></option>
-      <option [value]="company.id" *ngFor="let company of companies">
-        {{ company.name_ar }}
-      </option>
-    </select>
-  </div> -->
-
   <div class="container-fluid">
     <div class="row w-100">
       <div class="col-md-12">
@@ -39,9 +29,10 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let order of orders?.data; let i = index">
-                        <td scope="row" >
+                        <td scope="row">
                           {{ order.order_refrence }}
                         </td>
+
                         <td>{{ order?.user?.name }}</td>
                         <td>{{ order?.user?.email }}</td>
                         <td>{{ order?.user?.phone }}</td>
@@ -104,7 +95,9 @@
       <ul class="pagination">
         <li
           class="page-item"
-          (click)="showConfirmedOrders(orders?.current_page - 1, 1, this.active)"
+          (click)="
+            showConfirmedOrders(orders?.current_page - 1, 1, this.active)
+          "
         >
           <a class="page-link text-success">السابق</a>
         </li>
@@ -121,7 +114,9 @@
         </li>
         <li
           class="page-item"
-          (click)="showConfirmedOrders(orders?.current_page + 1, 1, this.active)"
+          (click)="
+            showConfirmedOrders(orders?.current_page + 1, 1, this.active)
+          "
         >
           <a class="page-link text-success">التالي</a>
         </li>
@@ -129,7 +124,7 @@
     </nav>
   </div>
 </section>
-<section id="add-main-page" *ngIf="orders?.data.length == 0; showPlaceholder">
+<section id="add-main-page" *ngIf="orders?.data.length == 0 && showPlaceholder">
   <div class="card">
     <div class="row">
       <div class="col-md-12">
