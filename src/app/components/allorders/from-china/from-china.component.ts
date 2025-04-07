@@ -3,9 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { map } from "rxjs/operators";
 import { GlobalService } from "src/app/services/global.service";
-import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
-import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.component";
@@ -30,19 +28,10 @@ export class FromChinaComponent implements OnInit {
     private toaster: ToastrService
   ) {}
   ngOnInit(): void {
-    this.clientList(1, 0, this.active);
+    this.ShowOrdersThatGetFromChina(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
+  ShowOrdersThatGetFromChina(page, company, active) {
 
-  clientList(page, company, active) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -52,27 +41,6 @@ export class FromChinaComponent implements OnInit {
         this.orders = res;
         this.showPlaceholder = false;
       });
-  }
-  confirmOrder(order_id) {
-    this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  reciveOrder(order_id) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
   }
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
@@ -105,14 +73,13 @@ export class FromChinaComponent implements OnInit {
           (res: any) => {
             this.spinner.hide();
             this.toaster.error("تم الغاء الطلب");
-            this.clientList(1, this.company_id, this.active);
+            this.ShowOrdersThatGetFromChina(1, this.company_id, this.active);
           },
           (err: any) => {
             this.spinner.hide();
             this.toaster.error(err.error.message);
           }
         );
-        this.service.finishOrder(order_id).subscribe();
       }
     });
   }
@@ -141,7 +108,7 @@ export class FromChinaComponent implements OnInit {
             this.toaster.success(
               "اصبح الطلب الان فى الشحنات التى فى ميناء المملكة تحت المراجعة الجمركية"
             );
-            this.clientList(1, this.company_id, this.active);
+            this.ShowOrdersThatGetFromChina(1, this.company_id, this.active);
           },
           (err: any) => {
             this.spinner.hide();
@@ -166,7 +133,7 @@ export class FromChinaComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrdersThatGetFromChina(1, this.company_id, this.active);
         }
       });
   }

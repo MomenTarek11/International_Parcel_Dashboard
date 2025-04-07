@@ -29,10 +29,10 @@
                   <td scope="row">
                     {{ order.order_refrence }}
                   </td>
+                  <td>{{ order?.user?.name }}</td>
+                  <td>{{ order?.user?.email }}</td>
+                  <td>{{ order?.user?.phone }}</td>
 
-                  <td>{{ order?.user.name }}</td>
-                  <td>{{ order?.user.email }}</td>
-                  <td>{{ order?.user.phone }}</td>
                   <td>{{ order?.updated_at | date }}</td>
                   <td>
                     <i

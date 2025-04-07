@@ -15,7 +15,7 @@
             <div class="panel-heading py-5 text-center">
               <div class="row">
                 <div class="col col-sm-12 col-xs-12">
-                  <h4 class="title"><span> شحنات منتهية</span></h4>
+                  <h4 class="title"><span>شحنات منتهية</span></h4>
                 </div>
               </div>
             </div>
@@ -36,13 +36,13 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let order of orders?.data; let i = index">
-                    <th scope="row" class="text-light">{{ i + 1 }}</th>
-                    <th scope="row" class="text-light">
+                    <td scope="row" >{{ i + 1 }}</td>
+                    <td scope="row" >
                       {{ order.order_refrence }}
-                    </th>
+                    </td>
 
                     <td>{{ order.user.name }}</td>
-                    <td>{{ order.user.email }}</td>
+                    <td>{{ order.user.email || "-" }}</td>
                     <td>{{ order.user.phone }}</td>
                     <td>{{ order?.updated_at | date }}</td>
                     <td>
@@ -82,14 +82,14 @@
       <ul class="pagination">
         <li
           class="page-item"
-          (click)="clientList(orders?.current_page - 1, 1, this.active)"
+          (click)="ShowFinishedOrders(orders?.current_page - 1, 1, this.active)"
         >
           <a class="page-link text-success">Previous</a>
         </li>
         <li
           class="page-item"
           *ngFor="let order of orders?.links; let i = index"
-          (click)="clientList(i + 1, 1, this.active)"
+          (click)="ShowFinishedOrders(i + 1, 1, this.active)"
         >
           <a
             class="page-link text-success"
@@ -100,7 +100,7 @@
 
         <li
           class="page-item"
-          (click)="clientList(orders?.current_page + 1, 1, this.active)"
+          (click)="ShowFinishedOrders(orders?.current_page + 1, 1, this.active)"
         >
           <a class="page-link text-success">Next</a>
         </li>

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { environment } from "src/environments/environment";
-import { EditSubcategoryComponent } from "../../subcategories/edit-subcategory/edit-subcategory.component";
+
 import { GlobalService } from "src/app/services/global.service";
 
 @Component({

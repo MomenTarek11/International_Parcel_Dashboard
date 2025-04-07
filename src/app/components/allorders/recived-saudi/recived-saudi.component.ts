@@ -30,23 +30,9 @@ export class RecivedSaudiComponent implements OnInit {
     private toaster: ToastrService
   ) {}
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowOrdersThatPendingInSaudiPort(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-  clientList(page, company, active) {
+  ShowOrdersThatPendingInSaudiPort(page, company, active) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -56,31 +42,6 @@ export class RecivedSaudiComponent implements OnInit {
         this.orders = res;
         this.showPlaceholder = false;
       });
-  }
-
-  confirmOrder(order_id) {
-    this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  reciveOrder(order_id) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
   }
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
@@ -116,7 +77,7 @@ export class RecivedSaudiComponent implements OnInit {
             this.toaster.success(
               "الطلب الان فى شحنات جاري تفريغها فى مستودعتنا"
             );
-            this.clientList(1, this.company_id, this.active);
+            this.ShowOrdersThatPendingInSaudiPort(1, this.company_id, this.active);
           });
       }
     });
@@ -144,9 +105,8 @@ export class RecivedSaudiComponent implements OnInit {
         this.service.cancelOrder(order_id, note).subscribe((res: any) => {
           this.spinner.hide();
 
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrdersThatPendingInSaudiPort(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe();
       }
     });
   }
@@ -165,7 +125,7 @@ export class RecivedSaudiComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrdersThatPendingInSaudiPort(1, this.company_id, this.active);
         }
       });
   }

@@ -5,7 +5,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { EditComponent } from "../edit/edit.component";
 import { environment } from "src/environments/environment";
-import { EditSubcategoryComponent } from "../../subcategories/edit-subcategory/edit-subcategory.component";
 import { GlobalService } from "src/app/services/global.service";
 
 @Component({

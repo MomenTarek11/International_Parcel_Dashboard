@@ -15,8 +15,6 @@ import Swal from "sweetalert2";
 export class FinishedComponent implements OnInit {
   orders: any;
   active = 10;
-  companies: any;
-  selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
   constructor(
@@ -26,23 +24,11 @@ export class FinishedComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowCanceledOrders(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-  clientList(page, company, active) {
+ 
+ 
+  ShowCanceledOrders(page, company, active) {
 
     this.spinner.show();
     this.service
@@ -56,28 +42,9 @@ export class FinishedComponent implements OnInit {
   }
 
   
-  confirmOrder(order_id) {
-    this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
 
-  reciveOrder(order_id) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
+
+ 
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
@@ -86,38 +53,5 @@ export class FinishedComponent implements OnInit {
     });
   }
 
-  addNote(order_id) {
-    Swal.fire({
-      title: "اكتب الملاحظات",
-      input: "text",
-      inputAttributes: {
-        autocapitalize: "off",
-        class: "dir-ltr",
-        dir: "auto",
-      },
-      // showCancelButton: true,
-      returnInputValueOnDeny: true,
-
-      confirmButtonText: "قبول",
-      showDenyButton: true,
-      showCancelButton: true,
-      denyButtonText: "رفض",
-      cancelButtonText: "الغاء",
-      showLoaderOnConfirm: true,
-      preConfirm: (text) => {
-        // this.confirmOrder(order_id,text)
-      },
-      preDeny(value) {
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("تم القبول بنجاح", "", "success");
-      } else if (result.isDenied) {
-        // this.cancelOrder(order_id,result.value)
-
-        Swal.fire("تم الرفض ", "", "info");
-      }
-    });
-  }
+ 
 }
