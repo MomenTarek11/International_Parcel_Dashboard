@@ -18,8 +18,6 @@ import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.co
 export class InChinaComponent implements OnInit {
   orders: any;
   active = 2;
-  companies: any;
-  selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
   data: any;
@@ -31,23 +29,10 @@ export class InChinaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowPendingOrders(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-  clientList(page, company, active) {
+
+  ShowPendingOrders(page: any, company: any, active: any) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 1, 0, 0)
@@ -84,7 +69,7 @@ export class InChinaComponent implements OnInit {
               this.toaster.success(
                 "تم تغيير حالة الطلب بنجاح وهو الان فى طلبات جاري شحنها من الصين"
               );
-              this.clientList(1, this.company_id, this.active);
+              this.ShowPendingOrders(1, this.company_id, this.active);
             } else {
               this.spinner.hide();
               this.toaster.error(
@@ -95,28 +80,11 @@ export class InChinaComponent implements OnInit {
       }
     });
   }
-  confirmOrder(order_id) {
-    this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {});
-  }
-  reciveOrder(order_id) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
+  // confirmOrder(order_id) {
+  //   this.spinner.show();
+  //   this.service.ConfirmOrder(order_id).subscribe((res: any) => {});
+  // }
 
-      this.toaster.success(
-        "تم تاكيد الطلب بنجاح والان هو فى الطلبات التي جاري شحنها من الصين"
-      );
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
@@ -146,9 +114,8 @@ export class InChinaComponent implements OnInit {
         this.service.cancelOrder(order_id, note).subscribe((res: any) => {
           this.spinner.hide();
 
-          this.clientList(1, this.company_id, this.active);
+          this.ShowPendingOrders(1, this.company_id, this.active);
         });
-        // this.service.finishOrder(order_id).subscribe( );
       }
     });
   }
@@ -167,7 +134,7 @@ export class InChinaComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowPendingOrders(1, this.company_id, this.active);
         }
       });
   }

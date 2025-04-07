@@ -478,7 +478,7 @@ export class GlobalService {
     );
   }
   //3
-  ChangeOrdersStatus(id, status, note = "") {
+  ChangeOrdersStatus(id: any, status: any, note = "") {
     let formData = new FormData();
     formData.append("order_id", id);
     formData.append("status_id", status);
@@ -491,7 +491,6 @@ export class GlobalService {
   finishOrder(id) {
     let formData = new FormData();
     formData.append("order_id", id);
-
     return this.http.post(
       `${environment.endpoint}/backend/orders/finish`,
       formData

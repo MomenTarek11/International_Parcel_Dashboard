@@ -31,24 +31,10 @@ export class InSaudiComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowUnloadedOrdersInOurWarehouses(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-  clientList(page, company, active) {
 
+  ShowUnloadedOrdersInOurWarehouses(page, company, active) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -59,32 +45,7 @@ export class InSaudiComponent implements OnInit {
         this.showPlaceholder = false;
       });
   }
-
-  
-  confirmOrder(order_id) {
-    this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  reciveOrder(order_id) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
+ 
   viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
@@ -119,7 +80,11 @@ export class InSaudiComponent implements OnInit {
             this.toaster.success(
               "تم قبول الطلب بنجاح وهو فى الشحنات الجارى توصيلها الى العميل"
             );
-            this.clientList(1, this.company_id, this.active);
+            this.ShowUnloadedOrdersInOurWarehouses(
+              1,
+              this.company_id,
+              this.active
+            );
           });
       }
     });
@@ -148,10 +113,13 @@ export class InSaudiComponent implements OnInit {
           this.spinner.hide();
 
           this.toaster.error("تم الغاء الطلب");
-          this.clientList(1, this.company_id, this.active);
+          this.ShowUnloadedOrdersInOurWarehouses(
+            1,
+            this.company_id,
+            this.active
+          );
         });
-        this.service.finishOrder(order_id).subscribe( );
-        this.clientList(1, this.company_id, this.active);
+        this.ShowUnloadedOrdersInOurWarehouses(1, this.company_id, this.active);
       }
     });
   }
@@ -170,7 +138,11 @@ export class InSaudiComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowUnloadedOrdersInOurWarehouses(
+            1,
+            this.company_id,
+            this.active
+          );
         }
       });
   }
