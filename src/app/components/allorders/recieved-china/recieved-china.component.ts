@@ -19,9 +19,8 @@ import { PaymentPopUpComponent } from "./payment-pop-up/payment-pop-up.component
 export class RecievedChinaComponent implements OnInit {
   orders: any;
   active = 2;
-  companies;
-  selectedOption;
-  company_id;
+ 
+  company_id:number;
   showPlaceholder: boolean = true;
   payed: boolean = false;
   data: any;
@@ -35,7 +34,7 @@ export class RecievedChinaComponent implements OnInit {
   ngOnInit(): void {
     this.ShowOrders(1, 0, this.active);
   }
-ShowOrders(page, company, active) {
+ShowOrders(page:number, company:any, active:number) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 0, 0, 0)
@@ -47,7 +46,7 @@ ShowOrders(page, company, active) {
       });
   }
 
-  acceptOfflineOrder(user_id) {
+  acceptOfflineOrder(user_id:number) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
       button: "تأكيد",
@@ -76,7 +75,7 @@ ShowOrders(page, company, active) {
     });
   }
 
-  viewOrder(order) {
+  viewOrder(order:any) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
       height: "450px",
@@ -84,13 +83,12 @@ ShowOrders(page, company, active) {
     });
   }
 
-  cancelOrder(order_id, note) {
+  cancelOrder(order_id:number) {
     this.data = {
       title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
       button: "حذف",
       type: "cancel_order",
       id: order_id,
-      note: note,
     };
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",
@@ -103,17 +101,16 @@ ShowOrders(page, company, active) {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.service.cancelOrder(order_id, note).subscribe((res: any) => {
+        this.service.cancelOrder(order_id).subscribe((res: any) => {
           this.spinner.hide();
 
           this.ShowOrders(1, this.company_id, this.active);
         });
-        // this.service.finishOrder(order_id).subscribe();
       }
     });
   }
 
-  addNote(order_id) {
+  addNote(order_id:number) {
     this.dialog
       .open(NotesPopUpComponent, {
         width: "500px",
@@ -131,7 +128,7 @@ ShowOrders(page, company, active) {
         }
       });
   }
-  changePayment(id: any) {
+  changePayment(id: number) {
     this.dialog
       .open(PaymentPopUpComponent, {
         width: "400px",

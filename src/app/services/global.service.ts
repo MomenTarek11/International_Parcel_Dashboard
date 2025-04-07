@@ -588,9 +588,7 @@ export class GlobalService {
     );
   }
 
-  allSubCategories() {
-    return this.http.get(`${environment.endpoint}/secondary-specialists`);
-  }
+ 
   addSubCategory(f) {
     const formData: FormData = new FormData();
     formData.append("name_en", f.name_en);

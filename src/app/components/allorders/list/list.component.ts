@@ -31,21 +31,6 @@ export class ListComponent implements OnInit {
     this.spinner.show();
     this.showPaidOrders(1, 0, this.active);
   }
-  // getCompanies() {
-  //   this.service
-  //     .getCompanies()
-  //     .pipe(map((res) => res["data"]))
-  //     .subscribe((res) => {
-  //       this.spinner.hide();
-  //       this.companies = res;
-  //     });
-  // }
-
-  // getCompany(company) {
-  //   this.company_id = company;
-  //   this.showPaidOrders(1, company, this.active);
-  // }
-
   showPaidOrders(page: number, company: any, active: any) {
     this.showPlaceholder = true;
     this.spinner.show();
@@ -65,7 +50,6 @@ export class ListComponent implements OnInit {
       button: "تأكيد",
       type: "confirm_order",
       id: order_id,
-      // note: note,
     };
     this.openDialog(this.data);
   }
