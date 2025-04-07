@@ -37,6 +37,7 @@
                   <tr *ngFor="let order of orders?.data; let i = index">
                     <td scope="row">{{ i + 1 }}</td>
                     <td scope="row">
+
                       {{ order.order_refrence }}
                     </td>
                     <td>{{ order.user.name }}</td>
@@ -46,6 +47,7 @@
 
                     <td>
                       <span *ngIf="order.accept_change == 1">
+
                         <i
                           style="cursor: pointer"
                           class="fas fa-check text-success"

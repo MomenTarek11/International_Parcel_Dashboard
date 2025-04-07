@@ -35,6 +35,7 @@ export class ConfirmedOrdersComponent implements OnInit {
   }
 
   showConfirmedOrders(page: number, company: any, active: any) {
+
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -45,7 +46,6 @@ export class ConfirmedOrdersComponent implements OnInit {
         this.showPlaceholder = false;
       });
   }
-
   reciveOrder(order_id: any) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
