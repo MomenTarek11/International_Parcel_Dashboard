@@ -7,6 +7,8 @@ import { EditComponent } from './edit/edit.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ListComponent } from './list/list.component';
 import { PlaceholderComponent } from 'src/app/shared/placeholder/placeholder.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddComponent } from './add/add.component';
 
 
 @NgModule({
@@ -14,13 +16,14 @@ import { PlaceholderComponent } from 'src/app/shared/placeholder/placeholder.com
     DetialsComponent,
     EditComponent,
     ListComponent,
-    PlaceholderComponent
+    PlaceholderComponent,
+    AddComponent
   ],
   imports: [
     CommonModule,
     BlogsRoutingModule,
     MatSlideToggleModule,
-    
+    ReactiveFormsModule
   ]
 })
 export class BlogsModule { }

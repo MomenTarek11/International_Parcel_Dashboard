@@ -1,1 +1,149 @@
-<p>add works!</p>
+<section id="add-main-page">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-body">
+            <form >
+              <div class="form-row">
+                <div class="form-group col-4">
+                  <label for="">الاسم</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="submitted && form.controls.name?.errors?.required"
+                    >يجب ادخال الاسم</span
+                  >
+                </div>
+                <div class="form-group col-4">
+                  <label for="">الايميل</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="email"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="submitted && form.controls.email?.errors?.required"
+                    >يجب ادخال الايميل</span
+                  >
+                  <span
+                    class="text-danger"
+                    *ngIf="submitted && form.controls.email?.errors?.email"
+                    >ادخل ايميل صحيح</span
+                  >
+                </div>
+  
+                <!-- {{test.valid ? 'yes':'noe'}} -->
+              </div>
+              <div class="form-row">
+                <div class="form-group col-4">
+                  <label for="">الباسورد</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="password"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="submitted && form.controls.password?.errors?.required"
+                    >يجب ادخال الباسورد</span
+                  >
+                </div>
+                <div class="form-group col-4">
+                  <label for="">تاكيد الباسورد</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="password_confirmation"
+                  />
+                  <span
+                    class="text-danger"
+                    *ngIf="
+                      submitted &&
+                      form.controls.password_confirmation?.errors?.required
+                    "
+                    >يجب ادخال تاكيد الباسورد</span
+                  >
+                  <span class="text-danger" *ngIf="notEqual == true"
+                    >الباسورد غير متطابق</span
+                  >
+                </div>
+                <div class="form-group col-4">
+                  <div class="col">
+                    <div class="form-group">
+                      <label for="">الصلاحيات </label>
+                  
+                      <span
+                        class="text-danger"
+                        *ngIf="
+                          submitted && form.controls.sections?.errors?.required
+                        "
+                        >يجب ادخال الصلاحيات</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group w-100 m-auto">
+                <div class="item-wrapper one">
+                  <div class="item">
+                    <div class="item-inner">
+                      <div class="item-content">
+                        <div class="image-upload">
+                          <label style="cursor: pointer" for="file_upload">
+                            <img
+                              [src]="uploadedImage"
+                              alt=""
+                              class="uploaded-image"
+                              style="object-fit: contain"
+                            />
+  
+                            <div class="h-100">
+                              <div class="dplay-tbl">
+                                <div class="dplay-tbl-cell">
+                                  <i class="fa fa-cloud-upload"></i>
+                                  <h5><b>ادخل صورة الادمن</b></h5>
+                                </div>
+                              </div>
+                            </div>
+                            <input
+                              data-required="image"
+                              type="file"
+                              id="file_upload"
+                              class="image-input"
+                              data-traget-resolution="image_resolution"
+                              (change)="UploadImage($event)"
+                            />
+                          </label>
+                        </div>
+                        <span
+                          class="text-danger"
+                          *ngIf="
+                            submitted && form.controls.image?.errors?.required
+                          "
+                          >يجب ادخال صورة الادمن</span
+                        >
+                      </div>
+                      <!--item-content-->
+                    </div>
+                  </div>
+                  <!--item-->
+                </div>
+              </div>
+  
+              <div class="form-group text-center mt-5">
+                <button class="btn btn-primary" type="button" (click)="submit()">
+                  إضافة
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

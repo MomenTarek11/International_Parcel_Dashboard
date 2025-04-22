@@ -28,6 +28,7 @@ import { AddComponent } from "./components/countries/add/add.component";
 import { CountriesModule } from "./components/countries/countries.module";
 import { CitiesModule } from "./components/cities/cities.module";
 import { SidebarGuard } from "./guards/sidebar.guard";
+import { BlogsModule } from "./components/blogs/blogs.module";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -139,6 +140,11 @@ const routes: Routes = [
         canActivate: [SidebarGuard],
         loadChildren: () => CitiesModule,
       },
+      {
+        path:"blogs",
+        canActivate: [SidebarGuard],
+        loadChildren: () => BlogsModule,
+      }
     ],
   },
 
