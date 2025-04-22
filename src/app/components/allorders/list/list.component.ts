@@ -3,9 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { map } from "rxjs/operators";
 import { GlobalService } from "src/app/services/global.service";
-import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
-import Swal from "sweetalert2";
 import { ToastrService } from "ngx-toastr";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.component";
@@ -31,24 +29,9 @@ export class ListComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.spinner.show();
-    this.clientList(1, 0, this.active);
+    this.showPaidOrders(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-
-  clientList(page, company, active) {
+  showPaidOrders(page: number, company: any, active: any) {
     this.showPlaceholder = true;
     this.spinner.show();
     this.service
@@ -61,35 +44,32 @@ export class ListComponent implements OnInit {
       });
   }
 
-  confirmOrder(order_id: any, note: any) {
+  confirmOrder(order_id: any) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
       button: "تأكيد",
       type: "confirm_order",
       id: order_id,
-      note: note,
     };
     this.openDialog(this.data);
   }
-  cancelOrder(order_id: any, note: any) {
+  cancelOrder(order_id: any) {
     this.data = {
       title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
       button: "حذف",
       type: "cancel_order",
       id: order_id,
-      note: note,
     };
     this.openDialog(this.data);
   }
-  viewOrder(order) {
+  viewOrder(order: any) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
       height: "450px",
       width: "600px",
     });
   }
-
-  addNote(order_id) {
+  addNote(order_id: any) {
     this.dialog
       .open(NotesPopUpComponent, {
         width: "500px",
@@ -103,7 +83,7 @@ export class ListComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.showPaidOrders(1, this.company_id, this.active);
         }
       });
   }
@@ -120,7 +100,7 @@ export class ListComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.toaster.success(result);
-        this.clientList(1, this.company_id, this.active);
+        this.showPaidOrders(1, this.company_id, this.active);
       }
     });
   }

@@ -22,7 +22,7 @@ export class ConfirmedOrdersComponent implements OnInit {
   selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
-  data: { title: string; button: string; type: string; id: any; note: any };
+  data: { title: string; button: string; type: string; id: any };
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
@@ -31,15 +31,11 @@ export class ConfirmedOrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.showConfirmedOrders(1, 0, this.active);
   }
 
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-  clientList(page, company, active) {
+  showConfirmedOrders(page: number, company: any, active: any) {
+
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -50,15 +46,12 @@ export class ConfirmedOrdersComponent implements OnInit {
         this.showPlaceholder = false;
       });
   }
-
-
-  reciveOrder(order_id, note) {
+  reciveOrder(order_id: any) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
       button: "تأكيد",
       type: "confirm_order",
       id: order_id,
-      note: note,
     };
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",
@@ -71,36 +64,27 @@ export class ConfirmedOrdersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.service.recieveOrder(order_id, note).subscribe((res: any) => {
+        this.service.recieveOrder(order_id).subscribe((res: any) => {
           this.spinner.hide();
           this.toaster.success(
             "تم استلام الطلب بنجاح وهو فى خانة شحنات تحت المراجعة"
           );
-          this.clientList(1, this.company_id, this.active);
+          this.showConfirmedOrders(1, this.company_id, this.active);
         });
       }
     });
   }
-
-  cancelOrder(order_id, note) {
+  cancelOrder(order_id: number) {
     this.data = {
       title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
       button: "حذف",
       type: "cancel_order",
       id: order_id,
-      note: note,
     };
-
     this.openDialog(this.data);
   }
 
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-    });
-  }
-  viewOrder(order) {
+  viewOrder(order: any) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
       height: "450px",
@@ -108,7 +92,7 @@ export class ConfirmedOrdersComponent implements OnInit {
     });
   }
 
-  addNote(order_id) {
+  addNote(order_id: number) {
     this.dialog
       .open(NotesPopUpComponent, {
         width: "500px",
@@ -122,7 +106,7 @@ export class ConfirmedOrdersComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.showConfirmedOrders(1, this.company_id, this.active);
         }
       });
   }
@@ -140,7 +124,7 @@ export class ConfirmedOrdersComponent implements OnInit {
       if (result) {
         this.toaster.success(result);
 
-        this.clientList(1, this.company_id, this.active);
+        this.showConfirmedOrders(1, this.company_id, this.active);
       }
     });
   }

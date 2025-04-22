@@ -1,4 +1,11 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  HostListener,
+  Inject,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { GlobalService } from "src/app/services/global.service";
@@ -9,9 +16,10 @@ import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.co
   templateUrl: "./payment-pop-up.component.html",
   styleUrls: ["./payment-pop-up.component.scss"],
 })
-export class PaymentPopUpComponent implements OnInit {
+export class PaymentPopUpComponent implements OnInit, AfterViewInit {
   Form!: FormGroup;
   submitted: boolean = false;
+  @ViewChild("paymentInput") paymentInput: any;
   constructor(
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public AllData: any,
@@ -20,6 +28,10 @@ export class PaymentPopUpComponent implements OnInit {
   ) {}
   get f() {
     return this.Form.controls;
+  }
+  ngAfterViewInit(): void {
+    // console.log(this.paymentInput);
+    this.paymentInput.nativeElement.focus();
   }
   ngOnInit(): void {
     this.Form = this.fb.group({
