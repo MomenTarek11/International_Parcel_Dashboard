@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
@@ -11,7 +11,7 @@ import { BlogsService } from "../blogs.service";
   styleUrls: ["./add.component.scss"],
 })
 export class AddComponent implements OnInit {
-  @ViewChild('editor', { static: true }) editor: any;
+  @ViewChildren('editor') editors: QueryList<any>; 
   maxImageSize = 1 * 1024 * 1024; // 1 MB limit
   imageCount = 0; // Track the number of images inserted
   maxImages = 5; // Limit to 5 images
@@ -37,9 +37,7 @@ export class AddComponent implements OnInit {
         ['clean'],
         ['link', 'image', 'video'],
       ],
-      handlers: {
-        image: () => this.customImageHandler()
-      }
+  
     }
   };
   constructor(
@@ -91,38 +89,43 @@ export class AddComponent implements OnInit {
   get f() {
     return this.form.controls;
   }
-  get quillEditor() {
-    return this.editor?.quillEditor;
-  }
-  customImageHandler() {
-    if (this.imageCount >= this.maxImages) {
-      alert('You can only upload up to 5 images.');
-      return;
-    }
+  // get quillEditor() {
+  //   return this.editor?.quillEditor;
+  // }
+  // customImageHandler() {
+  //   if (this.imageCount >= this.maxImages) {
+  //     alert('You can only upload up to 5 images.');
+  //     return;
+  //   }
   
-    const fileInput = document.createElement('input');
-    fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('accept', 'image/*');
-    fileInput.click();
+  //   const fileInput = document.createElement('input');
+  //   fileInput.setAttribute('type', 'file');
+  //   fileInput.setAttribute('accept', 'image/*');
+  //   fileInput.click();
   
-    fileInput.onchange = () => {
-      const file = fileInput.files?.[0];
-      if (file) {
-        if (file.size > this.maxImageSize) {
-          alert('Image size exceeds 1MB. Please upload a smaller image.');
-          return;
-        }
+  //   fileInput.onchange = () => {
+  //     const file = fileInput.files?.[0];
+  //     if (file) {
+  //       if (file.size > this.maxImageSize) {
+  //         alert('Image size exceeds 1MB. Please upload a smaller image.');
+  //         return;
+  //       }
   
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          const range = this.quillEditor.getSelection(true);
-          this.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
-          this.imageCount++; // Increment image count when a new image is inserted
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  }
+  //       const reader = new FileReader();
+  //       reader.onload = (e: any) => {
+  //         // Loop through all editors and insert the image into each one
+  //         this.editors.toArray().forEach((editor) => {
+  //           const range = editor.quillEditor.getSelection(true);
+  //           editor.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
+  //         });
+  //         this.imageCount++; // Increment image count when a new image is inserted
+  //       };
+  //       reader.readAsDataURL(file);
+  //     }
+  //   };
+  // }
+  
+  
   UploadImage(event: any) {
     const file = event.target.files[0];
     this.form.patchValue({

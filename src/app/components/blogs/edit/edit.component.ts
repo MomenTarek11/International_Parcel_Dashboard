@@ -38,9 +38,9 @@ export class EditComponent implements OnInit {
         ['clean'],
         ['link', 'image', 'video'],
       ],
-      handlers: {
-        image: () => this.customImageHandler()
-      }
+      // handlers: {
+      //   image: () => this.customImageHandler()
+      // }
     }
   };
   constructor(
@@ -109,35 +109,35 @@ console.log(this.data);
   get quillEditor() {
     return this.editor?.quillEditor;
   }
-  customImageHandler() {
-    if (this.imageCount >= this.maxImages) {
-      alert('You can only upload up to 5 images.');
-      return;
-    }
+  // customImageHandler() {
+  //   if (this.imageCount >= this.maxImages) {
+  //     alert('You can only upload up to 5 images.');
+  //     return;
+  //   }
   
-    const fileInput = document.createElement('input');
-    fileInput.setAttribute('type', 'file');
-    fileInput.setAttribute('accept', 'image/*');
-    fileInput.click();
+  //   const fileInput = document.createElement('input');
+  //   fileInput.setAttribute('type', 'file');
+  //   fileInput.setAttribute('accept', 'image/*');
+  //   fileInput.click();
   
-    fileInput.onchange = () => {
-      const file = fileInput.files?.[0];
-      if (file) {
-        if (file.size > this.maxImageSize) {
-          alert('Image size exceeds 1MB. Please upload a smaller image.');
-          return;
-        }
+  //   fileInput.onchange = () => {
+  //     const file = fileInput.files?.[0];
+  //     if (file) {
+  //       if (file.size > this.maxImageSize) {
+  //         alert('Image size exceeds 1MB. Please upload a smaller image.');
+  //         return;
+  //       }
   
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          const range = this.quillEditor.getSelection(true);
-          this.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
-          this.imageCount++; // Increment image count when a new image is inserted
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-  }
+  //       const reader = new FileReader();
+  //       reader.onload = (e: any) => {
+  //         const range = this.quillEditor.getSelection(true);
+  //         this.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
+  //         this.imageCount++; // Increment image count when a new image is inserted
+  //       };
+  //       reader.readAsDataURL(file);
+  //     }
+  //   };
+  // }
   UploadImage(event: any) {
     const file = event.target.files[0];
     this.form.patchValue({
