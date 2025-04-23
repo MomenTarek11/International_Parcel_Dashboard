@@ -64,7 +64,7 @@ export class ListComponent implements OnInit {
       button: "حذف",
       type: "delete_blog",
       category: "المدونة",
-      id: Blog.id,
+      id: Blog.data.id,
     }
    this.dialog.open(PopUpComponent, {
      data: data,
@@ -78,8 +78,6 @@ export class ListComponent implements OnInit {
        )
       console.log(result);
       this.toaster.success(result);
-      
-      
      }
    })
   }
