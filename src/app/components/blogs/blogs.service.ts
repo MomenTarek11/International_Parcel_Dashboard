@@ -10,6 +10,9 @@ export class BlogsService {
   getAllBlogs(){
     return this.http.get(`${environment.endpoint}/blogs`);
   }
+  getBlogById(id: number){
+    return this.http.get(`${environment.endpoint}/blogs/${id}`);
+  }
   createBlog(data: any) {
     const formData = new FormData();
     for (const key in data) {
@@ -20,7 +23,14 @@ export class BlogsService {
     return this.http.post(`${environment.endpoint}/backend/blogs`, formData);
   }
   updateBlog(id: number, data: any){
-    return this.http.post(`${environment.endpoint}/backend/blogs/${id}`, data);
+    const formData = new FormData();
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(key, data[key]);
+      }
+    }
+    console.log(formData);
+    return this.http.post(`${environment.endpoint}/backend/blogs/${id}`, formData);
   }
   deleteBlog(id: number){
     return this.http.delete(`${environment.endpoint}/backend/blogs/${id}`);

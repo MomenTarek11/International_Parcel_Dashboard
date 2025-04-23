@@ -3,6 +3,8 @@
 @import "intl-tel-input/build/css/intlTelInput.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 @import '~quill/dist/quill.bubble.css';
+// or
+@import '~quill/dist/quill.snow.css';
 $ph-direction: ltr !default;
 $ph-bg: #fff !default;
 $ph-color: #ced4da !default;
