@@ -12,40 +12,14 @@ import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  blogs: IBlog[]=[];
+  blogs: any;
   showPlaceholder: boolean = true;
   constructor(
     private service:BlogsService,
     private dialog:MatDialog,
   ) {}
   ngOnInit(): void {
-    this.blogs = [
-      {
-        id: 1,
-        image: "assets/images/blogs/1.jpg",
-        title_ar: "عنوان المدونة 1",
-        title_en: "Blog Title 1",
-        title_cn: "博客标题 1",
-        content_ar: "محتوى المدونة 1",
-        content_en: "Blog Content 1",
-        content_cn: "博客内容 1",
-        created_at: "2023-01-01",
-        isShowen:true
-      },
-      {
-        id: 2,
-        image: "assets/images/blogs/2.jpg",
-        title_ar: "عنوان المدونة 2",
-        title_en: "Blog Title 2",
-        title_cn: "博客标题 2",
-        content_ar: "محتوى المدونة 2",
-        content_en: "Blog Content 2",
-        content_cn: "博客内容 2",
-        created_at: "2023-02-01",
-        isShowen:false
-      },
-    ];
-    this.showPlaceholder = false;
+    this.getAllBlogs();
   }
 
   getAllBlogs(){
@@ -53,6 +27,8 @@ export class ListComponent implements OnInit {
       (res: any) => {
         this.blogs = res.data;
         this.showPlaceholder = false;
+        console.log(this.blogs);
+        
       }
     )
   }
@@ -61,7 +37,7 @@ export class ListComponent implements OnInit {
       data: Blog,
     })
   }
-  editBLog(Blog:IBlog){
+  editBlog(Blog:IBlog){
     this.dialog.open(EditComponent, {
       data: Blog,
     }) 
@@ -72,7 +48,7 @@ export class ListComponent implements OnInit {
       button: "حذف",
       type: "delete_blog",
       category: "المدونة",
-      id: Blog.id,
+      id: Blog.data.id,
     }
    this.dialog.open(PopUpComponent, {
      data: data,
@@ -90,4 +66,5 @@ export class ListComponent implements OnInit {
      }
    })
   }
+ 
 }

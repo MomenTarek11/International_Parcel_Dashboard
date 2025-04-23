@@ -1,6 +1,6 @@
 <section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row" *ngIf="blogs?.length > 0">
+    <div class="row" *ngIf="blogs?.data?.length > 0">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -16,18 +16,27 @@
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">رقم</th>
-                    <th scope="col">ظهور المقال</th>
+                    <th scope="col">صورة المقال</th>
                     <th scope="col">عنوان المقال</th>
                     <th scope="col">اعدادات</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let blog of blogs; let i = index">
-                    <th scope="col" class="text-light fw-bold">{{ i + 1 }}</th>
-                    <td>
+                  <tr *ngFor="let blog of blogs?.data; let i = index">
+                    <td scope="col" class=" fw-bold">{{ i + 1 }}</td>
+                    <!-- <td>
                       <mat-slide-toggle [checked]="blog.isShowen"></mat-slide-toggle>
+                    </td> -->
+                    <td>
+                      <img
+                        style="width: 50px; height: 50px; border-radius: 50%"
+                        src="{{ blog.cover_url }}"
+                        onerror="this.src='assets/images/image-not-found.svg'"
+                        alt=""
+                      />
                     </td>
-                    <td>{{ blog.title_ar }}</td>
+
+                    <td>{{ blog.title }}</td>
                     <td>
                       <i
                         style="cursor: pointer"
@@ -38,6 +47,7 @@
                       <i
                         style="cursor: pointer"
                         class="fas fa-edit text-primary"
+                        (click)="editBlog(blog)"
                       ></i>
                       |
                       <i

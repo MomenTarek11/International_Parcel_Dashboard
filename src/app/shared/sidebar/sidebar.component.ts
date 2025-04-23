@@ -281,25 +281,25 @@ export class SidebarComponent implements OnInit {
         },
       ],
     },
-    // {
-    //   id: 23,
-    //   name: "المدن",
-    //   parent: true,
-    //   toggle: false,
-    //   active: { exact: true },
-    //   children: [
-    //     {
-    //       name: "جميع المدن",
-    //       path: "/app/cities",
-    //     },
-    //     {
-    //       name: "اضافة مدينة",
-    //       path: "/app/cities/add",
-    //     },
-    //   ],
-    // },
     {
       id: 23,
+      name: "المدن",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "جميع المدن",
+          path: "/app/cities",
+        },
+        {
+          name: "اضافة مدينة",
+          path: "/app/cities/add",
+        },
+      ],
+    },
+    {
+      id: 24,
       name: "المقالات",
       parent: true,
       toggle: false,

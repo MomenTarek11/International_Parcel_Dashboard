@@ -1,15 +1,137 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinner } from "ngx-spinner/lib/ngx-spinner.enum";
+import { BlogsService } from "../blogs.service";
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  selector: "app-edit",
+  templateUrl: "./edit.component.html",
+  styleUrls: ["./edit.component.scss"],
 })
 export class EditComponent implements OnInit {
-
-  constructor() { }
+  @ViewChild('editor', { static: true }) editor: any;
+  maxImageSize = 1 * 1024 * 1024; // 1 MB limit
+  imageCount = 0; // Track the number of images inserted
+  maxImages = 5; // Limit to 5 images
+  submitted: boolean = false;
+  notEqual: boolean = false;
+  form: FormGroup;
+  uploadedImage: any;
+  modules = {
+    toolbar: {
+      container: [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ header: 1 }, { header: 2 }],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ script: 'sub' }, { script: 'super' }],
+        [{ indent: '-1' }, { indent: '+1' }],
+        [{ direction: 'rtl' }],
+        [{ size: ['small', false, 'large', 'huge'] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        [{ color: [] }, { background: [] }],
+        [{ font: [] }],
+        [{ align: [] }],
+        ['clean'],
+        ['link', 'image', 'video'],
+      ],
+      handlers: {
+        image: () => this.customImageHandler()
+      }
+    }
+  };
+  constructor(
+    public dialogRef: MatDialogRef<EditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private fb:FormBuilder,
+    private spinner:NgxSpinnerService,
+    private service:BlogsService
+  ) {}
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      title_ar: [
+        "",
+        [Validators.required],
+      ],
+      title_en: ["", Validators.required],
+      title_cn: ["", Validators.required],
+      content_ar: [
+        "",
+        [Validators.required],
+      ],
+      content_en: [
+        "",
+        [Validators.required],
+      ],
+      content_cn: ["", Validators.required],
+      cover: ["", Validators.required],
+    });
   }
-
+  onSubmit() {
+      console.log(this.form.value);
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+    this.spinner.show();
+    this.service.createBlog(this.form.value).subscribe(
+      (res) => {
+        this.spinner.hide();
+      },
+      (err) => {  
+        this.spinner.hide();
+      }
+    );  
+  }
+  get f() {
+    return this.form.controls;
+  }
+  get quillEditor() {
+    return this.editor?.quillEditor;
+  }
+  customImageHandler() {
+    if (this.imageCount >= this.maxImages) {
+      alert('You can only upload up to 5 images.');
+      return;
+    }
+  
+    const fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('accept', 'image/*');
+    fileInput.click();
+  
+    fileInput.onchange = () => {
+      const file = fileInput.files?.[0];
+      if (file) {
+        if (file.size > this.maxImageSize) {
+          alert('Image size exceeds 1MB. Please upload a smaller image.');
+          return;
+        }
+  
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const range = this.quillEditor.getSelection(true);
+          this.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
+          this.imageCount++; // Increment image count when a new image is inserted
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+  }
+  UploadImage(event: any) {
+    const file = event.target.files[0];
+    this.form.patchValue({
+      cover: file,
+    });
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.uploadedImage = e.target.result;
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 }
