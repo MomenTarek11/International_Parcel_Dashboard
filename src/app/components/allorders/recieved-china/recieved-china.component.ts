@@ -19,9 +19,8 @@ import { PaymentPopUpComponent } from "./payment-pop-up/payment-pop-up.component
 export class RecievedChinaComponent implements OnInit {
   orders: any;
   active = 2;
-  companies;
-  selectedOption;
-  company_id;
+ 
+  company_id:number;
   showPlaceholder: boolean = true;
   payed: boolean = false;
   data: any;
@@ -33,24 +32,10 @@ export class RecievedChinaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowOrders(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
+ShowOrders(page:number, company:any, active:number) {
 
-  clientList(page, company, active) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active, 0, 0, 0)
@@ -62,7 +47,7 @@ export class RecievedChinaComponent implements OnInit {
       });
   }
 
-  acceptOfflineOrder(user_id) {
+  acceptOfflineOrder(user_id:number) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
       button: "تأكيد",
@@ -85,30 +70,14 @@ export class RecievedChinaComponent implements OnInit {
           .subscribe((res: any) => {
             this.spinner.hide();
             this.toaster.success("تم التحديث بنجاح");
-            this.clientList(1, this.company_id, this.active);
+            this.ShowOrders(1, this.company_id, this.active);
           });
       }
     });
   }
 
-  reciveOrder(order_id, note) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id, note).subscribe((res: any) => {
-      this.spinner.hide();
+  viewOrder(order:any) {
 
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-
-  finishOrder(order_id) {
-    this.spinner.show();
-    this.service.finishOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  viewOrder(order) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
       height: "450px",
@@ -116,13 +85,12 @@ export class RecievedChinaComponent implements OnInit {
     });
   }
 
-  cancelOrder(order_id, note) {
+  cancelOrder(order_id:number) {
     this.data = {
       title: "هل انت واثق انك تريد حذف هذا الطلب  ؟",
       button: "حذف",
       type: "cancel_order",
       id: order_id,
-      note: note,
     };
     const dialogRef = this.dialog.open(PopUpComponent, {
       width: "500px",
@@ -135,17 +103,17 @@ export class RecievedChinaComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.service.cancelOrder(order_id, note).subscribe((res: any) => {
+        this.service.cancelOrder(order_id).subscribe((res: any) => {
           this.spinner.hide();
 
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrders(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe();
+
       }
     });
   }
 
-  addNote(order_id) {
+  addNote(order_id:number) {
     this.dialog
       .open(NotesPopUpComponent, {
         width: "500px",
@@ -159,11 +127,11 @@ export class RecievedChinaComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrders(1, this.company_id, this.active);
         }
       });
   }
-  changePayment(id: any) {
+  changePayment(id: number) {
     this.dialog
       .open(PaymentPopUpComponent, {
         width: "400px",
@@ -178,7 +146,7 @@ export class RecievedChinaComponent implements OnInit {
         console.log(result);
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrders(1, this.company_id, this.active);
         }
       });
   }

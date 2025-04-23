@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let admin of admins; let i = index">
-                    <th scope="row" class="text-light fw-bold">{{ i + 1 }}</th>
+                    <td scope="row" class=" fw-bold">{{ i + 1 }}</td>
                     <td>{{ admin.name }}</td>
                     <td>{{ admin.email }}</td>
                     <td>{{ admin.active == 1 ? "مفعل" : "غير مفعل " }}</td>

@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let user of promocodes; let i = index">
-                    <th scope="row" class="text-light">{{ i + 1 }}</th>
+                    <td scope="row" >{{ i + 1 }}</td>
                     <td>{{ user.code }}</td>
                     <td>{{ user.discount_precentage }}</td>
                     <td>{{ user.expire_at }}</td>

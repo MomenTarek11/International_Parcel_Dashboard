@@ -1,1 +1,167 @@
-<p>edit works!</p>
+<section id="add-main-page">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-12">
+
+          <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                  <div class="form-group col-4">
+                    <label for="">العنوان بالعربية</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="title_ar"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        submitted && f.title_ar?.errors?.required
+                      "
+                      >يجب ادخال العنوان</span
+                    >
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="">العنوان بالانجليزية</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="title_en"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                     submitted && f.title_en?.errors?.required
+                      "
+                      >يجب ادخال العنوان</span
+                    >
+                  </div>
+                  <div class="form-group col-4">
+                    <label for="">العنوان بالصينية</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      formControlName="title_cn"
+                    />
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        submitted && f.title_cn?.errors?.required
+                      "
+                      >يجب ادخال العنوان</span
+                    >
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-12">
+                    <label class="control-label">المحتوي بالعربية :</label>
+                    <quill-editor
+                    #editor
+                      [modules]="modules"
+                      [styles]="{ height: '400px' }"
+                      (onEditorCreated)="onEditorCreated($event, 'content_ar')"
+                      formControlName="content_ar"
+                    ></quill-editor>
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        submitted && f.content_ar?.errors?.required
+                      "
+                      >يجب ادخال المحتوي</span
+                    >
+                  </div>
+                  <div class="form-group col-12">
+                    <label class="control-label">المحتوي بالانجليزية :</label>
+                    <quill-editor
+                      [modules]="modules"
+                      [styles]="{ height: '400px' }"
+                      (onEditorCreated)="onEditorCreated($event, 'content_en')"
+                      formControlName="content_en"
+                    ></quill-editor>
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        submitted && f.content_en?.errors?.required
+                      "
+                      >يجب ادخال المحتوي</span
+                    >
+                  </div>
+    
+                  <div class="form-group col-12">
+                    <label class="control-label">المحتوي بالصينية :</label>
+                    <quill-editor
+                      [modules]="modules"
+                      [styles]="{ height: '400px' }"
+                      (onEditorCreated)="onEditorCreated($event, 'content_cn')"
+                      formControlName="content_cn"
+                    ></quill-editor>
+                    <span
+                      class="text-danger"
+                      *ngIf="
+                        submitted && f.content_cn?.errors?.required
+                      "
+                      >يجب ادخال المحتوي</span
+                    >
+                  </div>
+                </div>
+                <div class="form-group w-100 m-auto">
+                  <div class="item-wrapper one">
+                    <div class="item">
+                      <div class="item-inner">
+                        <div class="item-content">
+                          <div class="image-upload">
+                            <label style="cursor: pointer" for="file_upload">
+                              <img
+                                [src]="uploadedImage"
+                                alt=""
+                                class="uploaded-image"
+                                style="object-fit: contain"
+                              />
+    
+                              <div class="h-100">
+                                <div class="dplay-tbl">
+                                  <div class="dplay-tbl-cell">
+                                    <i class="fa fa-cloud-upload"></i>
+                                    <h5><b>ادخل صورة المقال</b></h5>
+                                  </div>
+                                </div>
+                              </div>
+                              <input
+                                data-required="image"
+                                type="file"
+                                id="file_upload"
+                                class="image-input"
+                                data-traget-resolution="image_resolution"
+                                (change)="UploadImage($event)"
+                              />
+                            </label>
+                          </div>
+                          <span
+                            class="text-danger"
+                            *ngIf="
+                              submitted && f.cover?.errors?.required
+                            "
+                            >يجب ادخال الصورة</span
+                          >
+                        </div>
+                        <!--item-content-->
+                      </div>
+                    </div>
+                    <!--item-->
+                  </div>
+                </div>
+    
+                <div class="form-group text-center mt-5">
+                  <button class="btn btn-primary" type="submit" >
+
+                    حفظ
+
+                  </button>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

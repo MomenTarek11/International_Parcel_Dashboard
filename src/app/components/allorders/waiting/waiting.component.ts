@@ -3,11 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { map } from "rxjs/operators";
 import { GlobalService } from "src/app/services/global.service";
-import { environment } from "src/environments/environment";
 import { DetailsComponent } from "../details/details.component";
-import Swal from "sweetalert2";
-import { ToastrService } from "ngx-toastr";
-import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 @Component({
   selector: "app-waiting",
   templateUrl: "./waiting.component.html",
@@ -15,45 +11,45 @@ import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 })
 export class WaitingComponent implements OnInit {
   orders: any;
-  active = 0;
-  
+
+  active: number = 0;
+
   showPlaceholder: boolean = true;
-  data: any;
+
   constructor(
     private dialog: MatDialog,
     private service: GlobalService,
-    private spinner: NgxSpinnerService,
-    private toaster: ToastrService
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
-    this.spinner.show();
-    this.clientList(1, 0, this.active);
+    this.showSpinner();
+    this.getWaitingOrders(1, 0, this.active);
   }
-  
-
-  clientList(page, company, active) {
-    this.showPlaceholder = true;
+  showSpinner() {
     this.spinner.show();
+  }
+
+  hideSpinner() {
+    this.spinner.hide();
+  }
+  getWaitingOrders(page: number, company: number, active: any) {
+    this.showPlaceholder = true;
+    this.showSpinner();
     this.service
       .getOrderspages(page, company, active, 0, 0, 0, 0)
       .pipe(map((res) => res["data"]))
       .subscribe((res) => {
-        this.spinner.hide();
+        this.hideSpinner();
         this.orders = res;
         this.showPlaceholder = false;
       });
   }
-
- 
-  viewOrder(order) {
+  viewOrder(order: any) {
     let dialogRef = this.dialog.open(DetailsComponent, {
       data: order,
       height: "450px",
       width: "600px",
     });
   }
-
-  
- 
 }

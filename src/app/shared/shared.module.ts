@@ -20,7 +20,7 @@ import { RouterModule } from "@angular/router";
     NavbarComponent,
     FooterComponent,
     JumbotronComponent,
-    // NotesPopUpComponent, // Uncomment only if it's valid
+    PlaceholderComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +32,7 @@ import { RouterModule } from "@angular/router";
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    
   ],
   exports: [
     SidebarComponent,
@@ -45,6 +46,7 @@ import { RouterModule } from "@angular/router";
     MatSelectModule,
     HttpClientModule,
     RouterModule,
+    PlaceholderComponent
   ]
 })
 export class SharedModule {}

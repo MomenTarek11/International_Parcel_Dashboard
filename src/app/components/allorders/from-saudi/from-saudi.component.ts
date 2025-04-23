@@ -18,8 +18,6 @@ import { NotesPopUpComponent } from "src/app/shared/notes-pop-up/notes-pop-up.co
 export class FromSaudiComponent implements OnInit {
   orders: any;
   active = 6;
-  companies: any;
-  selectedOption: any;
   company_id: any;
   showPlaceholder: boolean = true;
   data: any;
@@ -31,23 +29,9 @@ export class FromSaudiComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getCompanies();
-    this.clientList(1, 0, this.active);
+    this.ShowOrdersDeliveredToCustomer(1, 0, this.active);
   }
-  getCompanies() {
-    this.service
-      .getCompanies()
-      .pipe(map((res) => res["data"]))
-      .subscribe((res) => {
-        this.spinner.hide();
-        this.companies = res;
-      });
-  }
-  getCompany(company) {
-    this.company_id = company;
-    this.clientList(1, company, this.active);
-  }
-  clientList(page, company, active) {
+  ShowOrdersDeliveredToCustomer(page, company, active) {
     this.spinner.show();
     this.service
       .getOrderspages(page, company, active)
@@ -59,30 +43,7 @@ export class FromSaudiComponent implements OnInit {
       });
   }
 
-  changeStatus(user_id, status_id) {
-    this.spinner.show();
-    this.service
-      .ChangeOrdersStatus(user_id, status_id)
-      .subscribe((res: any) => {
-        this.spinner.hide();
-      });
-  }
-  confirmOrder(order_id) {
-    this.spinner.show();
-    this.service.ConfirmOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
 
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
-  reciveOrder(order_id) {
-    this.spinner.show();
-    this.service.recieveOrder(order_id).subscribe((res: any) => {
-      this.spinner.hide();
-
-      this.clientList(1, this.company_id, this.active);
-    });
-  }
   finishOrder(order_id) {
     this.data = {
       title: "هل انت واثق انك تريد تأكيد هذا الطلب  ؟",
@@ -105,7 +66,7 @@ export class FromSaudiComponent implements OnInit {
           this.spinner.hide();
 
           this.toaster.success("تم إستلام الطلب بنجاح");
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrdersDeliveredToCustomer(1, this.company_id, this.active);
         });
       }
     });
@@ -141,9 +102,8 @@ export class FromSaudiComponent implements OnInit {
           this.spinner.hide();
 
           this.toaster.error("تم إلغاء الطلب بنجاح");
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrdersDeliveredToCustomer(1, this.company_id, this.active);
         });
-        this.service.finishOrder(order_id).subscribe();
       }
     });
   }
@@ -162,7 +122,7 @@ export class FromSaudiComponent implements OnInit {
       .subscribe((result: any) => {
         if (result) {
           this.toaster.success(result);
-          this.clientList(1, this.company_id, this.active);
+          this.ShowOrdersDeliveredToCustomer(1, this.company_id, this.active);
         }
       });
   }

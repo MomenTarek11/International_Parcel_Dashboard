@@ -1,6 +1,6 @@
 <section id="add-main-page" data-aos="fade-left">
   <div class="container-fluid">
-    <div class="row" *ngIf="orders?.data?.length != 0">
+    <div class="row" *ngIf="orders?.data?.length != 0 && !showPlaceholder">
       <div class="row w-100">
         <div class="col-md-12">
           <div class="panel">
@@ -26,12 +26,12 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let order of orders?.data; let i = index">
-                    <th scope="row" class="text-light">{{ i + 1 }}</th>
-                    <th scope="row" class="text-light">
+                    <td scope="row">{{ i + 1 }}</td>
+                    <td scope="row">
                       {{ order.order_refrence }}
-                    </th>
+                    </td>
                     <td>{{ order.user.name }}</td>
-                    <td>{{ order.user.email }}</td>
+                    <td>{{ order.user.email || "-" }}</td>
                     <td>{{ order.user.phone }}</td>
                     <td>{{ order?.updated_at | date }}</td>
                     <td>
@@ -83,14 +83,18 @@
       <ul class="pagination w-50 m-auto row">
         <li
           class="page-item col"
-          (click)="clientList(orders?.current_page - 1, 1, this.active)"
+          (click)="
+            ShowOrdersThatGetFromChina(orders?.current_page - 1, 1, this.active)
+          "
         >
           <button class="btn btn-primary">السابق</button>
         </li>
 
         <li
           class="page-item col"
-          (click)="clientList(orders?.current_page + 1, 1, this.active)"
+          (click)="
+            ShowOrdersThatGetFromChina(orders?.current_page + 1, 1, this.active)
+          "
         >
           <button class="btn btn-primary">التالي</button>
         </li>

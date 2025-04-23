@@ -6,20 +6,31 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class BlogsService {
-
   constructor(private http: HttpClient) { }
-
   getAllBlogs(){
-    return this.http.get(`${environment.endpoint}/backend/blogs`);
+    return this.http.get(`${environment.endpoint}/blogs`);
   }
   getBlogById(id: number){
-    return this.http.get(`${environment.endpoint}/backend/blogs/${id}`);
+    return this.http.get(`${environment.endpoint}/blogs/${id}`);
   }
-  createBlog(data: any){
-    return this.http.post(`${environment.endpoint}/backend/blogs`, data);
+  createBlog(data: any) {
+    const formData = new FormData();
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(key, data[key]);
+      }
+    }
+    return this.http.post(`${environment.endpoint}/backend/blogs`, formData);
   }
   updateBlog(id: number, data: any){
-    return this.http.put(`${environment.endpoint}/backend/blogs/${id}`, data);
+    const formData = new FormData();
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        formData.append(key, data[key]);
+      }
+    }
+    console.log(formData);
+    return this.http.post(`${environment.endpoint}/backend/blogs/${id}`, formData);
   }
   deleteBlog(id: number){
     return this.http.delete(`${environment.endpoint}/backend/blogs/${id}`);
