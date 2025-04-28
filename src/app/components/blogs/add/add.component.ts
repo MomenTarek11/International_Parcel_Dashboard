@@ -65,9 +65,11 @@ export class AddComponent implements OnInit {
       ],
       content_cn: ["", Validators.required],
       cover: ["", Validators.required],
+      is_published:[false]
     });
   }
   submit() {
+    this.f.is_published.value==true?this.f.is_published.setValue(1):this.f.is_published.setValue(0);
     console.log(this.form.value);
     this.submitted = true;
     if (this.form.invalid) {
@@ -89,43 +91,6 @@ export class AddComponent implements OnInit {
   get f() {
     return this.form.controls;
   }
-  // get quillEditor() {
-  //   return this.editor?.quillEditor;
-  // }
-  // customImageHandler() {
-  //   if (this.imageCount >= this.maxImages) {
-  //     alert('You can only upload up to 5 images.');
-  //     return;
-  //   }
-  
-  //   const fileInput = document.createElement('input');
-  //   fileInput.setAttribute('type', 'file');
-  //   fileInput.setAttribute('accept', 'image/*');
-  //   fileInput.click();
-  
-  //   fileInput.onchange = () => {
-  //     const file = fileInput.files?.[0];
-  //     if (file) {
-  //       if (file.size > this.maxImageSize) {
-  //         alert('Image size exceeds 1MB. Please upload a smaller image.');
-  //         return;
-  //       }
-  
-  //       const reader = new FileReader();
-  //       reader.onload = (e: any) => {
-  //         // Loop through all editors and insert the image into each one
-  //         this.editors.toArray().forEach((editor) => {
-  //           const range = editor.quillEditor.getSelection(true);
-  //           editor.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
-  //         });
-  //         this.imageCount++; // Increment image count when a new image is inserted
-  //       };
-  //       reader.readAsDataURL(file);
-  //     }
-  //   };
-  // }
-  
-  
   UploadImage(event: any) {
     const file = event.target.files[0];
     this.form.patchValue({

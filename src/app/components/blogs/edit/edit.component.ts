@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
   notEqual: boolean = false;
   form: FormGroup;
   uploadedImage: any;
-
+  checked:boolean;
   modules = {
     toolbar: {
       container: [
@@ -52,7 +52,7 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-console.log(this.data);
+console.log(this.data?.published_at!=null); // false and true
     this.form = this.fb.group({
       title_ar: ['', Validators.required],
       title_en: ['', Validators.required],
@@ -61,11 +61,10 @@ console.log(this.data);
       content_en: ['', Validators.required],
       content_cn: ['', Validators.required],
       cover: ['', Validators.required],
+      is_published:this.data?.published_at!=null
     });
-  
     this.loadBlogData();
   }
-  
   loadBlogData() {
       this.form.patchValue({
         title_ar: this.data.title_ar,
@@ -74,24 +73,21 @@ console.log(this.data);
         content_ar: this.data.content_ar,
         content_en: this.data.content_en,
         content_cn: this.data.content_cn,
-        cover: this.data.cover_url
+        cover: this.data?.cover_url,
+        is_published:this.data?.published_at!=null
       });
-      this.uploadedImage = this.data.cover_url;
-    
+      this.uploadedImage = this.data?.cover_url; 
   }
-  
-
-
   onSubmit() {
-    if (this.f.cover.value == this.data.cover_url) {
+    if (this.f?.cover?.value == this.data?.cover_url) {
       this.form.removeControl('cover');
     }
-      console.log(this.form.value);
+    this.f.is_published.value==true?this.f.is_published.setValue(1):this.f.is_published.setValue(0);
+    console.log(this.form.value);
     this.submitted = true;
     if (this.form.invalid) {
       return;
     }
-    
     this.spinner.show();
     this.service.updateBlog(this.data?.id,this.form.value).subscribe(
       (res) => {
@@ -160,5 +156,8 @@ console.log(this.data);
     if (content) {
       editor.root.innerHTML = content;
     }
+  }
+  check(event:any){
+    this.checked=event.checked;
   }
 }

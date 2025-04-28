@@ -35,4 +35,7 @@ export class BlogsService {
   deleteBlog(id: number){
     return this.http.delete(`${environment.endpoint}/backend/blogs/${id}`);
   }
+  // tooglePuplishBLog(id: number){
+  //   return this.http.patch(`${environment.endpoint}/backend/blogs/${id}`,'');
+  // }
 }
