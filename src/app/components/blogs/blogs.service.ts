@@ -38,4 +38,11 @@ export class BlogsService {
   // tooglePuplishBLog(id: number){
   //   return this.http.patch(`${environment.endpoint}/backend/blogs/${id}`,'');
   // }
+  uploadFiles(files: any) {
+    const formData = new FormData();
+    for(let i=0;i<1;i++){
+      formData.append(`files[${i}]`, files);
+    }
+    return this.http.post(`${environment.endpoint}/files`, formData);
+  }
 }

@@ -1,9 +1,10 @@
-import { Component, Inject, OnInit, ViewChild } from "@angular/core";
+import { Component, Inject, OnInit, QueryList, ViewChild, ViewChildren } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { NgxSpinnerService } from "ngx-spinner";
 import { NgxSpinner } from "ngx-spinner/lib/ngx-spinner.enum";
 import { BlogsService } from "../blogs.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-edit",
@@ -11,7 +12,7 @@ import { BlogsService } from "../blogs.service";
   styleUrls: ["./edit.component.scss"],
 })
 export class EditComponent implements OnInit {
-  @ViewChild('editor', { static: true }) editor: any;
+  @ViewChildren('editor') editors: QueryList<any>; 
   maxImageSize = 1 * 1024 * 1024; // 1 MB limit
   imageCount = 0; // Track the number of images inserted
   maxImages = 5; // Limit to 5 images
@@ -36,11 +37,11 @@ export class EditComponent implements OnInit {
         [{ font: [] }],
         [{ align: [] }],
         ['clean'],
-        ['link', 'image', 'video'],
+        ['link', 'image', ],
       ],
-      // handlers: {
-      //   image: () => this.customImageHandler()
-      // }
+      handlers: {
+        image: () => this.imageHandler()  // Use the image handler for image uploads
+      }
     }
   };
   constructor(
@@ -48,7 +49,8 @@ export class EditComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb:FormBuilder,
     private spinner:NgxSpinnerService,
-    private service:BlogsService
+    private service:BlogsService,
+    private toaster:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -102,38 +104,96 @@ console.log(this.data?.published_at!=null); // false and true
   get f() {
     return this.form.controls;
   }
-  get quillEditor() {
-    return this.editor?.quillEditor;
-  }
-  // customImageHandler() {
-  //   if (this.imageCount >= this.maxImages) {
-  //     alert('You can only upload up to 5 images.');
-  //     return;
-  //   }
-  
-  //   const fileInput = document.createElement('input');
-  //   fileInput.setAttribute('type', 'file');
-  //   fileInput.setAttribute('accept', 'image/*');
-  //   fileInput.click();
-  
-  //   fileInput.onchange = () => {
-  //     const file = fileInput.files?.[0];
-  //     if (file) {
-  //       if (file.size > this.maxImageSize) {
-  //         alert('Image size exceeds 1MB. Please upload a smaller image.');
-  //         return;
-  //       }
-  
-  //       const reader = new FileReader();
-  //       reader.onload = (e: any) => {
-  //         const range = this.quillEditor.getSelection(true);
-  //         this.quillEditor.insertEmbed(range.index, 'image', e.target.result, 'user');
-  //         this.imageCount++; // Increment image count when a new image is inserted
-  //       };
-  //       reader.readAsDataURL(file);
-  //     }
-  //   };
+  // get quillEditor() {
+  //   return this.editor?.quillEditor;
   // }
+  imageHandler() {
+    const fileInput = document.createElement('input');
+    fileInput.setAttribute('type', 'file');
+    fileInput.setAttribute('accept', 'image/*');
+    fileInput.click();
+
+    fileInput.onchange = () => {
+      const file = fileInput.files[0];
+      if (file) {
+        // Validate the file size
+        if (file.size > this.maxImageSize) {
+          this.toaster.error('حجم الصورة كبير جداً. يرجى اختيار صورة أصغر من 1 MB');
+        } else {
+          this.uploadImageInQuill(file);
+        }
+      }
+    };
+  }
+  // Method to upload image using the service
+  uploadImageInQuill(file: File) {
+    // this.spinner.show();
+    // Step 1: Upload the image to the API
+    this.service.uploadFiles(file).subscribe(
+      (res: any) => {
+        const imageUrl = res?.data[0]; // Assuming the API response contains the image URL in 'res.data[0]'
+  
+        // Step 2: Find the editor the user is interacting with (active editor)
+        const activeEditor = this.editors.toArray().find(editor => editor.quillEditor.hasFocus());
+        if (activeEditor) {
+          const editor = activeEditor.quillEditor;
+          const range = editor.getSelection();
+          if (range) {
+            editor.insertEmbed(range.index, 'image', imageUrl);
+          
+            setTimeout(() => {
+              const editorElem = editor.root as HTMLElement;
+              const images = editorElem.querySelectorAll('img');
+              const latestImage = images[images.length - 1] as HTMLImageElement;
+          
+              if (latestImage) {
+                latestImage.style.width = '300px';
+                latestImage.style.height = '300px';
+                latestImage.style.objectFit = 'contain';
+                latestImage.style.display = 'block';
+                latestImage.style.margin = '0 auto';
+              }
+            }, 10); // slight delay to allow image insertion
+          } else {
+            editor.insertEmbed(0, 'image', imageUrl);
+          
+            setTimeout(() => {
+              const editorElem = editor.root as HTMLElement;
+              const images = editorElem.querySelectorAll('img');
+              const firstImage = images[0] as HTMLImageElement;
+          
+              if (firstImage) {
+                firstImage.style.width = '300px';
+                firstImage.style.height = '300px';
+                firstImage.style.objectFit = 'contain';
+                firstImage.style.display = 'block';
+                firstImage.style.margin = '0 auto';
+              }
+            }, 10);
+          }
+  
+          // After inserting the image, get the updated content
+          const updatedContent = editor.root.innerHTML; // Get the full HTML content (including the image)
+          
+          // Update the form control with the new content
+          this.f.content_en.setValue(updatedContent);
+  
+          // Set the content back to the editor (in case other actions changed it)
+          editor.root.innerHTML = updatedContent;
+  
+          console.log(imageUrl);
+          console.log(updatedContent); // Log the updated content
+        }
+      },
+      (error) => {
+        this.spinner.hide();
+        console.error('Error uploading image:', error);
+      }
+    );
+  }
+  
+  
+
   UploadImage(event: any) {
     const file = event.target.files[0];
     this.form.patchValue({
@@ -157,6 +217,7 @@ console.log(this.data?.published_at!=null); // false and true
       editor.root.innerHTML = content;
     }
   }
+  
   check(event:any){
     this.checked=event.checked;
   }
