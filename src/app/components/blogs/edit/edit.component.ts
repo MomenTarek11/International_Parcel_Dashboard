@@ -127,62 +127,45 @@ console.log(this.data?.published_at!=null); // false and true
   }
   // Method to upload image using the service
   uploadImageInQuill(file: File) {
-    // this.spinner.show();
-    // Step 1: Upload the image to the API
+    // Step 1: Upload the image
     this.service.uploadFiles(file).subscribe(
       (res: any) => {
-        const imageUrl = res?.data[0]; // Assuming the API response contains the image URL in 'res.data[0]'
-  
-        // Step 2: Find the editor the user is interacting with (active editor)
+        const imageUrl = res?.data[0];
         const activeEditor = this.editors.toArray().find(editor => editor.quillEditor.hasFocus());
+  
         if (activeEditor) {
           const editor = activeEditor.quillEditor;
           const range = editor.getSelection();
-          if (range) {
-            editor.insertEmbed(range.index, 'image', imageUrl);
-          
-            setTimeout(() => {
-              const editorElem = editor.root as HTMLElement;
-              const images = editorElem.querySelectorAll('img');
-              const latestImage = images[images.length - 1] as HTMLImageElement;
-          
-              if (latestImage) {
-                latestImage.style.width = '300px';
-                latestImage.style.height = '300px';
-                latestImage.style.objectFit = 'contain';
-                latestImage.style.display = 'block';
-                latestImage.style.margin = '0 auto';
+          const index = range ? range.index : 0;
+  
+          // Step 2: Insert the image
+          editor.insertEmbed(index, 'image', imageUrl);
+  
+          // Step 3: Wait for DOM to update, then ask for alt text
+          setTimeout(() => {
+            const editorElem = editor.root as HTMLElement;
+            const images = editorElem.querySelectorAll('img');
+            const insertedImage = images[images.length - 1] as HTMLImageElement;
+  
+            if (insertedImage) {
+              insertedImage.style.width = '300px';
+              insertedImage.style.height = '300px';
+              insertedImage.style.objectFit = 'contain';
+              insertedImage.style.display = 'block';
+              insertedImage.style.margin = '0 auto';
+  
+              // Ask for alt text
+              const altText = prompt('اضف حقل alt للصورة');
+              if (altText) {
+                insertedImage.setAttribute('alt', altText);
               }
-            }, 10); // slight delay to allow image insertion
-          } else {
-            editor.insertEmbed(0, 'image', imageUrl);
-          
-            setTimeout(() => {
-              const editorElem = editor.root as HTMLElement;
-              const images = editorElem.querySelectorAll('img');
-              const firstImage = images[0] as HTMLImageElement;
-          
-              if (firstImage) {
-                firstImage.style.width = '300px';
-                firstImage.style.height = '300px';
-                firstImage.style.objectFit = 'contain';
-                firstImage.style.display = 'block';
-                firstImage.style.margin = '0 auto';
-              }
-            }, 10);
-          }
-  
-          // After inserting the image, get the updated content
-          const updatedContent = editor.root.innerHTML; // Get the full HTML content (including the image)
-          
-          // Update the form control with the new content
-          this.f.content_en.setValue(updatedContent);
-  
-          // Set the content back to the editor (in case other actions changed it)
-          editor.root.innerHTML = updatedContent;
-  
-          console.log(imageUrl);
-          console.log(updatedContent); // Log the updated content
+            }
+            
+            // Update content and form
+            const updatedContent = editor.root.innerHTML;
+            this.f.content_en.setValue(updatedContent);
+            console.log(updatedContent);
+          }, 10);
         }
       },
       (error) => {
