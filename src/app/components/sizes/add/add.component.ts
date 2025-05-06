@@ -42,6 +42,7 @@ export class AddComponent implements OnInit {
     { section_id: 21, section_name: "رسائل العملاء" },
     { section_id: 22, section_name: "الدول" },
     { section_id: 23, section_name: "المدن" },
+    { section_id: 24, section_name: "المقالات" },
   ];
 
   uploadedImage: any;

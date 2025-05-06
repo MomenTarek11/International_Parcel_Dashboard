@@ -146,7 +146,6 @@ console.log(this.data?.published_at!=null); // false and true
             const editorElem = editor.root as HTMLElement;
             const images = editorElem.querySelectorAll('img');
             const insertedImage = images[images.length - 1] as HTMLImageElement;
-  
             if (insertedImage) {
               insertedImage.style.width = '300px';
               insertedImage.style.height = '300px';
