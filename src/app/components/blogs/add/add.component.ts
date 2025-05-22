@@ -65,6 +65,12 @@ export class AddComponent implements OnInit {
       content_en: ["", [Validators.required]],
       content_cn: ["", Validators.required],
       cover: ["", Validators.required],
+      meta_title_ar: [""],
+      meta_title_en: [""],
+      meta_title_cn: [""],
+      meta_description_ar: [""],
+      meta_description_en: [""],
+      meta_description_cn: [""],
       is_published: [false],
     });
   }
