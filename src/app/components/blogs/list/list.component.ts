@@ -7,6 +7,7 @@ import { EditComponent } from "../edit/edit.component";
 import { PopUpComponent } from "src/app/shared/pop-up/pop-up.component";
 import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
+import { finalize } from "rxjs/operators";
 
 @Component({
   selector: "app-list",
@@ -24,16 +25,21 @@ export class ListComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.getAllBlogs();
+    console.log(this.blogs);
   }
 
   getAllBlogs(){
-    this.service.getAllBlogs().subscribe(
+    this.service.getAllBlogs().pipe(finalize(() => this.showPlaceholder = false)).subscribe(
       (res: any) => {
-        this.spinner.hide();
+        // this.spinner.hide();
         this.blogs = res.data;
         this.showPlaceholder = false;
         console.log(this.blogs);
       }
+      ,(err: any) => {
+        this.spinner.hide();
+      }
+
     )
   }
   showBlog(Blog:IBlog){

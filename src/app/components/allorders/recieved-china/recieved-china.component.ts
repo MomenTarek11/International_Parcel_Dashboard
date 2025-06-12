@@ -62,16 +62,20 @@ ShowOrders(page:number, company:any, active:number) {
       autoFocus: false,
       data: this.data,
     });
-
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.service
-          .UpdatePayment({ order_id: user_id, isChanged: 0, price: 0 })
-          .subscribe((res: any) => {
-            this.spinner.hide();
-            this.toaster.success("تم التحديث بنجاح");
-            this.ShowOrders(1, this.company_id, this.active);
-          });
+        // this.service
+        //   .UpdatePayment({ order_id: user_id, isChanged: 0, price: 0 })
+        //   .subscribe((res: any) => {
+        //     this.spinner.hide();
+        //     this.toaster.success("تم التحديث بنجاح");
+        //     this.ShowOrders(1, this.company_id, this.active);
+        //   });
+        this.service.ChangeOrdersStatus(user_id, 3).subscribe((res: any) => {
+          this.spinner.hide();
+          this.toaster.success("تم تأكيد الطلب بنجاح");
+          this.ShowOrders(1, this.company_id, this.active);
+        });
       }
     });
   }
@@ -105,7 +109,6 @@ ShowOrders(page:number, company:any, active:number) {
       if (result) {
         this.service.cancelOrder(order_id).subscribe((res: any) => {
           this.spinner.hide();
-
           this.ShowOrders(1, this.company_id, this.active);
         });
 

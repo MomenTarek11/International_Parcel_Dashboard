@@ -513,8 +513,9 @@ export class GlobalService {
     let formData = new FormData();
     formData.append("order_id", form.order_id);
     formData.append("is_changed", form.isChanged);
+    if (form.price) {
     formData.append("calculated_price", form.price);
-
+    }
     return this.http.post(
       `${environment.endpoint}/backend/orders/update-price`,
       formData

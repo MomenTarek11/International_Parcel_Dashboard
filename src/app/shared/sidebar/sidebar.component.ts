@@ -315,11 +315,24 @@ export class SidebarComponent implements OnInit {
         },
       ],
     },
+    {
+      id: 25,
+      name: "SEO",
+      parent: true,
+      toggle: false,
+      active: { exact: true },
+      children: [
+        {
+          name: "تحرير robots.txt",
+          path: "/app/seo/robots-editor",
+        },
+      ],
+    }
+    
   ];
   sidebarIds: any;
   ngOnInit(): void {
     this.sidebarIds = this.user?.data?.permissions || [];
-
     if (this.sidebarIds.includes("*")) {
       this.sidebar = this.totalTags;
     } else {

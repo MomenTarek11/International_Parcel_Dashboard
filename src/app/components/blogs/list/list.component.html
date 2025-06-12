@@ -63,6 +63,18 @@
         </div>
       </div>
     </div>
+    <div class="row" *ngIf="!showPlaceholder && blogs?.data?.length == 0">
+      <div class="col-md-12">
+        <div class="card-body text-center">
+          <img
+            src="../../../../assets/images/No data-amico.svg"
+            alt=""
+            class="w-25"
+          />
+          <h3 class="font-roboto fw-bold mt-3">لا يوجد مقالات</h3>
+        </div>
+      </div>
+    </div>
     <app-placeholder
       *ngIf="showPlaceholder"
       [header]="[

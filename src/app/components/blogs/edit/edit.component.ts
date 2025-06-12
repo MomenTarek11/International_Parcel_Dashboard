@@ -63,6 +63,15 @@ console.log(this.data?.published_at!=null); // false and true
       content_en: ['', Validators.required],
       content_cn: ['', Validators.required],
       cover: ['', Validators.required],
+      meta_title_ar: [""],
+      meta_title_en: [""],
+      meta_title_cn: [""],
+      meta_description_ar: [""],
+      meta_description_en: [""],
+      meta_description_cn: [""],
+      slug_ar: [""],
+      slug_en: [""],
+      slug_cn: [""],
       is_published:this.data?.published_at!=null
     });
     this.loadBlogData();
@@ -76,6 +85,15 @@ console.log(this.data?.published_at!=null); // false and true
         content_en: this.data.content_en,
         content_cn: this.data.content_cn,
         cover: this.data?.cover_url,
+        meta_title_ar:this.data?.meta_title_ar=="null"?'': this.data?.meta_title_ar ,
+        meta_title_en: this.data?.meta_title_en=="null" ?'': this.data?.meta_title_en,
+        meta_title_cn: this.data?.meta_title_cn=="null" ?'': this.data?.meta_title_cn,
+        meta_description_ar:this.data?.meta_description_ar=="null" ?'': this.data?.meta_description_ar,
+        meta_description_en: this.data?.meta_description_en=="null" ?'': this.data?.meta_description_en,
+        meta_description_cn: this.data?.meta_description_cn=="null" ?'': this.data?.meta_description_cn,
+        slug_ar: this.data?.slug_ar=="null" ?'': this.data?.slug_ar,
+        slug_en: this.data?.slug_en=="null" ?'': this.data?.slug_en,
+        slug_cn: this.data?.slug_cn=="null" ?'': this.data?.slug_cn,
         is_published:this.data?.published_at!=null
       });
       this.uploadedImage = this.data?.cover_url; 

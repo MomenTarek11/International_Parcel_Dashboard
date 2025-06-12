@@ -71,6 +71,9 @@ export class AddComponent implements OnInit {
       meta_description_ar: [""],
       meta_description_en: [""],
       meta_description_cn: [""],
+      slug_ar: [""],
+      slug_en: [""],
+      slug_cn: [""],
       is_published: [false],
     });
   }
