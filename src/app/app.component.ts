@@ -10,7 +10,6 @@ import * as AOS from "aos";
 })
 export class AppComponent implements OnInit, OnDestroy {
   isConnected = true;
-
   constructor(
     private _snackBar: MatSnackBar,
     private connectionService: ConnectionService,

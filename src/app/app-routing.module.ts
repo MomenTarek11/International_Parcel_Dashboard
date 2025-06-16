@@ -20,6 +20,8 @@ import { contactUsModule } from "./components/contact-us/occasions.module";
 import { CountriesModule } from "./components/countries/countries.module";
 import { CitiesModule } from "./components/cities/cities.module";
 import { SidebarGuard } from "./guards/sidebar.guard";
+import { BlogsModule } from "./components/blogs/blogs.module";
+import { SeoComponent } from "./components/seo/seo.component";
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
@@ -114,6 +116,16 @@ const routes: Routes = [
         canActivate: [SidebarGuard],
         loadChildren: () => CitiesModule,
       },
+      {
+        path:"blogs",
+        canActivate: [SidebarGuard],
+        loadChildren: () => BlogsModule,
+      },
+      {
+        path:"seo",
+        canActivate: [SidebarGuard],
+        component:SeoComponent
+      }
     ],
   },
 

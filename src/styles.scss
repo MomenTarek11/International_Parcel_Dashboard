@@ -2,6 +2,9 @@
 @import "ngx-toastr/toastr";
 @import "intl-tel-input/build/css/intlTelInput.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~quill/dist/quill.bubble.css';
+// or
+@import '~quill/dist/quill.snow.css';
 $ph-direction: ltr !default;
 $ph-bg: #fff !default;
 $ph-color: #ced4da !default;
@@ -371,4 +374,13 @@ ngx-intl-tel-input input::placeholder {
 }
 .form-control:focus {
   box-shadow: none;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb{
+  background-color: #fff;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar{
+  background-color: #28a745 ;
+}
+.mat-slide-toggle.mat-checked .mat-ripple-element{
+  background-color: transparent !important;
 }

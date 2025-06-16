@@ -1,0 +1,42 @@
+<div class="container mt-4 p-4 bg-white rounded shadow">
+    <h2 class="mb-3">تحرير ملف robots.txt</h2>
+  
+    <!-- Success / Error Alerts -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Textarea -->
+    <div class="form-group">
+      <label for="robotsContent">محتوى robots.txt:</label>
+      <textarea
+        id="robotsContent"
+        [(ngModel)]="robotsContent"
+        class="form-control"
+        rows="10"
+      ></textarea>
+    </div>
+  
+    <!-- Warning if Disallow: / -->
+    <div *ngIf="robotsContent.includes('Disallow: /')" class="alert alert-warning">
+      ⚠️ تنبيه: يحتوي الملف على <strong>Disallow: /</strong> مما قد يمنع فهرسة الموقع بالكامل!
+    </div>
+  
+    <!-- Save Button -->
+    <button (click)="saveRobotsTxt()" class="btn btn-primary">
+      حفظ
+    </button>
+  
+    <!-- Preview Link -->
+    <a
+      class="btn btn-link ms-3"
+      href="https://yourwebsite.com/robots.txt"
+      target="_blank"
+    >
+      معاينة الملف المباشر
+    </a>
+  </div>
+  

@@ -27,6 +27,10 @@ import { CountriesModule } from "./components/countries/countries.module";
 import { AddCityComponent } from "./components/cities/add-city/add-city.component";
 import { PlaceholderComponent } from "./shared/placeholder/placeholder.component";
 import { NgxSpinnerModule } from "ngx-spinner";
+import { BlogsModule } from "./components/blogs/blogs.module";
+import { SeoComponent } from './components/seo/seo.component';
+// import { ListComponent } from './components/blogs/list/list.component';
+// import { AddComponent } from './components/blogs/add/add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +39,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     HomeComponent,
     WrongRouteComponent,
     PopUpComponent,
+    SeoComponent,
   ],
   imports: [
     BrowserModule,

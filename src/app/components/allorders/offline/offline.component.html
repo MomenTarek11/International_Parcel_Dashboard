@@ -27,10 +27,10 @@
               </thead>
               <tbody>
                 <tr *ngFor="let order of orders?.data; let i = index">
-                  <th scope="row" class="text-light">{{ i + 1 }}</th>
-                  <th scope="row" class="text-light">
+                  <td scope="row" class="">{{ i + 1 }}</td>
+                  <td scope="row" class="">
                     {{ order.order_refrence }}
-                  </th>
+                  </td>
                   <td>{{ order?.user.name }}</td>
                   <td>{{ order?.user.email }}</td>
                   <td>{{ order?.user.phone }}</td>
