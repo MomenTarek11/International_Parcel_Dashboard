@@ -324,7 +324,7 @@ export class SidebarComponent implements OnInit {
       children: [
         {
           name: "تحرير robots.txt",
-          path: "/app/seo/robots-editor",
+          path: "/app/seo",
         },
       ],
     }
