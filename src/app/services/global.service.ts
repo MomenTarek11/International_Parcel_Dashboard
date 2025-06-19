@@ -89,6 +89,17 @@ export class GlobalService {
       formData
     );
   }
+  getRobotsTxt(){
+    return this.http.get(`${environment.endpoint}/backend/robots`);
+  }
+  updateRobotsTxt(form: any): Observable<any> {
+    const formData = new FormData();
+    formData.append("robots", form.robotsContent);
+    return this.http.post(
+      `${environment.endpoint}/backend/robots`,
+      formData
+    );
+  }
 
   getBanners() {
     return this.http.get(`${environment.endpoint}/backend/banners`);

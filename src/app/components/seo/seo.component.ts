@@ -1,5 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs/operators';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-seo',
@@ -7,49 +12,47 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./seo.component.scss']
 })
 export class SeoComponent implements OnInit {
+  robots!:FormGroup;
 
-  robotsContent: string = '';
-  successMessage: string = '';
-  errorMessage: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private service:GlobalService,private fb:FormBuilder,private spinner:NgxSpinnerService,private toaster:ToastrService) {}
 
   ngOnInit(): void {
+    this.robots = this.fb.group({
+      robotsContent: ['']
+    });
     this.loadRobotsTxt();
   }
 
   loadRobotsTxt(): void {
-    this.http.get('/robots.txt', { responseType: 'text' }).subscribe({
-      next: (data) => {
-        this.robotsContent = data;
+    this.spinner.show();
+    this.service.getRobotsTxt().pipe(finalize(()=>this.spinner.hide())).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.robots.patchValue({  
+          robotsContent: res?.data?.robots
+        });
       },
-      error: () => {
-        this.errorMessage = 'فشل في تحميل ملف robots.txt.';
-      },
+      error: (error: any) => {
+      }
     });
   }
 
  saveRobotsTxt(): void {
-    this.successMessage = '';
-    this.errorMessage = '';
-
-    // Basic validation
-    if (!this.robotsContent.trim()) {
-      this.errorMessage = 'محتوى robots.txt لا يمكن أن يكون فارغًا.';
-      return;
-    }
-    console.log(this.robotsContent);
-    // Send the updated content to the backend
-    // this.http
-    //   .post('/api/robots/save', { content: this.robotsContent })
-    //   .subscribe({
-    //     next: () => {
-    //       this.successMessage = 'تم حفظ الملف بنجاح.';
-    //     },
-    //     error: () => {
-    //       this.errorMessage = 'حدث خطأ أثناء حفظ الملف.';
-    //     },
-    //   });
+   this.spinner.show();
+   this.service.updateRobotsTxt(this.robots.value).pipe(finalize(()=>this.spinner.hide())).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        if (res?.status) {
+          this.toaster.success("تم حفظ الملف بنجاح");
+        } else {
+          this.toaster.error("حدث خطأ أثناء حفظ الملف");
+        }
+      },
+      error: (error: any) => {
+       this.toaster.error("حدث خطأ أثناء حفظ الملف");
+      }
+    });
   } 
 
 }
