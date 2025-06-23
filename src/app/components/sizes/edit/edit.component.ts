@@ -52,6 +52,7 @@ export class EditComponent implements OnInit {
     { section_id: 22, section_name: "الدول" },
     { section_id: 23, section_name: "المدن" },
     { section_id: 24, section_name: "المقالات" },
+    { section_id: 25, section_name: "Seo" },
   ];
   constructor(
     private formbuilder: FormBuilder,
